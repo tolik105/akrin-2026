@@ -13,6 +13,7 @@ import { sanityFetch } from './live'
 const TOTAL_POSTS_QUERY = defineQuery(/* groq */ `count(*[
   _type == "post"
   && defined(slug.current)
+  && (locale == $locale || !defined(locale))
   && (isFeatured != true || defined($category))
   && select(defined($category) => $category in categories[]->slug.current, true)
 ])`)
@@ -21,24 +22,33 @@ export async function getPostsCount(
   category?: string,
   locale: BlogLocale = 'en',
 ) {
-  const response = await sanityFetch({
-    query: TOTAL_POSTS_QUERY,
-    params: { category: category ?? null },
-  })
+  try {
+    const response = await sanityFetch({
+      query: TOTAL_POSTS_QUERY,
+      params: { category: category ?? null, locale },
+    })
 
-  if (typeof response.data === 'number' && response.data > 0) {
-    return response
-  }
+    if (typeof response.data === 'number' && response.data > 0) {
+      return response
+    }
 
-  return {
-    ...response,
-    data: getFallbackPostsCount(locale, category),
+    return {
+      ...response,
+      data: getFallbackPostsCount(locale, category),
+    }
+  } catch {
+    return {
+      data: getFallbackPostsCount(locale, category),
+    } as typeof sanityFetch extends (...args: never[]) => Promise<infer R>
+      ? R
+      : never
   }
 }
 
 const POSTS_QUERY = defineQuery(/* groq */ `*[
   _type == "post"
   && defined(slug.current)
+  && (locale == $locale || !defined(locale))
   && (isFeatured != true || defined($category))
   && select(defined($category) => $category in categories[]->slug.current, true)
 ]|order(publishedAt desc)[$startIndex...$endIndex]{
@@ -59,22 +69,31 @@ export async function getPosts(
   category?: string,
   locale: BlogLocale = 'en',
 ) {
-  const response = await sanityFetch({
-    query: POSTS_QUERY,
-    params: {
-      startIndex,
-      endIndex,
-      category: category ?? null,
-    },
-  })
+  try {
+    const response = await sanityFetch({
+      query: POSTS_QUERY,
+      params: {
+        startIndex,
+        endIndex,
+        category: category ?? null,
+        locale,
+      },
+    })
 
-  if (Array.isArray(response.data) && response.data.length > 0) {
-    return response
-  }
+    if (Array.isArray(response.data) && response.data.length > 0) {
+      return response
+    }
 
-  return {
-    ...response,
-    data: getFallbackPostsPaginated(locale, startIndex, endIndex, category),
+    return {
+      ...response,
+      data: getFallbackPostsPaginated(locale, startIndex, endIndex, category),
+    }
+  } catch {
+    return {
+      data: getFallbackPostsPaginated(locale, startIndex, endIndex, category),
+    } as typeof sanityFetch extends (...args: never[]) => Promise<infer R>
+      ? R
+      : never
   }
 }
 
@@ -82,6 +101,7 @@ const FEATURED_POSTS_QUERY = defineQuery(/* groq */ `*[
   _type == "post"
   && isFeatured == true
   && defined(slug.current)
+  && (locale == $locale || !defined(locale))
 ]|order(publishedAt desc)[0...$quantity]{
   title,
   "slug": slug.current,
@@ -98,24 +118,33 @@ export async function getFeaturedPosts(
   quantity: number,
   locale: BlogLocale = 'en',
 ) {
-  const response = await sanityFetch({
-    query: FEATURED_POSTS_QUERY,
-    params: { quantity },
-  })
+  try {
+    const response = await sanityFetch({
+      query: FEATURED_POSTS_QUERY,
+      params: { quantity, locale },
+    })
 
-  if (Array.isArray(response.data) && response.data.length > 0) {
-    return response
-  }
+    if (Array.isArray(response.data) && response.data.length > 0) {
+      return response
+    }
 
-  return {
-    ...response,
-    data: getFallbackFeaturedPosts(locale, quantity),
+    return {
+      ...response,
+      data: getFallbackFeaturedPosts(locale, quantity),
+    }
+  } catch {
+    return {
+      data: getFallbackFeaturedPosts(locale, quantity),
+    } as typeof sanityFetch extends (...args: never[]) => Promise<infer R>
+      ? R
+      : never
   }
 }
 
 const FEED_POSTS_QUERY = defineQuery(/* groq */ `*[
   _type == "post"
   && defined(slug.current)
+  && (locale == $locale || !defined(locale))
 ]|order(isFeatured, publishedAt desc){
   title,
   "slug": slug.current,
@@ -128,28 +157,39 @@ const FEED_POSTS_QUERY = defineQuery(/* groq */ `*[
 }`)
 
 export async function getPostsForFeed() {
-  const response = await sanityFetch({
-    query: FEED_POSTS_QUERY,
-  })
+  try {
+    const response = await sanityFetch({
+      query: FEED_POSTS_QUERY,
+      params: { locale: 'en' },
+    })
 
-  if (Array.isArray(response.data) && response.data.length > 0) {
-    return response
-  }
+    if (Array.isArray(response.data) && response.data.length > 0) {
+      return response
+    }
 
-  return {
-    ...response,
-    data: getFallbackPostsForFeed(),
+    return {
+      ...response,
+      data: getFallbackPostsForFeed(),
+    }
+  } catch {
+    return {
+      data: getFallbackPostsForFeed(),
+    } as typeof sanityFetch extends (...args: never[]) => Promise<infer R>
+      ? R
+      : never
   }
 }
 
 const POST_QUERY = defineQuery(/* groq */ `*[
   _type == "post"
   && slug.current == $slug
+  && (locale == $locale || !defined(locale))
 ][0]{
   publishedAt,
   title,
   mainImage,
   excerpt,
+  htmlContent,
   body,
   author->{
     name,
@@ -163,41 +203,63 @@ const POST_QUERY = defineQuery(/* groq */ `*[
 `)
 
 export async function getPost(slug: string, locale: BlogLocale = 'en') {
-  const response = await sanityFetch({
-    query: POST_QUERY,
-    params: { slug },
-  })
+  try {
+    const response = await sanityFetch({
+      query: POST_QUERY,
+      params: { slug, locale },
+    })
 
-  if (response.data) {
-    return response
-  }
+    if (response.data) {
+      return response
+    }
 
-  return {
-    ...response,
-    data: getFallbackPost(slug, locale),
+    return {
+      ...response,
+      data: getFallbackPost(slug, locale),
+    }
+  } catch {
+    return {
+      data: getFallbackPost(slug, locale),
+    } as typeof sanityFetch extends (...args: never[]) => Promise<infer R>
+      ? R
+      : never
   }
 }
 
 const CATEGORIES_QUERY = defineQuery(/* groq */ `*[
   _type == "category"
-  && count(*[_type == "post" && defined(slug.current) && ^._id in categories[]._ref]) > 0
+  && count(*[
+    _type == "post"
+    && defined(slug.current)
+    && (locale == $locale || !defined(locale))
+    && ^._id in categories[]._ref
+  ]) > 0
 ]|order(title asc){
   title,
   "slug": slug.current,
 }`)
 
 export async function getCategories(locale: BlogLocale = 'en') {
-  const response = await sanityFetch({
-    query: CATEGORIES_QUERY,
-  })
+  try {
+    const response = await sanityFetch({
+      query: CATEGORIES_QUERY,
+      params: { locale },
+    })
 
-  if (Array.isArray(response.data) && response.data.length > 0) {
-    return response
-  }
+    if (Array.isArray(response.data) && response.data.length > 0) {
+      return response
+    }
 
-  return {
-    ...response,
-    data: getFallbackCategories(locale),
+    return {
+      ...response,
+      data: getFallbackCategories(locale),
+    }
+  } catch {
+    return {
+      data: getFallbackCategories(locale),
+    } as typeof sanityFetch extends (...args: never[]) => Promise<infer R>
+      ? R
+      : never
   }
 }
 
@@ -231,9 +293,17 @@ const CASE_STUDIES_QUERY = defineQuery(/* groq */ `*[
 }`)
 
 export async function getCaseStudies() {
-  return await sanityFetch({
-    query: CASE_STUDIES_QUERY,
-  })
+  try {
+    return await sanityFetch({
+      query: CASE_STUDIES_QUERY,
+    })
+  } catch {
+    return {
+      data: null,
+    } as typeof sanityFetch extends (...args: never[]) => Promise<infer R>
+      ? R
+      : never
+  }
 }
 
 const CASE_STUDY_QUERY = defineQuery(/* groq */ `*[
@@ -266,8 +336,16 @@ const CASE_STUDY_QUERY = defineQuery(/* groq */ `*[
 }`)
 
 export async function getCaseStudy(slug: string) {
-  return await sanityFetch({
-    query: CASE_STUDY_QUERY,
-    params: { slug },
-  })
+  try {
+    return await sanityFetch({
+      query: CASE_STUDY_QUERY,
+      params: { slug },
+    })
+  } catch {
+    return {
+      data: null,
+    } as typeof sanityFetch extends (...args: never[]) => Promise<infer R>
+      ? R
+      : never
+  }
 }

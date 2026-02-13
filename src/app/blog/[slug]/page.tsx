@@ -139,11 +139,11 @@ export default async function BlogPost({
             )}
             {Array.isArray(post.categories) && (
               <div className="flex flex-wrap gap-2">
-                {post.categories.map((category) => (
+                {post.categories.map((category: { slug: string; title: string }) => (
                   <Link
                     key={category.slug}
                     href={`../?category=${category.slug}`}
-                    className="rounded-full border border-dotted border-gray-300 bg-gray-50 px-2 text-sm/6 font-medium text-gray-500"
+                    className="rounded-full border border-dotted border-gray-300 bg-[#FAFAF7] px-2 text-sm/6 font-medium text-gray-500"
                   >
                     {category.title}
                   </Link>
@@ -270,10 +270,13 @@ export default async function BlogPost({
                   dangerouslySetInnerHTML={{ __html: htmlContent }}
                 />
               )}
-              <div className="mt-10">
+              <div className="mt-10 flex flex-wrap items-center gap-3">
                 <Button variant="outline" href="../">
                   <ChevronLeftIcon className="size-4" />
                   Back to blog
+                </Button>
+                <Button variant="outline" href="/case-studies">
+                  View case studies
                 </Button>
               </div>
             </div>

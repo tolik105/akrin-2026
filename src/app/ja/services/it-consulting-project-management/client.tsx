@@ -35,7 +35,7 @@ const FAQItem = ({
         <div className="relative mr-4 mt-1 h-6 w-6 flex-shrink-0">
           <svg
             className={cn(
-              "absolute inset-0 h-6 w-6 transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-6 w-6 transform text-[#3462BD] transition-all duration-200",
               isOpen && "rotate-90 scale-0",
             )}
             fill="none"
@@ -46,7 +46,7 @@ const FAQItem = ({
           </svg>
           <svg
             className={cn(
-              "absolute inset-0 h-6 w-6 rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-6 w-6 rotate-90 scale-0 transform text-[#3462BD] transition-all duration-200",
               isOpen && "rotate-0 scale-100",
             )}
             fill="none"
@@ -162,23 +162,23 @@ export default function ITConsultingProjectManagementJaClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">包括的なプロジェクト計画とリソース管理</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">リスク評価と軽減戦略</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">ベンダー調整とステークホルダー管理</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">品質保証と配信監督</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">実装後サポートと最適化</span>
                   </div>
                 </div>
@@ -225,23 +225,23 @@ export default function ITConsultingProjectManagementJaClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">移転前ITインフラストラクチャ評価と計画</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">新しい場所でのネットワークと通信設定</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">機器移転と安全なデータ移行</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">すべてのシステムのテストと検証</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">移行期間中の従業員トレーニングとサポート</span>
                   </div>
                 </div>
@@ -270,7 +270,7 @@ export default function ITConsultingProjectManagementJaClient() {
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
               {/* Column 1: Planning */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2zm8 0h-2a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2z" />
                   </svg>
@@ -278,19 +278,19 @@ export default function ITConsultingProjectManagementJaClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">計画・設計</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>サイト評価と分析</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>インフラストラクチャ設計とレイアウト</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>容量計画とスケーラビリティ</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>リスク評価と軽減</span>
                   </li>
                 </ul>
@@ -298,7 +298,7 @@ export default function ITConsultingProjectManagementJaClient() {
 
               {/* Column 2: Build */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                   </svg>
@@ -306,19 +306,19 @@ export default function ITConsultingProjectManagementJaClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">構築・設置</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>電源・冷却システム</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>ネットワークインフラストラクチャ展開</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>サーバーラック・キャビネット設置</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>セキュリティ・アクセス制御システム</span>
                   </li>
                 </ul>
@@ -326,7 +326,7 @@ export default function ITConsultingProjectManagementJaClient() {
 
               {/* Column 3: Migration */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                   </svg>
@@ -334,19 +334,19 @@ export default function ITConsultingProjectManagementJaClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">移行・テスト</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>データ移行・転送</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>アプリケーション移転・テスト</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>パフォーマンス検証・最適化</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>災害復旧検証</span>
                   </li>
                 </ul>
@@ -354,7 +354,7 @@ export default function ITConsultingProjectManagementJaClient() {
 
               {/* Column 4: Support */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.236a2 2 0 100 4 2 2 0 000-4zM12 17.764a2 2 0 100 4 2 2 0 000-4zM4.343 4.343a2 2 0 100 4 2 2 0 000-4zM19.657 4.343a2 2 0 100 4 2 2 0 000-4z" />
                   </svg>
@@ -362,19 +362,19 @@ export default function ITConsultingProjectManagementJaClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">継続的サポート</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>24/7監視・アラート</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>予防保守プログラム</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>容量管理・スケーリング</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>ドキュメント・トレーニング</span>
                   </li>
                 </ul>
@@ -395,7 +395,7 @@ export default function ITConsultingProjectManagementJaClient() {
         {/* Testimonial Section */}
         <div className="bg-[#F8FAFC] py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto py-12 px-6 md:px-12 lg:px-20 bg-white rounded-lg shadow-md border-l-4 border-[#20B2AA] relative overflow-hidden">
+            <div className="max-w-3xl mx-auto py-12 px-6 md:px-12 lg:px-20 bg-white rounded-lg shadow-md border-l-4 border-[#3462BD] relative overflow-hidden">
 
               {/* Testimonial Content */}
               <div className="relative">
@@ -420,7 +420,7 @@ export default function ITConsultingProjectManagementJaClient() {
                     key={index}
                     onClick={() => setCurrentTestimonial(index)}
                     className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                      index === currentTestimonial ? 'bg-[#20B2AA]' : 'bg-slate-300'
+                      index === currentTestimonial ? 'bg-[#3462BD]' : 'bg-slate-300'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
                   />
@@ -447,26 +447,26 @@ export default function ITConsultingProjectManagementJaClient() {
               {/* Phase 1: Assessment */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                  <div className="w-10 h-10 bg-[#3462BD] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
                     1
                   </div>
                   <h3 className="text-xl font-bold text-[#2C2C2C]">評価フェーズ</h3>
                 </div>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>ビジネス影響分析</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>リスク評価と脆弱性特定</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>重要プロセスマッピング</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>復旧時間目標（RTO）定義</span>
                   </li>
                 </ul>
@@ -475,26 +475,26 @@ export default function ITConsultingProjectManagementJaClient() {
               {/* Phase 2: Planning */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                  <div className="w-10 h-10 bg-[#3462BD] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
                     2
                   </div>
                   <h3 className="text-xl font-bold text-[#2C2C2C]">計画フェーズ</h3>
                 </div>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>災害復旧戦略開発</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>緊急対応手順</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>コミュニケーションプロトコルとチェーン</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>リソース配分とバックアップシステム</span>
                   </li>
                 </ul>
@@ -503,26 +503,26 @@ export default function ITConsultingProjectManagementJaClient() {
               {/* Phase 3: Implementation */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                  <div className="w-10 h-10 bg-[#3462BD] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
                     3
                   </div>
                   <h3 className="text-xl font-bold text-[#2C2C2C]">実装</h3>
                 </div>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>計画テストと検証</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>スタッフトレーニングと意識向上プログラム</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>ドキュメントと手順更新</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>継続的監視と保守</span>
                   </li>
                 </ul>
@@ -554,19 +554,19 @@ export default function ITConsultingProjectManagementJaClient() {
                 {/* Strategic positioning with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">要件収集とステークホルダー分析</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">プロセスマッピングとワークフロー最適化</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">ソリューション設計と技術仕様</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">変更影響評価と管理</span>
                   </div>
                 </div>
@@ -614,19 +614,19 @@ export default function ITConsultingProjectManagementJaClient() {
                 {/* Service breakdown */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">レガシーシステム移行と近代化</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">クラウド移行とハイブリッドインフラストラクチャ</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">テクノロジースタック最適化と更新</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">データ移行と整合性検証</span>
                   </div>
                 </div>
@@ -675,7 +675,7 @@ export default function ITConsultingProjectManagementJaClient() {
         </div>
 
         {/* CTA Section - EireSystems Style */}
-        <div className="bg-[#20B2AA] py-20">
+        <div className="bg-[#3462BD] py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               小規模、中規模、大規模企業向けの<br />
@@ -686,7 +686,7 @@ export default function ITConsultingProjectManagementJaClient() {
             </p>
             <Link
               href="/ja/contact"
-              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-12 py-4 bg-white text-[#3462BD] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               今すぐお問い合わせ
               <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

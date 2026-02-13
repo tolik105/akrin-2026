@@ -15,7 +15,7 @@ export function Logo({ className }: { className?: string }) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M7.383 26.821H21.226L14.1175 39.037H0.499L7.383 26.821Z"
-        fill="#50B0A0"
+        fill="#3462BD"
         fillOpacity="0.9"
       />
       {/* Black A shape */}
@@ -47,7 +47,7 @@ export function Mark({ className }: { className?: string }) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M7.383 26.821H21.226L14.1175 39.037H0.499L7.383 26.821Z"
-        fill="#50B0A0"
+        fill="#3462BD"
         fillOpacity="0.9"
       />
       {/* Black A shape */}

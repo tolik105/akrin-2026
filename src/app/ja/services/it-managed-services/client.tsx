@@ -1,809 +1,776 @@
-"use client"
+'use client'
 
-import React from "react"
-import Script from "next/script"
-import Link from "next/link"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronDownIcon } from "@heroicons/react/24/outline"
-import Image from "next/image"
-import { ServiceProcessCard } from "@/components/service-process-card"
-import { cn } from "@/lib/utils"
-import { HeroDiagonal } from "@/components/hero-diagonal"
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import {
+  ArchiveBoxIcon,
+  BanknotesIcon,
+  BellAlertIcon,
+  BuildingOffice2Icon,
+  ChartBarIcon,
+  CheckCircleIcon,
+  ClockIcon,
+  DocumentTextIcon,
+  ExclamationTriangleIcon,
+  GlobeAltIcon,
+  LifebuoyIcon,
+  MinusSmallIcon,
+  PlusSmallIcon,
+  ServerStackIcon,
+  ShieldCheckIcon,
+  UserGroupIcon,
+  WrenchScrewdriverIcon,
+} from '@heroicons/react/24/outline'
+import { Link } from '@/components/link'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
+import { SectionNav } from '@/components/SectionNav'
 
-function SpotlightLogoCloud() {
-  const logos = [
-    {
-      name: "Microsoft",
-      src: "https://img.logo.dev/microsoft.com?size=128&format=png&token=pk_UEr0qEZTRlmPOWFTe-G1XA",
-    },
-    {
-      name: "Amazon AWS",
-      src: "https://img.logo.dev/aws.amazon.com?size=128&format=png&token=pk_UEr0qEZTRlmPOWFTe-G1XA",
-    },
-    {
-      name: "Google Cloud",
-      src: "https://img.logo.dev/cloud.google.com?size=128&format=png&token=pk_UEr0qEZTRlmPOWFTe-G1XA",
-    },
-    {
-      name: "VMware",
-      src: "https://img.logo.dev/vmware.com?size=128&format=png&token=pk_UEr0qEZTRlmPOWFTe-G1XA",
-    },
-    {
-      name: "Cisco",
-      src: "https://img.logo.dev/cisco.com?size=128&format=png&token=pk_UEr0qEZTRlmPOWFTe-G1XA",
-    },
-    {
-      name: "Dell",
-      src: "https://img.logo.dev/dell.com?size=128&format=png&token=pk_UEr0qEZTRlmPOWFTe-G1XA",
-    },
-    {
-      name: "HP",
-      src: "https://img.logo.dev/hp.com?size=128&format=png&token=pk_UEr0qEZTRlmPOWFTe-G1XA",
-    },
-    {
-      name: "IBM",
-      src: "https://img.logo.dev/ibm.com?size=128&format=png&token=pk_UEr0qEZTRlmPOWFTe-G1XA",
-    },
-  ];
-
-  return (
-    <div className="relative w-full overflow-hidden py-20">
-      <AmbientColor />
-      <h3 className="bg-gradient-to-b from-[#2C2C2C] to-[#666666] bg-clip-text pb-4 text-center font-sans text-2xl font-bold text-transparent md:text-3xl">
-        テクノロジーパートナー
-      </h3>
-      <p className="text-[#666666] mb-10 mt-4 text-center font-sans text-base">
-        業界をリードするテクノロジーパートナーと協力して、最高クラスのソリューションを提供します
-      </p>
-      <div className="relative mx-auto grid w-full max-w-4xl grid-cols-2 md:grid-cols-4 gap-8">
-        {logos.map((logo, idx) => (
-          <div
-            key={logo.name + idx + "logo-spotlight"}
-            className="flex items-center justify-center"
-          >
-            <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-full p-6 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-[#20B2AA] hover:scale-105 w-[120px] h-[120px] flex items-center justify-center">
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                width={120}
-                height={60}
-                className="w-full max-w-[100px] h-auto select-none object-contain opacity-80 hover:opacity-100 transition-all duration-300 grayscale hover:grayscale-0"
-                draggable={false}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+type SectionItem = {
+  id: string
+  label: string
+  num: string
 }
 
-const AmbientColor = () => {
+const managedServicesSectionItems: SectionItem[] = [
+  { id: 'overview', label: '概要', num: '01' },
+  { id: 'monitoring', label: '監視', num: '02' },
+  { id: 'help-desk', label: 'ヘルプデスク', num: '03' },
+  { id: 'infrastructure', label: 'インフラ', num: '04' },
+  { id: 'security', label: 'セキュリティ', num: '05' },
+  { id: 'continuity', label: '事業継続', num: '06' },
+  { id: 'planning', label: 'IT戦略', num: '07' },
+  { id: 'partnership', label: 'パートナー', num: '08' },
+  { id: 'faq', label: 'FAQ', num: '09' },
+]
+
+const monitoringFeatures = [
+  {
+    title: 'リアルタイム監視',
+    description:
+      'CPU、メモリ、ディスク、ネットワークの各メトリクスをインフラ全体にわたってダッシュボードで可視化します。',
+    icon: ChartBarIcon,
+  },
+  {
+    title: '自動アラート',
+    description:
+      '重要度と業務影響に基づいてエスカレーションする、インテリジェントな通知システムを提供します。',
+    icon: BellAlertIcon,
+  },
+  {
+    title: '予防的対応',
+    description:
+      'アラートの70%以上をユーザーが気づく前に解決し、脆弱性の修正やボトルネックの解消、障害連鎖の防止を行います。',
+    icon: WrenchScrewdriverIcon,
+  },
+  {
+    title: '脅威検知',
+    description:
+      '不審なアクティビティ、不正アクセス、マルウェアを検出する統合セキュリティ監視を実施します。',
+    icon: ShieldCheckIcon,
+  },
+  {
+    title: 'キャパシティ計画',
+    description:
+      'トレンド分析と予測により、パフォーマンス低下が起きる前にインフラ拡張を計画します。',
+    icon: ServerStackIcon,
+  },
+]
+
+const helpDeskFeatures = [
+  {
+    title: '重大障害30分対応',
+    description:
+      'システム停止、セキュリティインシデント、本番影響のある障害には30分以内にエンジニアが対応を開始します。',
+    icon: ClockIcon,
+  },
+  {
+    title: '標準リクエスト4時間解決',
+    description:
+      'ソフトウェア不具合、アクセス設定、構成変更などの一般的な依頼を4営業時間以内に処理します。',
+    icon: LifebuoyIcon,
+  },
+  {
+    title: 'マルチチャネル対応',
+    description:
+      '電話、メール、チャット、セルフサービスポータルから、チームに最適な方法で問い合わせできます。',
+    icon: DocumentTextIcon,
+  },
+  {
+    title: 'リモート＆オンサイト対応',
+    description:
+      '東京拠点のエンジニアが関東圏で当日のオンサイト対応を提供し、分散拠点には即時リモート対応します。',
+    icon: BuildingOffice2Icon,
+  },
+  {
+    title: 'バイリンガル標準対応',
+    description:
+      'チケット、通話、レポート、エスカレーションまで、日本語・英語のネイティブエンジニアが対応します。',
+    icon: GlobeAltIcon,
+  },
+]
+
+const continuityCards = [
+  {
+    title: 'バックアップ＆リカバリ',
+    description:
+      'テスト済みの復旧手順を備えた自動日次バックアップを提供します。必要時だけでなく、定期的に整合性を検証し、重要システムごとにRTOとRPOを定義・文書化します。',
+    icon: ArchiveBoxIcon,
+  },
+  {
+    title: '冗長化アーキテクチャ',
+    description:
+      'フェイルオーバー構成、冗長ネットワーク経路、高可用性デプロイにより、単一障害点を排除します。',
+    icon: ServerStackIcon,
+  },
+  {
+    title: '迅速なインシデント対応',
+    description:
+      '重大障害が発生した際は数分で動員し、影響封じ込め、関係者連携、復旧手順の実行までを迅速に進めます。',
+    icon: ExclamationTriangleIcon,
+  },
+  {
+    title: 'DRテスト＆検証',
+    description:
+      '年次災害復旧訓練で実運用を想定した復旧手順を検証し、本番障害の前にギャップを特定します。',
+    icon: ShieldCheckIcon,
+  },
+  {
+    title: 'ドキュメント＆ランブック',
+    description:
+      'ネットワーク図、エスカレーション手順、ベンダー連絡先、復旧ランブックを含む運用文書を四半期ごとに更新します。',
+    icon: DocumentTextIcon,
+  },
+]
+
+const partnershipValues = [
+  '問題発生後ではなく、発生前に対処するプロアクティブ運用',
+  '予算計画を容易にし、想定外のIT費用を抑える予測可能な月額コスト',
+  'エンタープライズ水準の知見とツールを、過大な固定費なしで活用可能',
+  '人員、拠点、事業拡大に合わせて柔軟にスケールするサービス',
+]
+
+const faqItems = [
+  {
+    question: 'AKRINのマネージドITサービスには何が含まれますか？',
+    answer:
+      '24時間365日のネットワーク監視、SLA保証付きの無制限ヘルプデスク、サーバー・ネットワーク・クラウドの包括的インフラ管理、統合セキュリティ、事業継続・災害復旧、四半期ガバナンスレビュー付きのIT戦略策定が含まれます。新規機器展開のキッティング、オフィスITセットアップ、技術プロジェクト管理などの専門サービスも提供しています。',
+  },
+  {
+    question: 'IT障害への対応はどのくらい速いですか？',
+    answer:
+      'システム停止、セキュリティ侵害、本番環境に影響する障害などの重大インシデントには30分以内にエンジニアが対応を開始します。標準的なサポートリクエストは4時間以内に解決します。プロアクティブ監視により、ユーザー影響前に解決できるケースが大半です。',
+  },
+  {
+    question: '日本語と英語の両方でサポートを受けられますか？',
+    answer:
+      'はい。バイリンガル対応はAKRINの基本運用です。すべてのエンジニア、チケット、レポート、エグゼクティブレビューを日本語・英語で提供します。単なる翻訳ではなく、正確な技術コミュニケーションを行えるネイティブ体制です。',
+  },
+  {
+    question: '既存のITシステムと連携できますか？',
+    answer:
+      'もちろんです。Microsoft 365、Azure、AWS、GCP、VMwareなど主要プラットフォームに対応し、オンプレミス、クラウド、ハイブリッドのいずれでも統合可能です。現行環境を最適化しながら、事業目標に沿った改善計画を策定します。',
+  },
+  {
+    question: 'どの程度のコスト削減が期待できますか？',
+    answer:
+      'マネージドサービスへの移行企業では、完全内製体制と比べてIT運用コストを13〜32%削減するケースが一般的です。東京では包括的サービスの費用はユーザーあたり月額¥20,000〜¥30,000程度で、同等内製の人件費より大幅に効率的です。',
+  },
+  {
+    question: 'データ消去・ITADはどのように対応していますか？',
+    answer:
+      'NIST 800-88準拠の認定データ消去方式を採用し、ソフトウェア上書き消去と必要に応じた物理破壊を実施します。全資産にデータ消去証明書を発行し、完全なチェーン・オブ・カストディを保持します。ISO 27001、APPI、GDPR要件にも対応します。',
+  },
+  {
+    question: '機器展開のキッティングサービスはありますか？',
+    answer:
+      'はい。ハードウェア設定、OSイメージング、セキュリティエージェント展開、アプリ導入、資産タグ付け、周辺機器バンドリング、QA検証までを出荷前に実施します。開梱後すぐ利用できる状態で納品し、展開時間短縮と品質の均一化を実現します。',
+  },
+  {
+    question: '料金体系はどうなっていますか？',
+    answer:
+      'ユーザー単位またはデバイス単位のサブスクリプションモデルです。サービス範囲、管理対象数、SLAティア、コンプライアンス対応、オンサイト頻度などに応じて最適化します。隠れ費用のない、予測可能な月次コストをご提供します。',
+  },
+]
+
+function SectionLabel({ label }: { label: string }) {
   return (
-    <div className="pointer-events-none absolute left-40 top-0 z-40 h-screen w-screen">
-      <div
-        style={{
-          transform: "translateY(-350px) rotate(-45deg)",
-          width: "560px",
-          height: "1380px",
-          background:
-            "radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(174, 62%, 47%, .15) 0, hsla(174, 62%, 47%, .08) 50%, hsla(174, 62%, 47%, .03) 80%)",
-          filter: "blur(20px)",
-          borderRadius: "50%",
-        }}
-        className="absolute left-0 top-0"
-      />
-
-      <div
-        style={{
-          transform: "rotate(-45deg) translate(5%, -50%)",
-          transformOrigin: "top left",
-          width: "240px",
-          height: "1380px",
-          background:
-            "radial-gradient(50% 50% at 50% 50%, hsla(174, 62%, 47%, .1) 0, hsla(174, 62%, 47%, .05) 80%, transparent 100%)",
-          filter: "blur(20px)",
-          borderRadius: "50%",
-        }}
-        className="absolute left-0 top-0"
-      />
-
-      <div
-        style={{
-          position: "absolute",
-          borderRadius: "50%",
-          transform: "rotate(-45deg) translate(-180%, -70%)",
-          transformOrigin: "top left",
-          top: 0,
-          left: 0,
-          width: "240px",
-          height: "1380px",
-          background:
-            "radial-gradient(50% 50% at 50% 50%, hsla(174, 62%, 47%, .08) 0, hsla(174, 62%, 47%, .03) 80%, transparent 100%)",
-          filter: "blur(20px)",
-        }}
-        className="absolute left-0 top-0"
-      />
+    <div className="mb-4 flex items-center gap-2">
+      <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-[#3462BD]" />
+      <span className="font-mono text-xs uppercase tracking-[0.15em] text-[#17100E]/40">{label}</span>
     </div>
-  );
-};
+  )
+}
 
-const MobileFriendlyFAQItem = ({
-  question,
-  answer,
-  setOpen,
-  open,
-}: {
-  question: string;
-  answer: string;
-  open: string | null;
-  setOpen: (open: string | null) => void;
-}) => {
-  const isOpen = open === question;
-
+function ImagePlaceholder({ className = '' }: { className?: string }) {
   return (
     <div
-      className="cursor-pointer py-3 sm:py-4"
-      onClick={() => {
-        if (isOpen) {
-          setOpen(null);
-        } else {
-          setOpen(question);
-        }
-      }}
+      className={`flex min-h-[260px] items-center justify-center rounded-xl border border-[#17100E]/10 bg-white/60 ${className}`}
     >
-      <div className="flex items-start">
-        <div className="relative mr-3 sm:mr-4 mt-1 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0">
-          <svg
-            className={cn(
-              "absolute inset-0 h-full w-full transform text-[#20B2AA] transition-all duration-200",
-              isOpen && "rotate-90 scale-0",
-            )}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-          </svg>
-          <svg
-            className={cn(
-              "absolute inset-0 h-full w-full rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
-              isOpen && "rotate-0 scale-100",
-            )}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
-          </svg>
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base sm:text-lg font-medium text-neutral-700 dark:text-neutral-200 leading-tight">
-            {question}
-          </h3>
-          <AnimatePresence mode="wait">
-            {isOpen && (
-              <motion.div
-                initial={{ height: 0 }}
-                animate={{ height: "auto" }}
-                exit={{ height: 0 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="overflow-hidden text-neutral-500 dark:text-neutral-400 mt-2 sm:mt-3"
-              >
-                <p className="text-sm sm:text-base leading-relaxed">{answer}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
+      {/* IMAGE PLACEHOLDER */}
+      <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#17100E]/40">
+        IMAGE PLACEHOLDER
+      </p>
     </div>
-  );
-};
+  )
+}
 
-export default function ITManagedServicesClient() {
-  const [openFaq, setOpenFaq] = useState<string | null>(null)
-
+export default function JapaneseITManagedServicesClient() {
   return (
-    <>
-    <div>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-6YTE9HVKEE" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-6YTE9HVKEE');
-        `}
-      </Script>
+    <main className="bg-[#F4F3EC]">
+      <section className="relative overflow-hidden bg-[#17100E] pt-28 sm:pt-32 lg:pt-36">
+        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(91,138,196,0.32)_0%,transparent_52%)]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(131,161,173,0.22)_0%,transparent_58%)]" />
+        <div className="relative mx-auto max-w-7xl px-6 pb-24 lg:px-8 lg:pb-28">
+          <nav className="font-mono text-xs uppercase tracking-[0.14em] text-white/70">
+            <Link href="/ja/services" className="transition-colors hover:text-white">
+              サービス
+            </Link>{' '}
+            <span className="px-1 text-white/45">&gt;</span>{' '}
+            <span className="text-white">ITマネージドサービス</span>
+          </nav>
 
-      <div className="bg-white font-sans">
-        {/* Breadcrumb removed */}
-
-        {/* Standardized Hero Section (HeroDiagonal) */}
-        <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
-          <HeroDiagonal
-            title={<>
-              ITマネージドサービス<br />
-              ソリューション
-            </>}
-            breadcrumbs={[
-              { label: 'Services', href: '/ja/services' },
-              { label: 'IT Managed Services' }
-            ]}
-            imageSrc="/images/banners/it-managed-services/banner.avif"
-            imageAlt="ITマネージドサービスチーム"
-
-          />
-        </section>
-
-        {/* 24/7 Network Monitoring Section - EireSystems Style */}
-        <div className="bg-[#F8F9FA] py-12 sm:py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-              {/* Left Content */}
-              <div className="text-center lg:text-left">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">
-                  24時間365日<br />
-                  ネットワーク監視
-                </h2>
-                <p className="text-base sm:text-lg text-[#666666] mb-6 sm:mb-8 leading-relaxed">
-                  御社のITインフラ全体を継続的に監視し、問題がビジネス運営に影響を与える前に予防的な問題検出と解決を行います。
-                </p>
-
-                {/* Bullet Points with EireSystems styling */}
-                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">リアルタイムのシステムパフォーマンス監視</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">自動アラートシステムおよび通知</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">予防的な問題解決と防止</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">ネットワークセキュリティおよび脅威検出</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">パフォーマンス最適化とキャパシティプランニング</span>
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-base text-[#666666] leading-relaxed">
-                  当社の高度な監視システムにより、ITインフラが最小限のダウンタイムで最大の信頼性と最高のパフォーマンスを維持します。
-                </p>
-              </div>
-
-              {/* Right Image */}
-              <div className="mt-8 lg:mt-0">
-                <img
-                  src="/images/banners/it-managed-services/monitoring.webp"
-                  alt="ネットワーク監視ダッシュボード"
-                  className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
-                />
-              </div>
+          <div className="mt-8 max-w-4xl">
+            <h1 className="font-serif text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl">
+              東京のマネージドサービス：ビジネスを支えるIT運用
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-gray-100 sm:text-xl/8">
+              インフラ、セキュリティ、日常のIT運用をAKRINが担当。お客様のチームは本業に集中できます。
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-md bg-white px-5 py-2.5 text-base font-medium text-[#17100E] transition-colors hover:bg-gray-100"
+              >
+                お問い合わせ
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center rounded-md border border-white/80 bg-transparent px-5 py-2.5 text-base font-medium text-white transition-colors hover:bg-white/10"
+              >
+                全サービスを見る
+              </Link>
             </div>
           </div>
-        </div>
 
-        {/* Help Desk Support Section - EireSystems Style */}
-        <div className="bg-white py-12 sm:py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-              {/* Left Image */}
-              <div className="order-2 lg:order-1 mt-8 lg:mt-0">
-                <img
-                  src="/images/banners/it-managed-services/Help-Desk-Support.webp"
-                  alt="ヘルプデスクサポートチーム"
-                  className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none brightness-105 saturate-90"
-                  style={{ filter: 'brightness(1.05) saturate(0.9) hue-rotate(10deg)' }}
-                />
-              </div>
-
-              {/* Right Content */}
-              <div className="order-1 lg:order-2 text-center lg:text-left">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-4 sm:mb-6 leading-tight">
-                  無制限ヘルプデスク<br />
-                  サポート
-                </h2>
-                <p className="text-base sm:text-lg text-[#666666] mb-6 sm:mb-8 leading-relaxed">
-                  24時間365日の技術サポートと保証された応答時間。経験豊富な技術者が、あらゆるITのご要望に即時対応いたします。
-                </p>
-
-                {/* Bullet Points with EireSystems styling */}
-                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">重大な問題は30分以内に解決</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">標準のご依頼は4時間以内に対応</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">マルチチャネルサポート（電話・メール・チャット）</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">リモートおよびオンサイトの技術支援</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">英語・日本語のバイリンガルサポート</span>
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-base text-[#666666] leading-relaxed">
-                  専任のサポートチームが、御社の従業員の生産性維持を迅速かつ信頼性の高い技術支援でサポートいたします。
-                </p>
-              </div>
-            </div>
+          <div className="mt-14 max-w-4xl">
+            <ImagePlaceholder className="min-h-[220px] border-white/20 bg-white/[0.04]" />
           </div>
         </div>
+      </section>
 
-        {/* Infrastructure Management Section - EireSystems Style 4-Column Layout */}
-        <div className="bg-[#F8F9FA] py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
-                完全インフラ管理
-              </h2>
-              <p className="text-lg text-[#666666] max-w-4xl mx-auto leading-relaxed">
-                サーバーからクラウドプラットフォームまで、御社のITインフラ全体を専門知識と精度をもって管理し、最適なパフォーマンスとセキュリティを保証します。
-              </p>
-            </div>
+      <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
 
-            {/* 4-Column Service Grid - Exact EireSystems Style */}
-            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
-              {/* Column 1: Server Management */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">サーバー管理</h3>
-                <ul className="text-[#666666] space-y-2 text-left">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Windows & Linux管理</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>仮想化管理</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>パフォーマンス最適化</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>セキュリティパッチ適用</span>
-                  </li>
-                </ul>
-              </div>
+      <div className="relative mx-auto max-w-[1400px] overflow-visible px-6 lg:px-8">
+        <div className="overflow-visible lg:flex lg:items-start lg:gap-12">
+          <SectionNav items={managedServicesSectionItems} ariaLabel="ページセクション" />
 
-              {/* Column 2: Network Management */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">ネットワーク管理</h3>
-                <ul className="text-[#666666] space-y-2 text-left">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>WAN/LAN最適化</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>WiFi設計・管理</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>ファイアウォール設定</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>VPN設定・保守</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 3: Cloud Operations */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">クラウド運用</h3>
-                <ul className="text-[#666666] space-y-2 text-left">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Microsoft 365管理</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Azure、AWS、GCPの運用</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>バックアップと災害復旧</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>コスト最適化</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 4: Security & Compliance */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">セキュリティ＆コンプライアンス</h3>
-                <ul className="text-[#666666] space-y-2 text-left">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>エンドポイント保護</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>セキュリティ監視</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>コンプライアンス管理</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>脆弱性評価</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Infrastructure Image */}
-            <div className="text-center">
-              <img
-                src="/images/banners/it-managed-services/Infrastructure-Management.webp"
-                alt="ITインフラ管理"
-                className="w-full max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Strategic IT Planning Section - EireSystems Mint Green Background */}
-        <div className="bg-[#F0F8F5] py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
-                戦略的IT計画・ガバナンス
-              </h2>
-              <p className="text-lg text-[#666666] max-w-4xl mx-auto leading-relaxed">
-                御社のビジネス目標に合わせた長期的なテクノロジーロードマップの策定、予算計画、戦略的技術提案を含みます。
-              </p>
-            </div>
-
-            {/* Phase-based Structure - Modern Process Cards */}
-            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-              <ServiceProcessCard
-                step={1}
-                title="技術評価"
-                description="現状インフラ評価、ビジネス要件分析、技術ギャップ特定、ROIコスト効果分析により、現状を把握します。"
-                index={0}
-              />
-              <ServiceProcessCard
-                step={2}
-                title="戦略的計画"
-                description="技術ロードマップ策定、予算計画・予測、ベンダー評価・選定、実装タイムライン作成など、将来に向けてプランニングします。"
-                index={1}
-              />
-              <ServiceProcessCard
-                step={3}
-                title="継続的ガバナンス"
-                description="四半期ごとのビジネスレビュー、パフォーマンス監視、継続的最適化、戦略的調整により、長期的な成功を支えます。"
-                index={2}
-              />
-            </div>
-
-            {/* Strategic Planning Visual */}
-            <div className="text-center mb-12">
-              <img
-                src="/images/banners/it-managed-services/board-room.webp"
-                alt="戦略的IT計画"
-                className="w-full max-w-4xl mx-auto h-auto rounded-lg shadow-lg"
-              />
-            </div>
-
-            {/* Bottom Content */}
-            <div className="text-center mb-8">
-              <p className="text-lg text-[#666666] leading-relaxed max-w-4xl mx-auto">
-                当社の戦略的アプローチにより、技術投資がビジネス目標と連動し、長期的な成功へ向けて測定可能な価値をもたらします。
-              </p>
-            </div>
-
-            {/* Technology Partners Spotlight */}
-            <SpotlightLogoCloud />
-          </div>
-        </div>
-
-        {/* Your IT Partner Section - EireSystems Style */}
-        <div className="bg-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Left Content */}
-              <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-[#2C2C2C] mb-6 leading-tight">
-                  信頼できるITパートナー
-                </h2>
-                <p className="text-lg text-[#666666] mb-8 leading-relaxed">
-                  お客様のビジネスと共に成長する、持続的な技術パートナーシップを構築します。当社のマネージドITサービスはお客様のニーズに合わせて進化し、継続的なサポートと戦略的なガイダンスを長期にわたりご提供します。
-                </p>
-
-                {/* Strategic positioning with EireSystems styling */}
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-lg leading-relaxed">予防的なIT管理体制</span>
+          <div className="min-w-0 flex-1">
+            <section id="overview" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <SectionLabel label="概要" />
+                  <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                    マネージドITサービスとは？
+                  </h2>
+                  <div className="mt-8 max-w-4xl space-y-6 text-base leading-relaxed text-[#17100E]/80">
+                    <p>
+                      マネージドITサービスとは、自社のIT基盤の維持管理を社内チームから専門の外部パートナーに委託する仕組みです。ネットワーク、セキュリティ、クラウド、ヘルプデスクといった分野ごとに専門人材を採用・育成・維持する代わりに、一つのマネージドサービスプロバイダー（MSP）が包括的にカバーします。
+                    </p>
+                    <div className="rounded-2xl border border-[#17100E]/10 bg-white p-6 sm:p-8">
+                      <p>
+                        従来のITサポートは、問題が発生してから対応する事後対応型です。AKRINのマネージドサービスは、継続的な監視、予防保全、戦略的な計画により、問題がユーザーに影響を与える前に解決する事前対応型のアプローチを採用しています。
+                      </p>
+                    </div>
+                    <p>
+                      AKRINは日本市場に根ざしたバイリンガルMSPです。すべてのプロジェクトは、現在のインフラ、業務要件、コンプライアンス義務の包括的な評価から開始します。その上で、200名規模オフィスの24時間監視から複数拠点のインフラ全面刷新まで、運用目標に合致したサービスプランを設計します。
+                    </p>
                   </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-lg leading-relaxed">予測可能な月額コストと予算管理</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-lg leading-relaxed">エンタープライズレベルの専門知識へのアクセス</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2C2C2C] text-lg leading-relaxed">成長に合わせて拡大可能なソリューション</span>
+
+                  <div className="mt-14 rounded-2xl border border-[#17100E]/10 bg-white p-8 sm:p-10">
+                    <h3 className="font-serif text-2xl font-normal tracking-tight text-[#17100E] sm:text-3xl">
+                      東京の企業がマネージドサービスを選ぶ理由
+                    </h3>
+
+                    <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+                      <article className="rounded-xl border border-[#17100E]/10 bg-[#FAFAF7] p-6">
+                        <UserGroupIcon className="h-6 w-6 text-[#3462BD]" />
+                        <h4 className="mt-4 text-lg font-semibold text-[#17100E]">IT人材不足</h4>
+                        <p className="mt-2 text-sm leading-relaxed text-[#17100E]/75">
+                          東京の85%の企業がIT人材採用に苦戦しています。MSPに委託することで採用ボトルネックを解消し、初日からフルチームで運用を開始できます。
+                        </p>
+                      </article>
+
+                      <article className="rounded-xl border border-[#17100E]/10 bg-[#FAFAF7] p-6">
+                        <ShieldCheckIcon className="h-6 w-6 text-[#3462BD]" />
+                        <h4 className="mt-4 text-lg font-semibold text-[#17100E]">規制対応の負担</h4>
+                        <p className="mt-2 text-sm leading-relaxed text-[#17100E]/75">
+                          APPI、GDPR、金融庁規制、ISMAPなどへの対応には高度な専門知識が必要です。社内だけで賄いづらい要件をMSPが継続的にサポートします。
+                        </p>
+                      </article>
+
+                      <article className="rounded-xl border border-[#17100E]/10 bg-[#FAFAF7] p-6">
+                        <GlobeAltIcon className="h-6 w-6 text-[#3462BD]" />
+                        <h4 className="mt-4 text-lg font-semibold text-[#17100E]">バイリンガル対応</h4>
+                        <p className="mt-2 text-sm leading-relaxed text-[#17100E]/75">
+                          国際企業では、日本語と英語でのチケット対応、レポート、ステークホルダー連携が不可欠です。単なる翻訳でなく、技術文脈まで踏まえた両言語対応を提供します。
+                        </p>
+                      </article>
+
+                      <article className="rounded-xl border border-[#17100E]/10 bg-[#FAFAF7] p-6">
+                        <BanknotesIcon className="h-6 w-6 text-[#3462BD]" />
+                        <h4 className="mt-4 text-lg font-semibold text-[#17100E]">コスト最適化</h4>
+                        <p className="mt-2 text-sm leading-relaxed text-[#17100E]/75">
+                          予測困難なCapExを固定月額のOpExへ転換できます。導入企業ではIT運用コスト13〜32%削減の実績があり、東京ではユーザーあたり月額¥20,000〜¥30,000が一般的です。
+                        </p>
+                      </article>
+                    </div>
+
+                    <p className="mt-8 text-base leading-relaxed text-[#17100E]/80">
+                      2026年には、先進MSPがAI自動化と予測分析を導入し、ダウンタイムを最大40%削減しています。これを内製で実現するには数億円規模の投資が必要です。
+                    </p>
                   </div>
                 </div>
+              </RevealOnScroll>
+            </section>
 
-                <p className="text-[#666666] leading-relaxed">
-                  スタートアップから大手企業まで、今日のデジタル社会でビジネスの成長を支える技術基盤を提供します。
-                </p>
-              </div>
+            <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
 
-              {/* Right Image */}
-              <div>
-                <img
-                  src="/images/banners/it-managed-services/trusted-partner.webp"
-                  alt="ITパートナーシップ＆戦略"
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
+            <section id="monitoring" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <SectionLabel label="監視" />
+                  <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                    24時間365日のネットワーク監視
+                  </h2>
+
+                  <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
+                    <div>
+                      <p className="text-base leading-relaxed text-[#17100E]/80">
+                        AKRINのマネージドサービスは継続監視から始まります。オペレーションセンターがサーバー、ネットワーク、エンドポイント、クラウド環境を24時間体制で監視し、異常を検知して業務影響前に解決します。
+                      </p>
+
+                      <div className="mt-8 space-y-4">
+                        {monitoringFeatures.map((feature) => {
+                          const Icon = feature.icon
+                          return (
+                            <article
+                              key={feature.title}
+                              className="rounded-xl border border-[#17100E]/10 bg-white p-5"
+                            >
+                              <div className="flex items-start gap-4">
+                                <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#3462BD]/10">
+                                  <Icon className="h-5 w-5 text-[#3462BD]" />
+                                </span>
+                                <div>
+                                  <h3 className="text-base font-semibold text-[#17100E]">
+                                    {feature.title}
+                                  </h3>
+                                  <p className="mt-2 text-sm leading-relaxed text-[#17100E]/75">
+                                    {feature.description}
+                                  </p>
+                                </div>
+                              </div>
+                            </article>
+                          )
+                        })}
+                      </div>
+
+                      <p className="mt-8 text-base leading-relaxed text-[#17100E]/80">
+                        プロアクティブ監視は、従来の障害発生後対応と本質的に異なります。障害発生を待って復旧するのではなく、早期警告を捉えてメンテナンス時間内に対処し、高可用性を維持します。
+                      </p>
+                    </div>
+
+                    <div>
+                      <ImagePlaceholder className="min-h-[520px]" />
+                    </div>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
+
+            <section id="help-desk" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <SectionLabel label="ヘルプデスク" />
+                  <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                    無制限ヘルプデスクサポート
+                  </h2>
+
+                  <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
+                    <div className="order-2 lg:order-1">
+                      <ImagePlaceholder className="min-h-[520px]" />
+                    </div>
+
+                    <div className="order-1 lg:order-2">
+                      <p className="text-base leading-relaxed text-[#17100E]/80">
+                        従業員の生産性を支えるには、迅速で信頼性の高いサポートが不可欠です。AKRINのマネージドヘルプデスクは、保証されたレスポンスタイムで無制限リクエストに対応し、IT課題による業務停滞を防ぎます。
+                      </p>
+
+                      <div className="mt-8 space-y-4">
+                        {helpDeskFeatures.map((feature) => {
+                          const Icon = feature.icon
+                          return (
+                            <article
+                              key={feature.title}
+                              className="rounded-xl border border-[#17100E]/10 bg-white p-5"
+                            >
+                              <div className="flex items-start gap-4">
+                                <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#3462BD]/10">
+                                  <Icon className="h-5 w-5 text-[#3462BD]" />
+                                </span>
+                                <div>
+                                  <h3 className="text-base font-semibold text-[#17100E]">
+                                    {feature.title}
+                                  </h3>
+                                  <p className="mt-2 text-sm leading-relaxed text-[#17100E]/75">
+                                    {feature.description}
+                                  </p>
+                                </div>
+                              </div>
+                            </article>
+                          )
+                        })}
+                      </div>
+
+                      <p className="mt-8 text-base leading-relaxed text-[#17100E]/80">
+                        ヘルプデスクは単なる外部窓口ではなく、お客様チームの延長として機能します。依頼の追跡、解決時間の計測、月次レポートを通じて、ITサポート品質を可視化し継続改善します。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
+
+            <section id="infrastructure" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <SectionLabel label="インフラ" />
+                  <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                    包括的インフラストラクチャ管理
+                  </h2>
+
+                  <p className="mt-8 max-w-4xl text-base leading-relaxed text-[#17100E]/80">
+                    AKRINは、オフィスの物理サーバーからAWS、Azure、GCPで稼働するクラウドワークロードまで、テクノロジースタック全体を管理します。マルチプラットフォーム環境の複雑さをAKRINが引き受け、社内チームを本業へ集中させます。
+                  </p>
+
+                  <div className="mt-10">
+                    <ImagePlaceholder className="min-h-[260px]" />
+                  </div>
+
+                  <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3">
+                    <article className="rounded-xl border border-[#17100E]/10 bg-white p-6">
+                      <h3 className="text-lg font-semibold text-[#17100E]">サーバー管理</h3>
+                      <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#17100E]/75">
+                        <li>- Windows・Linuxサーバー管理</li>
+                        <li>- VMware・Hyper-V仮想化環境</li>
+                        <li>- パフォーマンスチューニング</li>
+                        <li>- セキュリティパッチ・更新管理</li>
+                      </ul>
+                    </article>
+
+                    <article className="rounded-xl border border-[#17100E]/10 bg-white p-6">
+                      <h3 className="text-lg font-semibold text-[#17100E]">ネットワーク管理</h3>
+                      <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#17100E]/75">
+                        <li>- WAN/LAN設計・最適化</li>
+                        <li>- エンタープライズWiFi設計・管理</li>
+                        <li>- 次世代ファイアウォール設定</li>
+                        <li>- VPN構築・保守</li>
+                      </ul>
+                    </article>
+
+                    <article className="rounded-xl border border-[#17100E]/10 bg-white p-6">
+                      <h3 className="text-lg font-semibold text-[#17100E]">クラウドオペレーション</h3>
+                      <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#17100E]/75">
+                        <li>- Microsoft 365管理</li>
+                        <li>- AWS、Azure、GCP運用管理</li>
+                        <li>- バックアップ・災害復旧</li>
+                        <li>- クラウドコスト最適化</li>
+                      </ul>
+                    </article>
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                    <article className="rounded-xl border border-[#17100E]/10 bg-white p-6">
+                      <h3 className="text-lg font-semibold text-[#17100E]">エンドポイントセキュリティ</h3>
+                      <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#17100E]/75">
+                        <li>- デバイス保護・EDR</li>
+                        <li>- リアルタイム脅威監視</li>
+                        <li>- モバイルデバイス管理（MDM）</li>
+                      </ul>
+                    </article>
+
+                    <article className="rounded-xl border border-[#17100E]/10 bg-white p-6">
+                      <h3 className="text-lg font-semibold text-[#17100E]">コンプライアンス管理</h3>
+                      <ul className="mt-4 space-y-2 text-sm leading-relaxed text-[#17100E]/75">
+                        <li>- APPI、GDPR、ISMAP準拠支援</li>
+                        <li>- 脆弱性スキャン・アセスメント</li>
+                        <li>- 監査対応ドキュメント・レポート</li>
+                      </ul>
+                    </article>
+                  </div>
+
+                  <p className="mt-8 max-w-4xl text-base leading-relaxed text-[#17100E]/80">
+                    オンプレミスとクラウドのハイブリッド構成でも、クラウドネイティブ構成でも、お客様のアーキテクチャに合わせて運用を最適化します。プロビジョニングから保守・最適化まで、すべてを単一パートナーで一貫対応します。
+                  </p>
+                </div>
+              </RevealOnScroll>
+            </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
+
+            <section id="security" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <SectionLabel label="セキュリティ" />
+                  <div className="rounded-2xl border border-[#3462BD]/20 bg-[#3462BD]/[0.06] p-8 sm:p-10">
+                    <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                      セキュリティサービス
+                    </h2>
+
+                    <div className="mt-8 space-y-6 text-base leading-relaxed text-[#17100E]/80">
+                      <p>
+                        サイバーセキュリティはオプションではなく、AKRINのマネージドサービス全体に組み込まれています。継続監視、予防的防御、迅速なインシデント対応を通じて、進化する脅威からビジネスを保護します。
+                      </p>
+                      <p>
+                        次世代ファイアウォールによる境界防御、全管理端末へのEDR、定期的な脆弱性診断・ペネトレーションテスト、APPI・GDPR・業界規制への準拠監視まで包括対応します。業種特性やリスクプロファイルに合わせたセキュリティ態勢を構築します。
+                      </p>
+                      <p>
+                        インシデント発生時は即時に封じ込め、証拠保全、復旧を実施し、事後レビューを通じて防御を継続改善します。機密データを扱う企業に必要な保護水準とコンプライアンス保証を提供します。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
+
+            <section id="continuity" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <SectionLabel label="事業継続" />
+                  <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                    事業継続と災害復旧
+                  </h2>
+
+                  <p className="mt-8 max-w-4xl text-base leading-relaxed text-[#17100E]/80">
+                    ダウンタイムは直接的な損失です。停止中は従業員の業務、生産性、顧客対応、売上に影響します。AKRINの事業継続サービスは、ハードウェア障害や災害、予期せぬトラブル時にも運用継続を支えます。
+                  </p>
+
+                  <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    {continuityCards.map((card) => {
+                      const Icon = card.icon
+                      return (
+                        <article
+                          key={card.title}
+                          className="rounded-xl border border-[#17100E]/10 bg-white p-6"
+                        >
+                          <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-[#3462BD]/10">
+                            <Icon className="h-5 w-5 text-[#3462BD]" />
+                          </span>
+                          <h3 className="mt-4 text-lg font-semibold text-[#17100E]">
+                            {card.title}
+                          </h3>
+                          <p className="mt-3 text-sm leading-relaxed text-[#17100E]/75">
+                            {card.description}
+                          </p>
+                        </article>
+                      )
+                    })}
+                  </div>
+
+                  <p className="mt-8 max-w-4xl text-base leading-relaxed text-[#17100E]/80">
+                    事業継続には、技術だけでなく適切な手順・文書・実行体制が必要です。AKRINは全契約にレジリエンスを組み込み、障害をビジネス危機ではなく管理可能なイベントへ変えます。
+                  </p>
+                </div>
+              </RevealOnScroll>
+            </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
+
+            <section id="planning" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <SectionLabel label="IT戦略" />
+                  <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                    IT戦略策定とガバナンス
+                  </h2>
+
+                  <p className="mt-8 max-w-4xl text-base leading-relaxed text-[#17100E]/80">
+                    テクノロジー投資は単なる維持ではなく、事業成果に結びつくべきです。AKRINは体系的な評価、ロードマップ策定、継続ガバナンスで、IT投資を成長目標に整合させます。
+                  </p>
+
+                  <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-5">
+                    <div className="space-y-4 lg:col-span-3">
+                      <article className="rounded-xl border border-[#17100E]/10 bg-white p-6">
+                        <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#3462BD]">
+                          Step 1
+                        </p>
+                        <h3 className="mt-2 text-xl font-semibold text-[#17100E]">
+                          テクノロジーアセスメント
+                        </h3>
+                        <p className="mt-3 text-sm leading-relaxed text-[#17100E]/75">
+                          現行インフラ評価、業務要件の整理、技術ギャップ特定、費用対効果分析を実施し、現状と改善優先度を明確化します。
+                        </p>
+                      </article>
+
+                      <article className="rounded-xl border border-[#17100E]/10 bg-white p-6">
+                        <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#3462BD]">
+                          Step 2
+                        </p>
+                        <h3 className="mt-2 text-xl font-semibold text-[#17100E]">
+                          ロードマップ策定
+                        </h3>
+                        <p className="mt-3 text-sm leading-relaxed text-[#17100E]/75">
+                          予算見通し、ベンダー選定、実施スケジュール、リスク低減策を含む優先順位付きロードマップを作成します。期間は通常12〜36か月です。
+                        </p>
+                      </article>
+
+                      <article className="rounded-xl border border-[#17100E]/10 bg-white p-6">
+                        <p className="font-mono text-xs uppercase tracking-[0.14em] text-[#3462BD]">
+                          Step 3
+                        </p>
+                        <h3 className="mt-2 text-xl font-semibold text-[#17100E]">
+                          継続的ガバナンス
+                        </h3>
+                        <p className="mt-3 text-sm leading-relaxed text-[#17100E]/75">
+                          四半期レビューで進捗とKPIを追跡し、サービス品質、投資効果、改善提案を継続的に提示します。事業成長に合わせて戦略を更新します。
+                        </p>
+                      </article>
+                    </div>
+
+                    <div className="lg:col-span-2">
+                      <ImagePlaceholder className="min-h-[100%]" />
+                    </div>
+                  </div>
+
+                  <p className="mt-8 max-w-4xl text-base leading-relaxed text-[#17100E]/80">
+                    ITガバナンスにより、技術支出を運用維持だけでなく測定可能な価値へ転換できます。四半期レビューで、経営層はパフォーマンス、支出傾向、今後の投資を明確に把握できます。
+                  </p>
+                </div>
+              </RevealOnScroll>
+            </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
+
+            <section id="partnership" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <SectionLabel label="パートナー" />
+                  <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                    東京の信頼できるITパートナー
+                  </h2>
+
+                  <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
+                    <div>
+                      <p className="text-base leading-relaxed text-[#17100E]/80">
+                        最適なMSPは単なる外注先ではなく、事業を理解し、ニーズを先読みし、共に成長する戦略パートナーです。AKRINは、エンタープライズ水準の技術力と専任チームの機動力を両立し、日本全国で長期的な信頼関係を築いてきました。
+                      </p>
+
+                      <div className="mt-8 space-y-4">
+                        {partnershipValues.map((value) => (
+                          <div key={value} className="flex items-start gap-3">
+                            <CheckCircleIcon className="mt-0.5 h-5 w-5 shrink-0 text-[#3462BD]" />
+                            <p className="text-sm leading-relaxed text-[#17100E]/80">{value}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <p className="mt-8 text-base leading-relaxed text-[#17100E]/80">
+                        従来サポートに留まらず、新拠点のITセットアップ、オフィス移転時の技術対応、キッティング、複雑な技術プロジェクト管理まで一貫提供します。必要な機能を一つの窓口で、日英両言語で利用できます。
+                      </p>
+
+                      <p className="mt-6 text-base leading-relaxed text-[#17100E]/80">
+                        MSP選定では、業界実績、透明な料金体系、参照可能な導入実績、測定可能なSLA、将来拡張性を確認してください。チーム資格、セキュリティ認証、災害復旧体制も重要です。優れたプロバイダーは、チケット対応に留まらず運用基盤の一部になります。
+                      </p>
+
+                      <p className="mt-6 text-base leading-relaxed text-[#17100E]/80">
+                        東京で最初の拠点を立ち上げるスタートアップから、日本全国で多数エンドポイントを管理する大企業まで、AKRINはスピードと安定性を両立するIT基盤を提供します。
+                      </p>
+                    </div>
+
+                    <div>
+                      <ImagePlaceholder className="min-h-[520px]" />
+                    </div>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            </section>
+
+            <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
+
+            <section id="faq" className="bg-[#F4F3EC]">
+              <RevealOnScroll>
+                <div className="py-20 sm:py-28">
+                  <div className="max-w-4xl">
+                    <SectionLabel label="FAQ" />
+                    <h2 className="font-serif text-4xl font-normal tracking-tight text-[#17100E] sm:text-5xl">
+                      よくある質問
+                    </h2>
+
+                    <dl className="mt-16 divide-y divide-[#17100E]/10">
+                      {faqItems.map((item) => (
+                        <Disclosure
+                          key={item.question}
+                          as="div"
+                          className="-mx-4 rounded-lg px-4 py-6 first:pt-0 last:pb-0 transition-colors duration-200 hover:bg-white/40"
+                        >
+                          <dt>
+                            <DisclosureButton className="group flex w-full items-start justify-between text-left text-[#17100E]">
+                              <span className="text-base/7 font-semibold">{item.question}</span>
+                              <span className="ml-6 flex h-7 items-center">
+                                <PlusSmallIcon
+                                  aria-hidden="true"
+                                  className="size-6 text-[#17100E]/40 group-data-open:hidden"
+                                />
+                                <MinusSmallIcon
+                                  aria-hidden="true"
+                                  className="size-6 text-[#17100E]/40 group-not-data-open:hidden"
+                                />
+                              </span>
+                            </DisclosureButton>
+                          </dt>
+                          <DisclosurePanel as="dd" className="mt-2 pr-12">
+                            <p className="text-base/7 text-[#17100E]/70">{item.answer}</p>
+                          </DisclosurePanel>
+                        </Disclosure>
+                      ))}
+                    </dl>
+                  </div>
+                </div>
+              </RevealOnScroll>
+            </section>
           </div>
         </div>
-
-
-        {/* FAQ Section */}
-        <div className="bg-white py-16 sm:py-24">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-4 py-20 md:grid-cols-2 md:px-8 md:py-40">
-            <h2 className="text-center text-4xl font-bold tracking-tight text-neutral-600 md:text-left md:text-6xl dark:text-neutral-50">
-              よくある質問
-            </h2>
-            <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
-              <MobileFriendlyFAQItem
-                question="マネージドITサービスには何が含まれますか？"
-                answer="24時間365日ネットワーク監視、無制限ヘルプデスクサポート、予防的保守、セキュリティ管理、バックアップ・災害復旧、戦略的IT計画、必要に応じたオンサイトサポートなど、包括的なサービスをご提供します。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-              <MobileFriendlyFAQItem
-                question="ITの問題への対応時間はどのくらいですか？"
-                answer="重大な問題は30分以内、標準のご依頼は4時間以内に解決します。24時間365日のヘルプデスクにより、電話・メール・チャットですぐにご対応いたします。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-              <MobileFriendlyFAQItem
-                question="バイリンガル対応は可能ですか？"
-                answer="はい、英語と日本語でのバイリンガルサポートを提供し、貴社の組織内のすべての関係者との円滑なコミュニケーションを実現します。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-              <MobileFriendlyFAQItem
-                question="既存のITインフラにも対応できますか？"
-                answer="もちろんです。現状のインフラを評価した上で、完全管理または現在のITチームを補完する形でシームレスにサービスを統合します。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-              <MobileFriendlyFAQItem
-                question="マネージドITサービスによる一般的なコスト削減効果はどの程度ですか？"
-                answer="多くのお客様が、予防的な保守、ダウンタイムの削減、予測可能な月額料金、緊急修理コストの削減により、ITコストを30%〜50%削減しています。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-              <MobileFriendlyFAQItem
-                question="データセキュリティとコンプライアンスはどのように確保していますか？"
-                answer="エンドポイント保護、ネットワーク監視、定期的なセキュリティ評価、ISO 27001やGDPRなどの基準に対応したコンプライアンス管理を含む多層的なセキュリティ対策を実施しています。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section - EireSystems Style */}
-        <div className="bg-[#20B2AA] py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              IT運営を変革する準備はできていますか？
-            </h2>
-
-            <Link
-              href="/ja/contact"
-              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              コンサルテーションを予約
-              <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        {/* Enhanced JSON-LD Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([
-              {
-                "@context": "https://schema.org",
-                "@type": "Service",
-                "name": "ITマネージドサービス",
-                "alternateName": "IT Managed Services",
-                "serviceType": "マネージドITサービスとサポート",
-                "provider": {
-                  "@type": "Organization",
-                  "name": "AKRIN株式会社",
-                  "url": "https://akrin.jp",
-                  "logo": "https://akrin.jp/akrin-logo.svg",
-                  "contactPoint": {
-                    "@type": "ContactPoint",
-                    "telephone": "+81-3-6821-1223",
-                    "contactType": "customer service",
-                    "availableLanguage": ["English", "Japanese"]
-                  }
-                },
-                "areaServed": {
-                  "@type": "Country",
-                  "name": "Japan"
-                },
-                "availableLanguage": ["en", "ja"],
-                "url": "https://akrin.jp/ja/services/it-managed-services",
-                "description": "24時間365日の監視、無制限ヘルプデスクサポート、戦略的IT計画を含む包括的なITサポートおよび管理サービス。",
-                "offers": {
-                  "@type": "Offer",
-                  "description": "24時間365日ITモニタリング、無制限ヘルプデスクサポート、プロアクティブメンテナンス",
-                  "availability": "https://schema.org/InStock"
-                },
-                "hasOfferCatalog": {
-                  "@type": "OfferCatalog",
-                  "name": "ITマネージドサービス",
-                  "itemListElement": [
-                    {
-                      "@type": "Offer",
-                      "itemOffered": {
-                        "@type": "Service",
-                        "name": "24時間365日ネットワーク監視"
-                      }
-                    },
-                    {
-                      "@type": "Offer",
-                      "itemOffered": {
-                        "@type": "Service",
-                        "name": "無制限ヘルプデスクサポート"
-                      }
-                    },
-                    {
-                      "@type": "Offer",
-                      "itemOffered": {
-                        "@type": "Service",
-                        "name": "インフラストラクチャ管理"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                  {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "ホーム",
-                    "item": "https://akrin.jp/ja"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "サービス",
-                    "item": "https://akrin.jp/ja/services"
-                  },
-                  {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "name": "ITマネージドサービス",
-                    "item": "https://akrin.jp/ja/services/it-managed-services"
-                  }
-                ]
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": [
-                  {
-                    "@type": "Question",
-                    "name": "マネージドITサービスには何が含まれますか？",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "包括的なマネージドITサービスには、24時間365日のネットワーク監視、無制限のヘルプデスクサポート、プロアクティブメンテナンス、セキュリティ管理、バックアップと災害復旧、戦略的IT計画、必要に応じたオンサイトサポートが含まれます。"
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "IT問題にどのくらい迅速に対応しますか？",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "重要な問題は30分以内に解決され、標準的なリクエストは4時間以内に対応します。24時間365日のヘルプデスクが電話、メール、チャットサポートを通じて即座にサポートを提供します。"
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "バイリンガルサポートを提供していますか？",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "はい、私たちのチームは英語と日本語での完全なバイリンガルサポートを提供し、組織内のすべての関係者との明確なコミュニケーションを確保します。"
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "既存のITインフラストラクチャと連携できますか？",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "もちろんです。現在のインフラストラクチャを評価し、完全な管理が必要か、既存のITチームと並行した補完的なサポートが必要かに関わらず、サービスをシームレスに統合します。"
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "マネージドITサービスによる一般的なコスト削減効果は？",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "ほとんどのクライアントは、プロアクティブメンテナンス、ダウンタイムの削減、予測可能な月額料金、緊急修理コストの削減により、ITコストの30-50%削減を実現しています。"
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "データセキュリティとコンプライアンスをどのように確保しますか？",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "エンドポイント保護、ネットワーク監視、定期的なセキュリティ評価、ISO 27001やGDPRなどの基準に対するコンプライアンス管理を含む多層セキュリティを実装しています。"
-                    }
-                  }
-                ]
-              }
-            ])
-          }}
-        />
       </div>
-    </div>
-    </>
+
+      <div className="h-px bg-gradient-to-r from-transparent via-[#17100E]/[0.05] to-transparent" aria-hidden="true" />
+
+      <section className="bg-[#F4F3EC]" id="cta">
+        <div className="px-6 py-20 sm:py-28 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="rounded-xl border border-[#17100E]/10 bg-white px-6 py-16 text-center sm:px-10">
+              <h2 className="font-serif text-3xl font-normal tracking-tight text-[#17100E] sm:text-4xl">
+                IT運用の変革を始めませんか？
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-base/7 text-[#17100E]/80">
+                お客様のインフラ、コンプライアンス要件、ビジネス目標に合わせたマネージドサービスプランをご提案します。まずは無料アセスメントからお気軽にどうぞ。
+              </p>
+              <div className="mt-8">
+                <Link
+                  href="/ja/contact"
+                  className="inline-flex items-center justify-center rounded-md bg-[#17100E] px-5 py-2.5 text-base font-medium text-white transition-colors hover:bg-[#2A2523]"
+                >
+                  お問い合わせ
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }

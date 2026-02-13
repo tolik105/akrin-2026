@@ -2,9 +2,14 @@ import { HomePage } from '@/components/home-page'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'AKRIN - Leading IT Solutions Provider in Japan',
+  title:
+    'Managed IT Services Tokyo | ITAD, Asset Management & IT Support — AKRIN',
   description:
-    'Transform your business with AKRIN managed services, cybersecurity, cloud migration, and bilingual IT support in Japan.',
+    'AKRIN provides managed IT services in Tokyo including ITAD, IT asset management, 24/7 support, and IT project management. Bilingual service provider for businesses in Japan.',
+  openGraph: {
+    title:
+      'Managed IT Services Tokyo | AKRIN — Bilingual IT Solutions for Japan',
+  },
   alternates: {
     canonical: '/',
     languages: {

@@ -54,23 +54,23 @@ export default function NetworkPenetrationTestingJaClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">自動脆弱性スキャン</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">ネットワークトポロジーマッピング</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">サービス・ポート列挙</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">リスク評価と優先順位付け</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">詳細な脆弱性レポート</span>
                   </div>
                 </div>
@@ -118,23 +118,23 @@ export default function NetworkPenetrationTestingJaClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">外部・内部侵入テスト</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Webアプリケーションセキュリティテスト</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">無線ネットワークセキュリティ評価</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">ソーシャルエンジニアリングシミュレーション</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">侵入後分析</span>
                   </div>
                 </div>
@@ -163,7 +163,7 @@ export default function NetworkPenetrationTestingJaClient() {
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
               {/* Column 1: Reconnaissance */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
@@ -171,19 +171,19 @@ export default function NetworkPenetrationTestingJaClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">偵察</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>情報収集</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>ネットワーク発見</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>サービス列挙</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>ターゲット特定</span>
                   </li>
                 </ul>
@@ -191,7 +191,7 @@ export default function NetworkPenetrationTestingJaClient() {
 
               {/* Column 2: Scanning */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                   </svg>
@@ -199,19 +199,19 @@ export default function NetworkPenetrationTestingJaClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">脆弱性スキャン</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>自動スキャン</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>手動検証</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>誤検知フィルタリング</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>リスク優先順位付け</span>
                   </li>
                 </ul>
@@ -219,7 +219,7 @@ export default function NetworkPenetrationTestingJaClient() {
 
               {/* Column 3: Exploitation */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
@@ -227,19 +227,19 @@ export default function NetworkPenetrationTestingJaClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">エクスプロイト</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>統制された悪用</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>権限昇格</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>横展開</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>影響評価</span>
                   </li>
                 </ul>
@@ -247,7 +247,7 @@ export default function NetworkPenetrationTestingJaClient() {
 
               {/* Column 4: Reporting */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -255,19 +255,19 @@ export default function NetworkPenetrationTestingJaClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">レポート</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>エグゼクティブサマリー</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>技術的発見事項</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>修復ガイダンス</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>コンプライアンスマッピング</span>
                   </li>
                 </ul>
@@ -302,19 +302,19 @@ export default function NetworkPenetrationTestingJaClient() {
                 {/* Strategic positioning with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">認定エシカルハッカー・セキュリティ専門家</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">業界標準テスト手法</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">包括的レポートと修復ガイダンス</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">コンプライアンスフレームワークサポート</span>
                   </div>
                 </div>
@@ -337,7 +337,7 @@ export default function NetworkPenetrationTestingJaClient() {
         </div>
 
         {/* CTA Section - EireSystems Style */}
-        <div className="bg-[#20B2AA] py-20">
+        <div className="bg-[#3462BD] py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               セキュリティ防御をテストする準備はできていますか？
@@ -347,7 +347,7 @@ export default function NetworkPenetrationTestingJaClient() {
             </p>
             <Link
               href="/ja/contact"
-              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-12 py-4 bg-white text-[#3462BD] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               セキュリティ評価開始
               <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

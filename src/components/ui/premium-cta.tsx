@@ -15,18 +15,18 @@ interface PremiumCTAProps {
 
 const variantStyles = {
   teal: {
-    background: "bg-gradient-to-br from-[#20B2AA] to-[#1a9a94]",
-    button: "bg-white text-[#20B2AA] hover:bg-gray-100",
-    arrow: "text-[#20B2AA]"
+    background: "bg-gradient-to-br from-[#3462BD] to-[#2A4F99]",
+    button: "bg-white text-[#3462BD] hover:bg-gray-100",
+    arrow: "text-[#3462BD]"
   },
   dark: {
-    background: "bg-gradient-to-br from-gray-800 to-gray-900",
-    button: "bg-[#20B2AA] text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
+    background: "bg-gradient-to-br from-[#17100E] to-[#1F1E1D]",
+    button: "bg-[#3462BD] text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
     arrow: "text-white"
   },
   neutral: {
-    background: "bg-gradient-to-br from-slate-800 to-slate-900",
-    button: "bg-[#20B2AA] text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
+    background: "bg-gradient-to-br from-[#17100E] to-[#1F1E1D]",
+    button: "bg-[#3462BD] text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
     arrow: "text-white"
   }
 };
@@ -54,13 +54,13 @@ export function PremiumCTA({
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-800/80 to-gray-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#17100E]/80 to-[#1F1E1D]/80"></div>
         </div>
       )}
 
       {/* Premium Gradient Lines - Top */}
       <div className="absolute -top-px right-10 md:right-60 bg-gradient-to-r from-transparent via-[hsl(var(--primary))] h-px to-transparent w-1/2 z-30"></div>
-      <div className="absolute -top-px right-10 md:right-40 bg-gradient-to-r from-transparent via-indigo-500 h-px to-transparent w-1/2 z-30"></div>
+      <div className="absolute -top-px right-10 md:right-40 bg-gradient-to-r from-transparent via-[#3462BD] h-px to-transparent w-1/2 z-30"></div>
       <div className="absolute -top-px right-10 md:right-80 bg-gradient-to-r from-transparent via-sky-500 h-px to-transparent w-1/2 z-30"></div>
 
       {/* Noise Background Pattern */}
@@ -107,7 +107,7 @@ export function PremiumCTA({
       
       {/* Premium Gradient Lines - Bottom */}
       <div className="absolute -bottom-px right-10 md:right-60 bg-gradient-to-r from-transparent via-[hsl(var(--primary))] h-px to-transparent w-1/2 z-30"></div>
-      <div className="absolute -bottom-px right-10 md:right-40 bg-gradient-to-r from-transparent via-indigo-500 h-px to-transparent w-1/2 z-30"></div>
+      <div className="absolute -bottom-px right-10 md:right-40 bg-gradient-to-r from-transparent via-[#3462BD] h-px to-transparent w-1/2 z-30"></div>
       <div className="absolute -bottom-px right-10 md:right-80 bg-gradient-to-r from-transparent via-sky-500 h-px to-transparent w-1/2 z-30"></div>
     </section>
   );

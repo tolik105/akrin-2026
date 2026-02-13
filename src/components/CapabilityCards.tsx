@@ -7,7 +7,7 @@ function IconCircle({ children }: { children: React.ReactNode }) {
   return (
     <span
       aria-hidden="true"
-      className="inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-[#20B2AA]/15 text-[#20B2AA]"
+      className="inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-[#3462BD]/15 text-[#3462BD]"
     >
       <svg
         viewBox="0 0 24 24"
@@ -133,11 +133,11 @@ export default function CapabilityCards({ items = defaultItems }: CapabilityCard
                 "relative rounded-3xl border bg-white p-6 md:p-8",
                 "border-[#E6EDF5] shadow-[0_1px_2px_rgba(16,24,40,0.06)]",
                 i === 1
-                  ? "border-[#20B2AA] ring-1 ring-[rgba(32,178,170,0.28)] shadow-md"
+                  ? "border-[#3462BD] ring-1 ring-[rgba(52,98,189,0.28)] shadow-md"
                   : "",
                 "transition-shadow motion-safe:transition-transform motion-reduce:transform-none motion-reduce:transition-none",
                 "hover:shadow-md motion-safe:hover:-translate-y-0.5",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#20B2AA] focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3462BD] focus-visible:ring-offset-2 focus-visible:ring-offset-white",
                 "min-h-[280px] md:min-h-[300px]",
               ].join(" ")}
             >
@@ -160,4 +160,3 @@ export default function CapabilityCards({ items = defaultItems }: CapabilityCard
     </section>
   )
 }
-

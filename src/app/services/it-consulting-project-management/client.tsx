@@ -36,7 +36,7 @@ const FAQItem = ({
         <div className="relative mr-4 mt-1 h-6 w-6 flex-shrink-0">
           <svg
             className={cn(
-              "absolute inset-0 h-6 w-6 transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-6 w-6 transform text-[#3462BD] transition-all duration-200",
               isOpen && "rotate-90 scale-0",
             )}
             fill="none"
@@ -47,7 +47,7 @@ const FAQItem = ({
           </svg>
           <svg
             className={cn(
-              "absolute inset-0 h-6 w-6 rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-6 w-6 rotate-90 scale-0 transform text-[#3462BD] transition-all duration-200",
               isOpen && "rotate-0 scale-100",
             )}
             fill="none"
@@ -164,23 +164,23 @@ export default function ITConsultingProjectManagementClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Comprehensive project planning and resource management</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Risk assessment and mitigation strategies</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Vendor coordination and stakeholder management</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Quality assurance and delivery oversight</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Post-implementation support and optimization</span>
                   </div>
                 </div>
@@ -230,23 +230,23 @@ export default function ITConsultingProjectManagementClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Pre-move IT infrastructure assessment and planning</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Network and telecommunications setup at new location</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Equipment relocation and secure data migration</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Testing and validation of all systems</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Employee training and support during transition</span>
                   </div>
                 </div>
@@ -275,7 +275,7 @@ export default function ITConsultingProjectManagementClient() {
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
               {/* Column 1: Planning */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2zm8 0h-2a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2z" />
                   </svg>
@@ -283,19 +283,19 @@ export default function ITConsultingProjectManagementClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Planning & Design</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Site assessment and analysis</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Infrastructure design and layout</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Capacity planning and scalability</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Risk assessment and mitigation</span>
                   </li>
                 </ul>
@@ -303,7 +303,7 @@ export default function ITConsultingProjectManagementClient() {
 
               {/* Column 2: Build */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
                   </svg>
@@ -311,19 +311,19 @@ export default function ITConsultingProjectManagementClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Build & Installation</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Power and cooling systems</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Network infrastructure deployment</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Server rack and cabinet installation</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Security and access control systems</span>
                   </li>
                 </ul>
@@ -331,7 +331,7 @@ export default function ITConsultingProjectManagementClient() {
 
               {/* Column 3: Migration */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                   </svg>
@@ -339,19 +339,19 @@ export default function ITConsultingProjectManagementClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Migration & Testing</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Data migration and transfer</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Application relocation and testing</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Performance validation and optimization</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Disaster recovery verification</span>
                   </li>
                 </ul>
@@ -359,7 +359,7 @@ export default function ITConsultingProjectManagementClient() {
 
               {/* Column 4: Support */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.236a2 2 0 100 4 2 2 0 000-4zM12 17.764a2 2 0 100 4 2 2 0 000-4zM4.343 4.343a2 2 0 100 4 2 2 0 000-4zM19.657 4.343a2 2 0 100 4 2 2 0 000-4z" />
                   </svg>
@@ -367,19 +367,19 @@ export default function ITConsultingProjectManagementClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Ongoing Support</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>24/7 monitoring and alerting</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Preventive maintenance programs</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Capacity management and scaling</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Documentation and training</span>
                   </li>
                 </ul>
@@ -400,7 +400,7 @@ export default function ITConsultingProjectManagementClient() {
         {/* Testimonial Section */}
         <div className="bg-[#F8FAFC] py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto py-12 px-6 md:px-12 lg:px-20 bg-white rounded-lg shadow-md border-l-4 border-[#20B2AA] relative overflow-hidden">
+            <div className="max-w-3xl mx-auto py-12 px-6 md:px-12 lg:px-20 bg-white rounded-lg shadow-md border-l-4 border-[#3462BD] relative overflow-hidden">
 
               {/* Testimonial Content */}
               <div className="relative">
@@ -425,7 +425,7 @@ export default function ITConsultingProjectManagementClient() {
                     key={index}
                     onClick={() => setCurrentTestimonial(index)}
                     className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                      index === currentTestimonial ? 'bg-[#20B2AA]' : 'bg-slate-300'
+                      index === currentTestimonial ? 'bg-[#3462BD]' : 'bg-slate-300'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
                   />
@@ -452,26 +452,26 @@ export default function ITConsultingProjectManagementClient() {
               {/* Phase 1: Assessment */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                  <div className="w-10 h-10 bg-[#3462BD] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
                     1
                   </div>
                   <h3 className="text-xl font-bold text-[#2C2C2C]">Assessment Phase</h3>
                 </div>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Business impact analysis</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Risk assessment and vulnerability identification</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Critical process mapping</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Recovery time objectives (RTO) definition</span>
                   </li>
                 </ul>
@@ -480,26 +480,26 @@ export default function ITConsultingProjectManagementClient() {
               {/* Phase 2: Planning */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                  <div className="w-10 h-10 bg-[#3462BD] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
                     2
                   </div>
                   <h3 className="text-xl font-bold text-[#2C2C2C]">Planning Phase</h3>
                 </div>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Disaster recovery strategy development</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Emergency response procedures</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Communication protocols and chains</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Resource allocation and backup systems</span>
                   </li>
                 </ul>
@@ -508,26 +508,26 @@ export default function ITConsultingProjectManagementClient() {
               {/* Phase 3: Implementation */}
               <div className="bg-white p-8 rounded-lg shadow-sm">
                 <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#20B2AA] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
+                  <div className="w-10 h-10 bg-[#3462BD] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
                     3
                   </div>
                   <h3 className="text-xl font-bold text-[#2C2C2C]">Implementation</h3>
                 </div>
                 <ul className="space-y-3 text-[#666666]">
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Plan testing and validation</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Staff training and awareness programs</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Documentation and procedure updates</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Ongoing monitoring and maintenance</span>
                   </li>
                 </ul>
@@ -559,19 +559,19 @@ export default function ITConsultingProjectManagementClient() {
                 {/* Strategic positioning with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Requirements gathering and stakeholder analysis</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Process mapping and workflow optimization</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Solution design and technical specifications</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Change impact assessment and management</span>
                   </div>
                 </div>
@@ -619,19 +619,19 @@ export default function ITConsultingProjectManagementClient() {
                 {/* Service breakdown */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Legacy system migration and modernization</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Cloud migration and hybrid infrastructure</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Technology stack optimization and renewal</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Data migration and integrity validation</span>
                   </div>
                 </div>
@@ -680,7 +680,7 @@ export default function ITConsultingProjectManagementClient() {
         </div>
 
         {/* CTA Section - EireSystems Style */}
-        <div className="bg-[#20B2AA] py-20">
+        <div className="bg-[#3462BD] py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               An Entire IT Infrastructure Solution for Small, Medium<br />
@@ -691,7 +691,7 @@ export default function ITConsultingProjectManagementClient() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-12 py-4 bg-white text-[#3462BD] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               Contact Us Now
               <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -8,6 +8,7 @@ import {
 import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
 import { Button } from '@/components/button'
 import { Container } from '@/components/container'
+import { SectionNav } from '@/components/SectionNav'
 
 type Locale = 'en' | 'ja'
 
@@ -489,12 +490,37 @@ const copy: Record<Locale, SectionCopy> = {
   },
 }
 
+const sectionNavItemsByLocale: Record<
+  Locale,
+  { id: string; label: string; num: string }[]
+> = {
+  en: [
+    { id: 'overview', label: 'OVERVIEW', num: '01' },
+    { id: 'benefits', label: 'BENEFITS', num: '02' },
+    { id: 'services', label: 'SERVICES', num: '03' },
+    { id: 'process', label: 'PROCESS', num: '04' },
+    { id: 'why-akrin', label: 'WHY AKRIN', num: '05' },
+    { id: 'industries', label: 'INDUSTRIES', num: '06' },
+    { id: 'faq', label: 'FAQ', num: '07' },
+  ],
+  ja: [
+    { id: 'overview', label: '概要', num: '01' },
+    { id: 'benefits', label: 'メリット', num: '02' },
+    { id: 'services', label: 'サービス', num: '03' },
+    { id: 'process', label: 'プロセス', num: '04' },
+    { id: 'why-akrin', label: 'AKRINの強み', num: '05' },
+    { id: 'industries', label: '対応業界', num: '06' },
+    { id: 'faq', label: 'FAQ', num: '07' },
+  ],
+}
+
 export function ItAssetManagementPage({ locale }: { locale: Locale }) {
   const content = copy[locale]
   const contactHref = locale === 'ja' ? '/ja/contact' : '/contact'
+  const sectionNavItems = sectionNavItemsByLocale[locale]
 
   return (
-    <main className="overflow-hidden bg-white">
+    <main className="overflow-x-clip bg-white">
       <section className="bg-[#061433] text-white">
         <div className="mx-auto max-w-7xl px-6 pt-32 pb-24 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12 lg:px-8 lg:pt-40">
           <div className="max-w-2xl">
@@ -523,13 +549,13 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
               </div>
               <div className="mt-8 space-y-4">
                 <div className="h-2 rounded-full bg-white/15">
-                  <div className="h-2 w-11/12 rounded-full bg-teal-400" />
+                  <div className="h-2 w-11/12 rounded-full bg-[#3462BD]" />
                 </div>
                 <div className="h-2 rounded-full bg-white/15">
-                  <div className="h-2 w-4/5 rounded-full bg-cyan-400" />
+                  <div className="h-2 w-4/5 rounded-full bg-[#5B8AC4]" />
                 </div>
                 <div className="h-2 rounded-full bg-white/15">
-                  <div className="h-2 w-3/4 rounded-full bg-blue-400" />
+                  <div className="h-2 w-3/4 rounded-full bg-[#83A1AD]" />
                 </div>
               </div>
             </div>
@@ -537,7 +563,12 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <section className="bg-white py-20 sm:py-24">
+      <div className="relative mx-auto max-w-[1400px] overflow-visible">
+        <div className="overflow-visible lg:flex lg:items-start lg:gap-12">
+          <SectionNav items={sectionNavItems} ariaLabel="Service sections" className="w-48" />
+
+          <div className="min-w-0 flex-1">
+      <section id="overview" className="bg-white py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <p className="text-sm/6 font-semibold tracking-wide text-gray-500 uppercase">
@@ -552,7 +583,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
-              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+              <div className="rounded-2xl border border-gray-200 bg-[#FAFAF7] p-6">
                 <h2 className="text-xl font-semibold text-gray-950">{content.challengeTitle}</h2>
                 <ul className="mt-4 space-y-3 text-sm/7 text-gray-700">
                   {content.challenges.map((challenge) => (
@@ -573,7 +604,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
         </Container>
       </section>
 
-      <section className="bg-gray-50 py-20 sm:py-24">
+      <section id="benefits" className="bg-[#FAFAF7] py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-semibold tracking-tight text-gray-950 sm:text-4xl">
@@ -591,7 +622,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
         </Container>
       </section>
 
-      <section className="bg-white py-20 sm:py-24">
+      <section id="services" className="bg-white py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-semibold tracking-tight text-gray-950 sm:text-4xl">
@@ -599,7 +630,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
             </h2>
             <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {content.services.map((item) => (
-                <article key={item.title} className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+                <article key={item.title} className="rounded-2xl border border-gray-200 bg-[#FAFAF7] p-6">
                   <p className="text-xs/6 font-semibold tracking-wide text-gray-500 uppercase">Service</p>
                   <h3 className="mt-2 text-xl font-semibold tracking-tight text-gray-950">{item.title}</h3>
                   <p className="mt-3 text-sm/7 text-gray-700">{item.description}</p>
@@ -611,7 +642,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
         </Container>
       </section>
 
-      <section className="bg-gray-50 py-20 sm:py-24">
+      <section id="process" className="bg-[#FAFAF7] py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-semibold tracking-tight text-gray-950 sm:text-4xl">
@@ -639,7 +670,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
         </Container>
       </section>
 
-      <section className="bg-white py-20 sm:py-24">
+      <section id="why-akrin" className="bg-white py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <h2 className="text-center text-3xl font-semibold tracking-tight text-gray-950 sm:text-4xl">
@@ -647,7 +678,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
             </h2>
             <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {content.whyItems.map((item) => (
-                <article key={item.title} className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+                <article key={item.title} className="rounded-2xl border border-gray-200 bg-[#FAFAF7] p-6">
                   <h3 className="text-lg font-semibold text-gray-950">{item.title}</h3>
                   <p className="mt-3 text-sm/7 text-gray-700">{item.description}</p>
                 </article>
@@ -657,7 +688,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
         </Container>
       </section>
 
-      <section className="bg-gray-50 py-20 sm:py-24">
+      <section id="industries" className="bg-[#FAFAF7] py-20 sm:py-24">
         <Container>
           <div className="mx-auto max-w-6xl">
             <h2 className="text-3xl font-semibold tracking-tight text-gray-950 sm:text-4xl">
@@ -675,7 +706,7 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
         </Container>
       </section>
 
-      <section className="bg-white py-20 sm:py-24">
+      <section id="faq" className="bg-white py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
@@ -718,6 +749,9 @@ export function ItAssetManagementPage({ locale }: { locale: Locale }) {
           </div>
         </Container>
       </section>
+          </div>
+        </div>
+      </div>
     </main>
   )
 }

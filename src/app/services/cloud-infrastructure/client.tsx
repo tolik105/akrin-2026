@@ -56,23 +56,23 @@ export default function CloudInfrastructureClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Current infrastructure evaluation and mapping</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Application dependency analysis</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Cost-benefit analysis and ROI modeling</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Migration strategy recommendations</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Risk assessment and mitigation planning</span>
                   </div>
                 </div>
@@ -128,23 +128,23 @@ export default function CloudInfrastructureClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Lift-and-shift migration strategies</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Application refactoring and modernization</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">CI/CD pipeline implementation</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Infrastructure as Code (Terraform/Bicep)</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Data migration and validation</span>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export default function CloudInfrastructureClient() {
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
               {/* Column 1: Monitoring */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
@@ -181,19 +181,19 @@ export default function CloudInfrastructureClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">24/7 Monitoring</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Performance monitoring</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Automated alerting</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Capacity planning</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Incident response</span>
                   </li>
                 </ul>
@@ -201,7 +201,7 @@ export default function CloudInfrastructureClient() {
 
               {/* Column 2: Optimization */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -209,19 +209,19 @@ export default function CloudInfrastructureClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Cost Optimization</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Auto-scaling implementation</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Reserved instance management</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>FinOps reporting</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Resource right-sizing</span>
                   </li>
                 </ul>
@@ -229,7 +229,7 @@ export default function CloudInfrastructureClient() {
 
               {/* Column 3: Security */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
@@ -237,19 +237,19 @@ export default function CloudInfrastructureClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Security & Compliance</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Encryption management</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>IAM configuration</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Compliance monitoring</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Vulnerability scanning</span>
                   </li>
                 </ul>
@@ -257,7 +257,7 @@ export default function CloudInfrastructureClient() {
 
               {/* Column 4: Multi-Cloud */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                   </svg>
@@ -265,19 +265,19 @@ export default function CloudInfrastructureClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Multi-Cloud Support</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Azure, AWS, GCP management</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Hybrid connectivity</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Workload orchestration</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Unified management</span>
                   </li>
                 </ul>
@@ -316,19 +316,19 @@ export default function CloudInfrastructureClient() {
                 {/* Strategic positioning with EireSystems styling */}
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Proven migration methodologies</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Multi-cloud expertise and certifications</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">24/7 operations and support</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">Continuous optimization and innovation</span>
                   </div>
                 </div>
@@ -355,7 +355,7 @@ export default function CloudInfrastructureClient() {
         </div>
 
         {/* CTA Section - EireSystems Style */}
-        <div className="bg-[#20B2AA] py-20">
+        <div className="bg-[#3462BD] py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
               Ready to Modernize Your Infrastructure?
@@ -365,7 +365,7 @@ export default function CloudInfrastructureClient() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-12 py-4 bg-white text-[#3462BD] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               Start Your Cloud Journey
               <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

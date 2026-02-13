@@ -17,11 +17,9 @@
 }
 
 @theme {
-  --font-sans:
-    'Inter Var', 'Inter', 'Noto Sans JP', 'Noto Sans',
-    'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic UI', 'Segoe UI',
-    system-ui, -apple-system, sans-serif;
-  --font-serif: 'Lora Var', 'Lora', 'Noto Serif JP', 'Yu Mincho', serif;
+  --font-sans: 'Inter Var', sans-serif;
+  --font-serif: 'Lora Var', serif;
+  --font-mono: 'Inter Var', sans-serif;
 
   --radius-4xl: 2rem;
 }
@@ -32,5 +30,58 @@
   }
   100% {
     transform: translateX(var(--move-x-to));
+  }
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  gap: 4rem;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .marquee-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

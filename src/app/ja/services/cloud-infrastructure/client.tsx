@@ -116,23 +116,23 @@ export default function CloudInfrastructureJaClient() {
                 </p>
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">現行インフラの評価とマッピング</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">アプリケーション依存関係の分析</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">コスト・ベネフィット分析とROIモデリング</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">移行戦略の提言</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">リスク評価と緩和計画</span>
                   </div>
                 </div>
@@ -180,23 +180,23 @@ export default function CloudInfrastructureJaClient() {
                 </p>
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">リフト&シフト移行戦略</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">アプリケーションのリファクタリング/近代化</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">CI/CD パイプライン実装</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">IaC (Terraform/Bicep)</span>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-lg leading-relaxed">データ移行と検証</span>
                   </div>
                 </div>
@@ -219,47 +219,47 @@ export default function CloudInfrastructureJaClient() {
             </div>
             <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">24/7 モニタリング</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>パフォーマンス監視</span></li>
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>可用性アラート</span></li>
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>SLAレポート</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>パフォーマンス監視</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>可用性アラート</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>SLAレポート</span></li>
                 </ul>
               </div>
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c0-1.657 1.343-3 3-3h3m0 0V5m0 3h-3c-1.657 0-3 1.343-3 3v7m0 0H6a2 2 0 01-2-2v-5a2 2 0 012-2h3"/></svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">セキュリティ運用</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>脅威検知と対応</span></li>
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>ポリシー準拠</span></li>
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>監査ログ管理</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>脅威検知と対応</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>ポリシー準拠</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>監査ログ管理</span></li>
                 </ul>
               </div>
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6l-2 2m13-5l-7 7-3-3"/></svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">SRE/運用最適化</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>自動化とオートスケール</span></li>
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>パフォーマンス最適化</span></li>
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>ランブック/インシデント対応</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>自動化とオートスケール</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>パフォーマンス最適化</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>ランブック/インシデント対応</span></li>
                 </ul>
               </div>
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7h18M5 11h14M7 15h10"/></svg>
                 </div>
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">FinOps/コスト最適化</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>リザーブド/セービングプラン</span></li>
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>適正サイジング</span></li>
-                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div><span>コスト可視化レポート</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>リザーブド/セービングプラン</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>適正サイジング</span></li>
+                  <li className="flex items-start space-x-2"><div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div><span>コスト可視化レポート</span></li>
                 </ul>
               </div>
             </div>
@@ -276,9 +276,9 @@ export default function CloudInfrastructureJaClient() {
                   成功するクラウド戦略には、専門知識・計画・継続的な最適化が不可欠です。当社のソリューションはビジネスニーズに合わせて進化し、スケーラブルで安全かつコスト効率的な運用を提供します。
                 </p>
                 <div className="space-y-4">
-                  <div className="flex items-start space-x-4"><div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div><span className="text-[#2C2C2C] text-lg leading-relaxed">実証済みの方法論で確実な成果</span></div>
-                  <div className="flex items-start space-x-4"><div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div><span className="text-[#2C2C2C] text-lg leading-relaxed">スタートアップから大企業まで対応</span></div>
-                  <div className="flex items-start space-x-4"><div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-3 flex-shrink-0"></div><span className="text-[#2C2C2C] text-lg leading-relaxed">セキュリティとコンプライアンスを堅持</span></div>
+                  <div className="flex items-start space-x-4"><div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div><span className="text-[#2C2C2C] text-lg leading-relaxed">実証済みの方法論で確実な成果</span></div>
+                  <div className="flex items-start space-x-4"><div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div><span className="text-[#2C2C2C] text-lg leading-relaxed">スタートアップから大企業まで対応</span></div>
+                  <div className="flex items-start space-x-4"><div className="w-2 h-2 bg-[#3462BD] rounded-full mt-3 flex-shrink-0"></div><span className="text-[#2C2C2C] text-lg leading-relaxed">セキュリティとコンプライアンスを堅持</span></div>
                 </div>
               </div>
               <div>
@@ -297,11 +297,11 @@ export default function CloudInfrastructureJaClient() {
         </div>
 
         {/* CTA Section - mirror EN colors/layout */}
-        <div className="bg-[#20B2AA] py-20">
+        <div className="bg-[#3462BD] py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">インフラをモダナイズする準備はできていますか？</h2>
             <p className="text-xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed">200社以上の企業がAKRINをクラウド変革のパートナーとして選んでいます。SMB向け価格でエンタープライズグレードのクラウドを。</p>
-            <Link href="/ja/contact" className="inline-flex items-center px-12 py-4 bg-white text-[#20B2AA] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">クラウドジャーニーを開始</Link>
+            <Link href="/ja/contact" className="inline-flex items-center px-12 py-4 bg-white text-[#3462BD] font-bold text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">クラウドジャーニーを開始</Link>
           </div>
         </div>
 

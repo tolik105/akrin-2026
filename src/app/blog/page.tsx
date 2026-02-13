@@ -41,14 +41,14 @@ function getBlogCardImage(post: BlogCard) {
   if (post.author?.image) {
     return image(post.author.image).width(1200).height(675).fit('crop').url()
   }
-  return '/map.png'
+  return null
 }
 
 function getAuthorAvatar(post: BlogCard) {
   if (post.author?.image) {
     return image(post.author.image).size(80, 80).fit('crop').url()
   }
-  return '/team/michael-foster.jpg'
+  return null
 }
 
 export default async function BlogPage() {
@@ -85,17 +85,22 @@ export default async function BlogPage() {
 
           {posts.length > 0 ? (
             <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-              {posts.map((post) => (
-                <article
-                  key={post.slug}
-                  className="flex flex-col items-start justify-between"
-                >
+              {posts.map((post) => {
+                const cardImage = getBlogCardImage(post)
+                const authorAvatar = getAuthorAvatar(post)
+
+                return (
+                  <article key={post.slug} className="flex flex-col items-start justify-between">
                   <div className="relative w-full">
-                    <img
-                      alt={post.title}
-                      src={getBlogCardImage(post)}
-                      className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
-                    />
+                    {cardImage ? (
+                      <img
+                        alt={post.title}
+                        src={cardImage}
+                        className="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-2/1 lg:aspect-3/2"
+                      />
+                    ) : (
+                      <div className="aspect-video w-full rounded-2xl bg-[#FAFAF7] sm:aspect-2/1 lg:aspect-3/2" />
+                    )}
                     <div className="absolute inset-0 rounded-2xl inset-ring inset-ring-gray-900/10" />
                   </div>
                   <div className="flex max-w-xl grow flex-col justify-between">
@@ -108,7 +113,7 @@ export default async function BlogPage() {
                           ? dayjs(post.publishedAt).format('MMM D, YYYY')
                           : ''}
                       </time>
-                      <span className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600">
+                      <span className="relative z-10 rounded-full bg-[#FAFAF7] px-3 py-1.5 font-medium text-gray-600">
                         AKRIN Insights
                       </span>
                     </div>
@@ -124,11 +129,15 @@ export default async function BlogPage() {
                       </p>
                     </div>
                     <div className="relative mt-8 flex items-center gap-x-4 justify-self-end">
-                      <img
-                        alt={post.author?.name || 'AKRIN Team'}
-                        src={getAuthorAvatar(post)}
-                        className="size-10 rounded-full bg-gray-100 object-cover"
-                      />
+                      {authorAvatar ? (
+                        <img
+                          alt={post.author?.name || 'AKRIN Team'}
+                          src={authorAvatar}
+                          className="size-10 rounded-full bg-gray-100 object-cover"
+                        />
+                      ) : (
+                        <span className="size-10 rounded-full bg-gray-100" />
+                      )}
                       <div className="text-sm/6">
                         <p className="font-semibold text-gray-900">
                           <span className="absolute inset-0" />
@@ -139,7 +148,8 @@ export default async function BlogPage() {
                     </div>
                   </div>
                 </article>
-              ))}
+                )
+              })}
             </div>
           ) : (
             <p className="mt-10 text-sm/6 text-gray-600">No posts found.</p>

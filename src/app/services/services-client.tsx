@@ -132,7 +132,7 @@ export default function ServicesClient() {
               <div className={`relative overflow-hidden rounded-b-none ${
                 index === 0 ? 'bg-gradient-to-br from-pink-400 to-pink-600' :
                 index === 1 ? 'bg-gradient-to-br from-blue-400 to-blue-600' :
-                index === 2 ? 'bg-gradient-to-br from-teal-400 to-teal-600' :
+                index === 2 ? 'bg-gradient-to-br from-[#3462BD] to-[#2A4F99]' :
                 index === 3 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' :
                 index === 4 ? 'bg-gradient-to-br from-purple-400 to-purple-600' :
                 'bg-gradient-to-br from-green-400 to-green-600'

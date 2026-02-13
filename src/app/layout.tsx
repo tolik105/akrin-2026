@@ -11,7 +11,7 @@ export const viewport: Viewport = {
   minimumScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: '#ffffff',
+  themeColor: '#17100E',
 }
 
 export const metadata: Metadata = {
@@ -117,7 +117,7 @@ export default function RootLayout({
           href="/blog/feed.xml"
         />
       </head>
-      <body className="text-gray-950 antialiased" suppressHydrationWarning>
+      <body className="bg-[#F4F3EC] text-[#17100E] antialiased" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

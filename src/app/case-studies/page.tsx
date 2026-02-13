@@ -32,28 +32,14 @@ type CaseStudyCard = {
   authorImageUrl: string
 }
 
-const fallbackCardImages = [
-  '/company/1.jpg',
-  '/company/2.jpg',
-  '/company/3.jpg',
-  '/company/4.jpg',
-  '/company/5.jpg',
-]
-
-const fallbackAuthorImages = [
-  '/team/michael-foster.jpg',
-  '/team/emily-selman.jpg',
-  '/team/courtney-henry.jpg',
-]
-
 function fallbackCards(): CaseStudyCard[] {
-  return fallbackCaseStudies.map((item, index) => ({
+  return fallbackCaseStudies.map((item) => ({
     slug: item.slug,
     title: item.title.en,
     description: item.excerpt.en,
-    imageUrl: fallbackCardImages[index % fallbackCardImages.length],
+    imageUrl: '',
     authorName: 'AKRIN Team',
-    authorImageUrl: fallbackAuthorImages[index % fallbackAuthorImages.length],
+    authorImageUrl: '',
   }))
 }
 
@@ -64,7 +50,7 @@ export default async function CaseStudiesPage() {
     Array.isArray(data) && data.length > 0
       ? data
           .filter((item) => typeof item?.slug === 'string')
-          .map((item, index) => {
+          .map((item) => {
             const imageFromSanity =
               typeof item.mainImage?.asset?.url === 'string'
                 ? item.mainImage.asset.url
@@ -79,12 +65,11 @@ export default async function CaseStudiesPage() {
               imageUrl:
                 imageFromSanity ||
                 imageFromLegacy ||
-                fallbackCardImages[index % fallbackCardImages.length],
+                '',
               publishedAt:
                 typeof item.publishedAt === 'string' ? item.publishedAt : undefined,
               authorName: 'AKRIN Team',
-              authorImageUrl:
-                fallbackAuthorImages[index % fallbackAuthorImages.length],
+              authorImageUrl: '',
             }
           })
       : fallbackCards()
@@ -108,13 +93,15 @@ export default async function CaseStudiesPage() {
             {cards.map((card) => (
               <article
                 key={card.slug}
-                className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pt-80 pb-8 sm:pt-48 lg:pt-80"
+                className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-[#1F1E1D] px-8 pt-80 pb-8 sm:pt-48 lg:pt-80"
               >
-                <img
-                  alt={card.title}
-                  src={card.imageUrl}
-                  className="absolute inset-0 -z-10 size-full object-cover"
-                />
+                {card.imageUrl ? (
+                  <img
+                    alt={card.title}
+                    src={card.imageUrl}
+                    className="absolute inset-0 -z-10 size-full object-cover"
+                  />
+                ) : null}
                 <div className="absolute inset-0 -z-10 bg-linear-to-t from-gray-900 via-gray-900/40" />
                 <div className="absolute inset-0 -z-10 rounded-2xl inset-ring inset-ring-gray-900/10" />
 
@@ -127,11 +114,15 @@ export default async function CaseStudiesPage() {
                       <circle r={1} cx={1} cy={1} />
                     </svg>
                     <div className="flex gap-x-2.5">
-                      <img
-                        alt={card.authorName}
-                        src={card.authorImageUrl}
-                        className="size-6 flex-none rounded-full bg-white/10 object-cover"
-                      />
+                      {card.authorImageUrl ? (
+                        <img
+                          alt={card.authorName}
+                          src={card.authorImageUrl}
+                          className="size-6 flex-none rounded-full bg-white/10 object-cover"
+                        />
+                      ) : (
+                        <span className="size-6 flex-none rounded-full bg-white/10" />
+                      )}
                       {card.authorName}
                     </div>
                   </div>

@@ -38,7 +38,7 @@ const MobileFriendlyFAQItem = ({
         <div className="relative mr-3 sm:mr-4 mt-1 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0">
           <svg
             className={cn(
-              "absolute inset-0 h-full w-full transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-full w-full transform text-[#3462BD] transition-all duration-200",
               isOpen && "rotate-90 scale-0",
             )}
             fill="none"
@@ -49,7 +49,7 @@ const MobileFriendlyFAQItem = ({
           </svg>
           <svg
             className={cn(
-              "absolute inset-0 h-full w-full rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-full w-full rotate-90 scale-0 transform text-[#3462BD] transition-all duration-200",
               isOpen && "rotate-0 scale-100",
             )}
             fill="none"
@@ -238,7 +238,7 @@ export default function WiFiAssessmentClient() {
                 <div className="space-y-3 sm:space-y-4">
                   {accordionItems.slice(0,4).map((it, idx) => (
                     <div key={idx} className="flex items-start space-x-3 sm:space-x-4">
-                      <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                       <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">{it.title}</span>
                     </div>
                   ))}
@@ -299,10 +299,10 @@ export default function WiFiAssessmentClient() {
         </div>
 
         {/* CTA - teal band */}
-        <div className="bg-[#20B2AA] py-20">
+        <div className="bg-[#3462BD] py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">Ready to optimize your Wi‑Fi network?</h2>
-            <Link href="/contact" className="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#20B2AA] font-bold text-base sm:text-lg rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">Start Wi‑Fi assessment
+            <Link href="/contact" className="inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white text-[#3462BD] font-bold text-base sm:text-lg rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">Start Wi‑Fi assessment
               <svg className="ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </Link>
           </div>

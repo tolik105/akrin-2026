@@ -21,12 +21,12 @@ This folder contains copies of all **logos**, **icons**, **favicons**, **OG/hero
 ## Contents summary
 
 ### logos/ (5 files)
-- `akrin-logo.svg` – Main site logo (teal #50B0A0), navbar/footer
+- `akrin-logo.svg` – Main site logo (teal #3462BD), navbar/footer
 - `Akrin-header.svg` – Header graphic
 - `Mask group.svg` – Hero/video mask
 - `Container -- 2.svg` – Layout/container graphic
 
-### favicons/ (16 files) — all TEAL (#50B0A0)
+### favicons/ (16 files) — all TEAL (#3462BD)
 - `favicon.svg` – teal accent; PNGs below were generated from this SVG
 - `favicon.ico` – (unchanged; replace manually if needed)
 - `favicon-16x16.png` through `favicon-512x512.png` – generated from teal SVG

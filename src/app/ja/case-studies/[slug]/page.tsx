@@ -1,9 +1,11 @@
 import { Button } from '@/components/button'
 import { Container } from '@/components/container'
 import { Footer } from '@/components/footer'
+import { LegalMarkdown } from '@/components/legal-markdown'
 import { Navbar } from '@/components/navbar'
 import { Heading } from '@/components/text'
 import { caseStudies, getCaseStudyBySlug } from '@/lib/case-studies-data'
+import { getCaseStudyFallbackMarkdown } from '@/lib/case-study-fallback-content'
 import { Link } from '@/components/link'
 import { getCaseStudy } from '@/sanity/queries'
 import type { Metadata } from 'next'
@@ -81,6 +83,7 @@ export default async function JapaneseCaseStudyDetailPage({ params }: Props) {
   const { slug } = await params
   const { data } = await getCaseStudy(slug)
   const caseStudy = (data ?? null) as CaseStudySanityData | null
+  const fallbackMarkdown = await getCaseStudyFallbackMarkdown(slug, 'ja')
   const fallback = getCaseStudyBySlug(slug)
 
   if (!caseStudy && !fallback) {
@@ -91,6 +94,7 @@ export default async function JapaneseCaseStudyDetailPage({ params }: Props) {
   const category = caseStudy?.categoryJA || fallback?.category.ja || ''
   const excerpt = caseStudy?.excerptJA || fallback?.excerpt.ja || ''
   const htmlContent = caseStudy?.htmlContentJA || ''
+  const hasHtmlMarkup = /<\/?[a-z][\s\S]*>/i.test(htmlContent)
   const imageUrl = imageUrlFromCaseStudy(caseStudy)
   const metrics = normalizeMetrics(caseStudy?.metrics)
 
@@ -119,7 +123,7 @@ export default async function JapaneseCaseStudyDetailPage({ params }: Props) {
               {metrics.map((metric) => (
                 <span
                   key={metric}
-                  className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-medium text-gray-700"
+                  className="rounded-full border border-gray-200 bg-[#FAFAF7] px-3 py-1 text-xs font-medium text-gray-700"
                 >
                   {metric}
                 </span>
@@ -142,10 +146,16 @@ export default async function JapaneseCaseStudyDetailPage({ params }: Props) {
         <Container className="pb-24">
           <article className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-10">
             {htmlContent ? (
-              <div
-                className="prose prose-gray max-w-none"
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
-              />
+              hasHtmlMarkup ? (
+                <div
+                  className="prose prose-gray max-w-none"
+                  dangerouslySetInnerHTML={{ __html: htmlContent }}
+                />
+              ) : (
+                <LegalMarkdown markdown={htmlContent} />
+              )
+            ) : fallbackMarkdown ? (
+              <LegalMarkdown markdown={fallbackMarkdown} />
             ) : (
               <div className="space-y-8">
                 {fallback?.challenge ? (
@@ -184,8 +194,11 @@ export default async function JapaneseCaseStudyDetailPage({ params }: Props) {
             )}
           </article>
 
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button href="/ja/contact">相談を予約</Button>
+            <Button variant="outline" href="/ja/blog">
+              関連ブログを見る
+            </Button>
           </div>
         </Container>
       </main>

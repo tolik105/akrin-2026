@@ -46,11 +46,11 @@ export function HeroDiagonal({
                 <span key={idx} className="inline">
                   {idx > 0 && <span className="text-[#6B7280] mx-1">›</span>}
                   {bc.href ? (
-                    <Link href={bc.href} className={`inline transition-colors ${idx === breadcrumbs.length - 1 ? "text-[#20B2AA] font-semibold" : "text-[#6B7280] hover:text-[#20B2AA]"}`}>
+                    <Link href={bc.href} className={`inline transition-colors ${idx === breadcrumbs.length - 1 ? "text-[#3462BD] font-semibold" : "text-[#6B7280] hover:text-[#3462BD]"}`}>
                       {bc.label}
                     </Link>
                   ) : (
-                    <span className={`inline ${idx === breadcrumbs.length - 1 ? "text-[#20B2AA] font-semibold" : "text-[#6B7280]"}`}>{bc.label}</span>
+                    <span className={`inline ${idx === breadcrumbs.length - 1 ? "text-[#3462BD] font-semibold" : "text-[#6B7280]"}`}>{bc.label}</span>
                   )}
                 </span>
               ))}

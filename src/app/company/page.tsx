@@ -39,21 +39,21 @@ export default function CompanyPage() {
 
         <Container className="pb-24">
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            <section className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+            <section className="rounded-2xl border border-gray-200 bg-[#FAFAF7] p-6">
               <h2 className="text-xl font-semibold text-gray-950">Mission</h2>
               <p className="mt-3 text-sm/7 text-gray-700">
                 Give growth-focused businesses in Japan secure, reliable, and
                 scalable IT foundations.
               </p>
             </section>
-            <section className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+            <section className="rounded-2xl border border-gray-200 bg-[#FAFAF7] p-6">
               <h2 className="text-xl font-semibold text-gray-950">Approach</h2>
               <p className="mt-3 text-sm/7 text-gray-700">
                 Engineer-led delivery, automation-first operations, and
                 transparent communication in English and Japanese.
               </p>
             </section>
-            <section className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+            <section className="rounded-2xl border border-gray-200 bg-[#FAFAF7] p-6">
               <h2 className="text-xl font-semibold text-gray-950">Coverage</h2>
               <p className="mt-3 text-sm/7 text-gray-700">
                 Tokyo HQ with nationwide execution support across managed

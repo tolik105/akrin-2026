@@ -80,32 +80,32 @@ const coreValues = [
     value: '99.9%',
     title: '稼働率保証',
     description: '業務を止めないためのインフラ信頼性。',
-    className: 'bg-gray-50 text-gray-900',
+    className: 'bg-[#FAFAF7] text-gray-900',
     bodyClassName: 'text-gray-600',
   },
   {
     value: '< 2h',
     title: 'SLA初動対応',
     description: '営業日2時間以内の責任あるサポート。',
-    className: 'bg-gray-900 text-white',
-    bodyClassName: 'text-gray-400',
+    className: 'bg-[#F4F3EC] text-[#17100E]',
+    bodyClassName: 'text-[#17100E]/60',
   },
   {
     value: '40%',
     title: 'MTTR短縮',
     description: '自動化により復旧時間を大幅に短縮。',
-    className: 'bg-indigo-600 text-white',
-    bodyClassName: 'text-indigo-200',
+    className: 'bg-[#F4F3EC] text-[#17100E]',
+    bodyClassName: 'text-[#17100E]/60',
   },
 ]
 
 export default function AboutClient() {
   return (
     <main className="isolate overflow-hidden bg-white pt-20">
-      <section className="relative isolate -z-10 overflow-hidden bg-linear-to-b from-indigo-100/20 pt-14">
+      <section id="about-intro" className="relative isolate -z-10 overflow-hidden bg-linear-to-b from-[#3462BD]/10 pt-14">
         <div
           aria-hidden="true"
-          className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl ring-1 shadow-indigo-600/10 ring-indigo-50 sm:-mr-80 lg:-mr-96"
+          className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl ring-1 shadow-[#3462BD]/10 ring-[#3462BD]/10 sm:-mr-80 lg:-mr-96"
         />
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-28 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
@@ -120,7 +120,7 @@ export default function AboutClient() {
               <div className="mt-8">
                 <Link
                   href="/ja/contact"
-                  className="rounded-md bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700"
+                  className="rounded-md bg-[#17100E] px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#2A2523]"
                 >
                   お問い合わせ
                 </Link>
@@ -139,18 +139,18 @@ export default function AboutClient() {
         <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-linear-to-t from-white sm:h-32" />
       </section>
 
-      <section className="mx-auto -mt-4 max-w-7xl px-6 lg:px-8">
+      <section id="pillars" className="mx-auto -mt-4 max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
           {timeline.map((item) => (
             <div key={item.name} className="relative">
-              <time dateTime={item.dateTime} className="flex items-center text-sm/6 font-semibold text-indigo-600">
+              <time dateTime={item.dateTime} className="flex items-center text-sm/6 font-semibold text-[#3462BD]">
                 <svg viewBox="0 0 4 4" aria-hidden="true" className="mr-4 size-1 flex-none">
                   <circle r={2} cx={2} cy={2} fill="currentColor" />
                 </svg>
                 {item.date}
                 <div
                   aria-hidden="true"
-                  className="absolute left-0 top-3 -z-10 ml-2 h-px w-screen bg-gray-900/10 lg:static lg:z-auto lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto"
+                  className="absolute left-0 top-3 -z-10 ml-2 h-px w-screen bg-[#1F1E1D]/10 lg:static lg:z-auto lg:-mr-6 lg:ml-8 lg:w-auto lg:flex-auto"
                 />
               </time>
               <p className="mt-6 text-lg/8 font-semibold tracking-tight text-gray-900">{item.name}</p>
@@ -160,12 +160,12 @@ export default function AboutClient() {
         </div>
       </section>
 
-      <section className="mx-auto mt-24 max-w-7xl px-6 sm:mt-28 lg:px-8">
-        <div className="rounded-3xl bg-gray-900 px-6 py-20 text-center sm:px-16">
-          <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+      <section id="partners" className="mx-auto mt-24 max-w-7xl px-6 sm:mt-28 lg:px-8">
+        <div className="rounded-3xl bg-[#F4F3EC] px-6 py-20 text-center sm:px-16">
+          <h2 className="mx-auto max-w-2xl text-3xl font-semibold tracking-tight text-[#17100E] sm:text-4xl">
             主要プラットフォームと技術パートナー
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-lg/8 text-gray-300">
+          <p className="mx-auto mt-6 max-w-xl text-lg/8 text-[#17100E]/60">
             AKRINはクラウドやコラボレーション基盤を横断し、設計・運用・セキュリティを統合的に支援します。
           </p>
           <div className="mx-auto mt-14 grid max-w-lg grid-cols-2 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-3 lg:max-w-4xl lg:grid-cols-5">
@@ -197,7 +197,7 @@ export default function AboutClient() {
                   src="/company/2.jpg"
                   width={1152}
                   height={822}
-                  className="aspect-7/5 w-148 max-w-none rounded-2xl bg-gray-50 object-cover max-sm:w-120"
+                  className="aspect-7/5 w-148 max-w-none rounded-2xl bg-[#FAFAF7] object-cover max-sm:w-120"
                 />
               </div>
               <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-148 lg:items-start lg:justify-end lg:gap-x-8">
@@ -207,7 +207,7 @@ export default function AboutClient() {
                     src="/company/3.jpg"
                     width={768}
                     height={604}
-                    className="aspect-4/3 w-[24rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
+                    className="aspect-4/3 w-[24rem] max-w-none flex-none rounded-2xl bg-[#FAFAF7] object-cover"
                   />
                 </div>
                 <div className="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
@@ -216,7 +216,7 @@ export default function AboutClient() {
                     src="/company/4.jpg"
                     width={1152}
                     height={842}
-                    className="aspect-7/5 w-148 max-w-none flex-none rounded-2xl bg-gray-50 object-cover max-sm:w-120"
+                    className="aspect-7/5 w-148 max-w-none flex-none rounded-2xl bg-[#FAFAF7] object-cover max-sm:w-120"
                   />
                 </div>
                 <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
@@ -225,7 +225,7 @@ export default function AboutClient() {
                     src="/company/5.jpg"
                     width={768}
                     height={604}
-                    className="aspect-4/3 w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover"
+                    className="aspect-4/3 w-[24rem] max-w-none rounded-2xl bg-[#FAFAF7] object-cover"
                   />
                 </div>
               </div>
@@ -234,7 +234,7 @@ export default function AboutClient() {
         </div>
       </section>
 
-      <section className="mx-auto mt-24 max-w-7xl px-6 sm:mt-28 lg:px-8">
+      <section id="values" className="mx-auto mt-24 max-w-7xl px-6 sm:mt-28 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
             私たちは、仕組みをより良くするために働きます
@@ -259,7 +259,7 @@ export default function AboutClient() {
         </div>
       </section>
 
-      <section className="mx-auto mt-24 max-w-7xl px-6 pb-24 sm:mt-28 lg:px-8 lg:pb-28">
+      <section id="offerings" className="mx-auto mt-24 max-w-7xl px-6 pb-24 sm:mt-28 lg:px-8 lg:pb-28">
         <div className="mx-auto flex max-w-2xl flex-col items-end justify-between gap-16 lg:mx-0 lg:max-w-none lg:flex-row">
           <div className="w-full lg:max-w-lg lg:flex-auto">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">提供サービス</h2>
@@ -298,7 +298,7 @@ export default function AboutClient() {
               ))}
             </ul>
             <div className="mt-8 flex border-t border-gray-100 pt-8">
-              <Link href="/ja/services" className="text-sm/6 font-semibold text-indigo-600 hover:text-indigo-500">
+              <Link href="/ja/services" className="text-sm/6 font-semibold text-[#3462BD] hover:text-[#2A4F99]">
                 サービス一覧を見る <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>

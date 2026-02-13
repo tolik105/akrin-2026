@@ -56,10 +56,10 @@ export default function ITServicesPage() {
           }),
         }}
       />
-      <div className="overflow-hidden bg-white">
+      <div className="overflow-x-clip bg-white">
         <Navbar />
         <main>
-          <section className="border-b border-gray-200 bg-gray-50">
+          <section id="overview" className="border-b border-gray-200 bg-[#FAFAF7]">
             <Container className="py-16 sm:py-24">
               <Subheading>Services</Subheading>
               <Heading as="h1" className="mt-3 max-w-4xl">
@@ -71,7 +71,7 @@ export default function ITServicesPage() {
             </Container>
           </section>
 
-          <section>
+          <section id="service-catalog">
             <Container className="py-16 sm:py-20">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {allServices.map((service) => (

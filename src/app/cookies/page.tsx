@@ -1,4 +1,6 @@
+import { LegalMarkdown } from '@/components/legal-markdown'
 import { SimplePageShell } from '@/components/simple-page-shell'
+import { getLegalDocument } from '@/lib/legal-documents'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -14,12 +16,16 @@ export const metadata: Metadata = {
   },
 }
 
-export default function CookiesPage() {
+export default async function CookiesPage() {
+  const markdown = await getLegalDocument('cookie-policy.md')
+
   return (
     <SimplePageShell
       eyebrow="Legal"
       title="Cookie Policy"
       description="This page explains cookie categories, essential usage, and available preference controls."
-    />
+    >
+      <LegalMarkdown markdown={markdown} />
+    </SimplePageShell>
   )
 }

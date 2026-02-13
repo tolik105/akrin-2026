@@ -63,7 +63,7 @@ export default function PricingPage() {
             {tiers.map((tier) => (
               <section
                 key={tier.name}
-                className="rounded-2xl border border-gray-200 bg-gray-50 p-6"
+                className="rounded-2xl border border-gray-200 bg-[#FAFAF7] p-6"
               >
                 <h2 className="text-xl font-semibold tracking-tight text-gray-950">
                   {tier.name}

@@ -35,7 +35,7 @@ const MobileFriendlyFAQItem = ({
         <div className="relative mr-3 sm:mr-4 mt-1 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0">
           <svg
             className={cn(
-              "absolute inset-0 h-full w-full transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-full w-full transform text-[#3462BD] transition-all duration-200",
               isOpen && "rotate-90 scale-0",
             )}
             fill="none"
@@ -46,7 +46,7 @@ const MobileFriendlyFAQItem = ({
           </svg>
           <svg
             className={cn(
-              "absolute inset-0 h-full w-full rotate-90 scale-0 transform text-[#20B2AA] transition-all duration-200",
+              "absolute inset-0 h-full w-full rotate-90 scale-0 transform text-[#3462BD] transition-all duration-200",
               isOpen && "rotate-0 scale-100",
             )}
             fill="none"
@@ -158,19 +158,19 @@ export default function WiFiDesignJaClient() {
                 <p className="text-base sm:text-lg text-[#666666] mb-6 sm:mb-8 leading-relaxed">私たちの包括的な設計アプローチは、高度なRFモデリング、容量計画、セキュリティ実装を組み合わせて、信頼性が高く効率的で安全な無線ネットワークソリューションを提供します。</p>
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">予測設計・RFモデリング</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">戦略的アクセスポイント配置</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">ネットワークアーキテクチャ設計</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">容量計画・スケーラビリティ</span>
                   </div>
                 </div>
@@ -195,19 +195,19 @@ export default function WiFiDesignJaClient() {
                 <p className="text-base sm:text-lg text-[#666666] mb-6 sm:mb-8 leading-relaxed">初期計画から最終実装まで、無線ネットワークがビジネス目標を達成し、ユーザーの期待を上回る一貫した信頼性の高いパフォーマンスを提供することを確保するために必要な専門知識を提供します。</p>
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">認定無線設計専門家</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">業界標準設計手法</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">包括的実装サポート</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">継続的最適化・サポート</span>
                   </div>
                 </div>
@@ -277,11 +277,11 @@ export default function WiFiDesignJaClient() {
         </div>
 
         {/* Section 4 - CTA */}
-        <div className="bg-[#20B2AA] py-12 sm:py-16 lg:py-20">
+        <div className="bg-[#3462BD] py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">Wi‑Fiネットワークを設計する準備はできていますか？</h2>
             <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-8 sm:mb-10 max-w-4xl mx-auto leading-relaxed">プロフェッショナルなWi‑Fi設計・実装サービスを受けましょう。ビジネス環境で信頼性の高い高性能無線ネットワークを構築します。</p>
-            <Link href="/ja/contact" className="inline-flex items-center px-8 sm:px-12 py-3 sm:py-4 bg-white text-[#20B2AA] font-bold text-lg sm:text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">
+            <Link href="/ja/contact" className="inline-flex items-center px-8 sm:px-12 py-3 sm:py-4 bg-white text-[#3462BD] font-bold text-lg sm:text-xl rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl">
               Wi‑Fi設計開始
               <svg className="ml-3 h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

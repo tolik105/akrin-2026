@@ -58,23 +58,23 @@ export default function CybersecurityClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Vulnerability assessments and penetration testing</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Compliance audits and gap analysis</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Risk assessment and prioritization</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Security policy development</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Remediation planning and implementation</span>
                   </div>
                 </div>
@@ -128,23 +128,23 @@ export default function CybersecurityClient() {
                 {/* Bullet Points with EireSystems styling */}
                 <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">24/7 security monitoring and alerting</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Advanced threat detection and analysis</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Rapid incident response and containment</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Threat intelligence and hunting</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Forensic analysis and reporting</span>
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export default function CybersecurityClient() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
               {/* Column 1: Monitoring */}
               <div className="text-center sm:text-left lg:text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto sm:mx-0 lg:mx-auto mb-4 sm:mb-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto sm:mx-0 lg:mx-auto mb-4 sm:mb-6">
                   <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -182,19 +182,19 @@ export default function CybersecurityClient() {
                 <h3 className="text-lg sm:text-xl font-bold text-[#2C2C2C] mb-3 sm:mb-4">Continuous Monitoring</h3>
                 <ul className="text-[#666666] space-y-2 text-left text-sm sm:text-base">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>24/7 security surveillance</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Real-time threat detection</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Automated alert correlation</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Behavioral analysis</span>
                   </li>
                 </ul>
@@ -202,7 +202,7 @@ export default function CybersecurityClient() {
 
               {/* Column 2: Analysis */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
@@ -210,19 +210,19 @@ export default function CybersecurityClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Threat Analysis</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Expert security analysts</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Threat intelligence integration</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Risk assessment and scoring</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Attack pattern recognition</span>
                   </li>
                 </ul>
@@ -230,7 +230,7 @@ export default function CybersecurityClient() {
 
               {/* Column 3: Response */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
@@ -238,19 +238,19 @@ export default function CybersecurityClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Incident Response</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Rapid threat containment</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Automated response actions</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Forensic investigation</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Recovery coordination</span>
                   </li>
                 </ul>
@@ -258,7 +258,7 @@ export default function CybersecurityClient() {
 
               {/* Column 4: Compliance */}
               <div className="text-center">
-                <div className="w-20 h-20 bg-[#20B2AA] rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-[#3462BD] rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -266,19 +266,19 @@ export default function CybersecurityClient() {
                 <h3 className="text-xl font-bold text-[#2C2C2C] mb-4">Compliance Management</h3>
                 <ul className="text-[#666666] space-y-2 text-left">
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>ISO 27001 support</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>SOC 2 compliance</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>GDPR documentation</span>
                   </li>
                   <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#20B2AA] rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="w-1.5 h-1.5 bg-[#3462BD] rounded-full mt-2 flex-shrink-0"></div>
                     <span>Audit preparation</span>
                   </li>
                 </ul>
@@ -316,19 +316,19 @@ export default function CybersecurityClient() {
                 {/* Strategic positioning with EireSystems styling */}
                 <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Enterprise-grade security tools and platforms</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Certified security professionals</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Proven incident response methodologies</span>
                   </div>
                   <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#20B2AA] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-[#3462BD] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
                     <span className="text-[#2C2C2C] text-sm sm:text-base lg:text-lg leading-relaxed">Continuous threat landscape monitoring</span>
                   </div>
                 </div>

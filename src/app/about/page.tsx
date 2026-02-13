@@ -120,7 +120,7 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
       />
-      <div className="overflow-hidden bg-white">
+      <div className="overflow-x-clip bg-white">
         <Navbar />
         <AboutClient />
         <Footer />

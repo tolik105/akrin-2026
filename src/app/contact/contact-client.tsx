@@ -38,7 +38,7 @@ export default function ContactClient() {
               <h1 id="contact-heading"
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[54px] font-semibold leading-[1.05] tracking-tight text-gray-900 mb-4 sm:mb-5 md:mb-6 antialiased"
                   style={{
-                    fontFamily: "'Inter Var', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontFamily: "'Inter Var', sans-serif",
                     fontWeight: '600',
                     fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"',
                     fontOpticalSizing: 'auto',
@@ -50,7 +50,7 @@ export default function ContactClient() {
               </h1>
               <p className="text-sm sm:text-base md:text-lg font-medium text-gray-600 leading-relaxed antialiased"
                  style={{
-                   fontFamily: "'Inter Var', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                   fontFamily: "'Inter Var', sans-serif",
                    fontWeight: '500',
                    fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"',
                    fontOpticalSizing: 'auto',
@@ -62,7 +62,7 @@ export default function ContactClient() {
               </p>
               <p className="text-xs sm:text-sm md:text-base text-gray-500 leading-relaxed antialiased mt-2 sm:mt-3"
                  style={{
-                   fontFamily: "'Inter Var', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                   fontFamily: "'Inter Var', sans-serif",
                    fontWeight: '400',
                    fontFeatureSettings: '"cv02", "cv03", "cv04", "cv11"',
                    fontOpticalSizing: 'auto',

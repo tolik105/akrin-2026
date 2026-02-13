@@ -45,7 +45,7 @@ export default function JapaneseItAssetManagementServicePage() {
   }
 
   return (
-    <div className="overflow-hidden bg-white">
+    <div className="overflow-x-clip bg-white">
       <Navbar />
       <ItAssetManagementPage locale="ja" />
       <script

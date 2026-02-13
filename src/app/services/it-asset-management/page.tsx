@@ -45,7 +45,7 @@ export default function ItAssetManagementServicePage() {
   }
 
   return (
-    <div className="overflow-hidden bg-white">
+    <div className="overflow-x-clip bg-white">
       <Navbar />
       <ItAssetManagementPage locale="en" />
       <script

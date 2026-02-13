@@ -13,7 +13,11 @@ type Props = {
 
 export async function generateStaticParams() {
   return allServices
-    .filter((service) => service.slug !== 'it-asset-management')
+    .filter(
+      (service) =>
+        service.slug !== 'it-asset-management' &&
+        service.slug !== 'it-managed-services',
+    )
     .map((service) => ({ slug: service.slug }))
 }
 
@@ -72,44 +76,48 @@ export default async function ServiceDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="overflow-hidden bg-white">
+    <div className="overflow-x-clip bg-white">
       <Navbar />
       <main>
-        <Container className="py-20 sm:py-28">
-          <p className="font-mono text-xs/5 font-semibold tracking-widest text-gray-500 uppercase">
-            Services
-          </p>
-          <Heading as="h1" className="mt-2 max-w-4xl">
-            {service.title.en}
-          </Heading>
-          <p className="mt-8 max-w-3xl text-lg/8 text-gray-700">
-            {service.intro.en}
-          </p>
-          <div className="mt-12 flex flex-wrap gap-4">
-            <Button href="/contact">Schedule Consultation</Button>
-            <Button href="/services" variant="secondary">
-              View All Services
-            </Button>
-          </div>
-        </Container>
+        <section id="overview">
+          <Container className="py-20 sm:py-28">
+            <p className="font-mono text-xs/5 font-semibold tracking-widest text-gray-500 uppercase">
+              Services
+            </p>
+            <Heading as="h1" className="mt-2 max-w-4xl">
+              {service.title.en}
+            </Heading>
+            <p className="mt-8 max-w-3xl text-lg/8 text-gray-700">
+              {service.intro.en}
+            </p>
+            <div className="mt-12 flex flex-wrap gap-4">
+              <Button href="/contact">Schedule Consultation</Button>
+              <Button href="/services" variant="secondary">
+                View All Services
+              </Button>
+            </div>
+          </Container>
+        </section>
 
-        <Container className="pb-24">
-          <div className="rounded-2xl border border-gray-200 bg-gray-50 p-8">
-            <h2 className="text-2xl font-semibold tracking-tight text-gray-950">
-              Key Services
-            </h2>
-            <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-              {service.keyServices.en.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm/7 text-gray-700"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Container>
+        <section id="key-services">
+          <Container className="pb-24">
+            <div className="rounded-2xl border border-gray-200 bg-[#FAFAF7] p-8">
+              <h2 className="text-2xl font-semibold tracking-tight text-gray-950">
+                Key Services
+              </h2>
+              <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {service.keyServices.en.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-xl border border-gray-200 bg-white px-5 py-4 text-sm/7 text-gray-700"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Container>
+        </section>
       </main>
 
       <script

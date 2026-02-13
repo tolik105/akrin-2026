@@ -3,6 +3,17 @@ import { getPostsForFeed } from '@/sanity/queries'
 import { Feed } from 'feed'
 import assert from 'node:assert'
 
+type FeedPost = {
+  title?: string
+  slug?: string
+  excerpt?: string
+  publishedAt?: string
+  mainImage?: unknown
+  author?: {
+    name?: string | null
+  } | null
+}
+
 export async function GET(req: Request) {
   let siteUrl = new URL(req.url).origin
 
@@ -26,7 +37,7 @@ export async function GET(req: Request) {
 
   let { data: posts } = await getPostsForFeed()
 
-  posts.forEach((post) => {
+  ;(posts as FeedPost[]).forEach((post) => {
     try {
       assert(typeof post.title === 'string')
       assert(typeof post.slug === 'string')

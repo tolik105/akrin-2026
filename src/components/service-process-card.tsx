@@ -24,7 +24,7 @@ export function ServiceProcessCard({
       className="h-full rounded-xl border border-gray-200 bg-white p-6 shadow-sm"
     >
       <div className="mb-4 flex items-center gap-3">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#20B2AA] text-sm font-bold text-white">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#3462BD] text-sm font-bold text-white">
           {step}
         </span>
         <h3 className="text-lg font-semibold text-[#2C2C2C]">{title}</h3>

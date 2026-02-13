@@ -83,7 +83,7 @@ export default function JapaneseAboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchemaJA) }}
       />
-      <div className="overflow-hidden bg-white">
+      <div className="overflow-x-clip bg-white">
         <Navbar />
         <AboutClient />
         <Footer />

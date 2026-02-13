@@ -15,6 +15,20 @@ export const postType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'locale',
+      title: 'Locale',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'Japanese', value: 'ja' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'en',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       options: {
@@ -80,6 +94,14 @@ export const postType = defineType({
       name: 'excerpt',
       type: 'text',
       rows: 3,
+    }),
+    defineField({
+      name: 'htmlContent',
+      title: 'HTML Content',
+      type: 'text',
+      rows: 20,
+      description:
+        'Optional rich HTML body for imported content. Used when Portable Text body is not set.',
     }),
     defineField({
       name: 'body',

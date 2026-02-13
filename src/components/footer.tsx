@@ -8,6 +8,7 @@ import { Logo } from './logo'
 export function Footer() {
   const pathname = usePathname()
   const isJapanese = pathname?.startsWith('/ja')
+  const isHome = pathname === '/' || pathname === '/ja'
 
   const withLocale = (href: string) => {
     if (!isJapanese) return href
@@ -68,15 +69,30 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-white">
+    <footer
+      className={
+        isHome ? 'border-t border-white/10 bg-[#17100E]' : 'bg-white'
+      }
+    >
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
-            <Link href={withLocale('/')} className="inline-block text-gray-950">
+            <Link
+              href={withLocale('/')}
+              className={
+                isHome ? 'inline-block text-gray-200' : 'inline-block text-gray-950'
+              }
+            >
               <span className="sr-only">AKRIN</span>
               <Logo className="h-9" />
             </Link>
-            <p className="text-sm/6 text-balance text-gray-600">
+            <p
+              className={
+                isHome
+                  ? 'text-sm/6 text-balance text-gray-500'
+                  : 'text-sm/6 text-balance text-gray-600'
+              }
+            >
               {isJapanese
                 ? 'AKRINは、日本企業向けにバイリンガルのIT運用・セキュリティ・クラウド支援を提供しています。'
                 : 'AKRIN delivers bilingual IT operations, security, and cloud services for businesses in Japan.'}
@@ -88,7 +104,11 @@ export function Footer() {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="text-gray-600 hover:text-gray-800"
+                  className={
+                    isHome
+                      ? 'text-gray-500 hover:text-gray-300'
+                      : 'text-gray-600 hover:text-gray-800'
+                  }
                 >
                   <span className="sr-only">{item.name}</span>
                   <item.icon aria-hidden="true" className="size-6" />
@@ -100,7 +120,11 @@ export function Footer() {
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm/6 font-semibold text-gray-900">
+                <h3
+                  className={
+                    isHome ? 'text-sm/6 font-semibold text-gray-200' : 'text-sm/6 font-semibold text-gray-900'
+                  }
+                >
                   {isJapanese ? 'ソリューション' : 'Solutions'}
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -108,7 +132,11 @@ export function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-sm/6 text-gray-600 hover:text-gray-900"
+                        className={
+                          isHome
+                            ? 'text-sm/6 text-gray-400 hover:text-gray-200'
+                            : 'text-sm/6 text-gray-600 hover:text-gray-900'
+                        }
                       >
                         {item.name}
                       </Link>
@@ -117,7 +145,11 @@ export function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-gray-900">
+                <h3
+                  className={
+                    isHome ? 'text-sm/6 font-semibold text-gray-200' : 'text-sm/6 font-semibold text-gray-900'
+                  }
+                >
                   {isJapanese ? 'サポート' : 'Support'}
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -125,7 +157,11 @@ export function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-sm/6 text-gray-600 hover:text-gray-900"
+                        className={
+                          isHome
+                            ? 'text-sm/6 text-gray-400 hover:text-gray-200'
+                            : 'text-sm/6 text-gray-600 hover:text-gray-900'
+                        }
                       >
                         {item.name}
                       </Link>
@@ -137,7 +173,11 @@ export function Footer() {
 
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm/6 font-semibold text-gray-900">
+                <h3
+                  className={
+                    isHome ? 'text-sm/6 font-semibold text-gray-200' : 'text-sm/6 font-semibold text-gray-900'
+                  }
+                >
                   {isJapanese ? '会社情報' : 'Company'}
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -145,7 +185,11 @@ export function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-sm/6 text-gray-600 hover:text-gray-900"
+                        className={
+                          isHome
+                            ? 'text-sm/6 text-gray-400 hover:text-gray-200'
+                            : 'text-sm/6 text-gray-600 hover:text-gray-900'
+                        }
                       >
                         {item.name}
                       </Link>
@@ -154,7 +198,11 @@ export function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-gray-900">
+                <h3
+                  className={
+                    isHome ? 'text-sm/6 font-semibold text-gray-200' : 'text-sm/6 font-semibold text-gray-900'
+                  }
+                >
                   {isJapanese ? '法務' : 'Legal'}
                 </h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -162,7 +210,11 @@ export function Footer() {
                     <li key={item.name}>
                       <Link
                         href={item.href}
-                        className="text-sm/6 text-gray-600 hover:text-gray-900"
+                        className={
+                          isHome
+                            ? 'text-sm/6 text-gray-400 hover:text-gray-200'
+                            : 'text-sm/6 text-gray-600 hover:text-gray-900'
+                        }
                       >
                         {item.name}
                       </Link>
@@ -174,7 +226,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
+        <div
+          className={
+            isHome
+              ? 'mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24'
+              : 'mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24'
+          }
+        >
           <p className="text-sm/6 text-gray-600">
             &copy; {new Date().getFullYear()} AKRIN K.K.{' '}
             {isJapanese ? '無断複写・転載を禁じます。' : 'All rights reserved.'}
