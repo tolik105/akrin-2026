@@ -6,6 +6,7 @@ import sidekickImage from '../../../../../Sidekick-2.avif'
 import spectrumAnalyzerImage from '../../../../../spectrum-analyzer.avif'
 import wifiHeatMapImage from '../../../../../wifi-coverage-heat-map.avif'
 import wirelessSignalMapImage from '../../../../../wireless-signal-heat-map.avif'
+import flukeReportImage from '../../../../../fluke-report.avif'
 import { Link } from '@/components/link'
 import { RevealOnScroll } from '@/components/RevealOnScroll'
 import { SectionNav } from '@/components/SectionNav'
@@ -525,10 +526,21 @@ export default function JapanEkahauWirelessSurveysJAClient() {
 
                   {/* Image — 5 columns */}
                   <div className="mt-10 lg:col-span-5 lg:mt-0">
-                    <ImagePlaceholder
-                      label="FLUKEケーブル認証テスト"
-                      className="aspect-[4/3]"
-                    />
+                    <div className="overflow-hidden rounded-2xl ring-1 ring-[#E2E5EF]">
+                      <div className="relative aspect-[4/3]">
+                        <Image
+                          src={flukeReportImage}
+                          alt="FLUKEケーブル認証テストレポート — 合否判定結果"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">
+                        <p className="text-center text-[11px] font-medium uppercase tracking-wider text-[#6B6D7C]/60">
+                          FLUKEケーブル認証 — テストレポート
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
