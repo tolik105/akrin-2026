@@ -1,0 +1,312 @@
+/**
+ * Custom AKRIN cookie consent theme
+ * Overrides vanilla-cookieconsent defaults to match AKRIN brand design.
+ *
+ * Brand palette
+ *   Primary dark   : #0A0B19
+ *   Hover dark     : #1A1B2E
+ *   Cream bg       : #F7F7FC
+ *   Light hover bg : #FAFAFC
+ *   Accent ring    : #D15052
+ *   White          : #FFFFFF
+ *
+ * Typography
+ *   Sans : 'Inter Var', sans-serif
+ *   Serif: 'Lora Var', serif
+ */
+
+/* ───────────────────────────── Consent Modal (bottom-left box) */
+#cc-main .cm {
+  font-family: 'Inter Var', system-ui, sans-serif;
+  border-radius: 1rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(23, 16, 14, 0.08);
+  box-shadow:
+    0 20px 60px -12px rgba(23, 16, 14, 0.15),
+    0 4px 12px rgba(23, 16, 14, 0.06);
+  max-width: 420px;
+  overflow: hidden;
+}
+
+/* Title */
+#cc-main .cm__title {
+  font-family: 'Lora Var', Georgia, serif;
+  color: #0A0B19;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Description text */
+#cc-main .cm__desc {
+  color: #0A0B19;
+  opacity: 0.7;
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+/* Links inside description */
+#cc-main .cm__desc a {
+  color: #0A0B19;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+#cc-main .cm__desc a:hover {
+  color: #D15052;
+}
+
+/* ───────────────────────────── Buttons */
+#cc-main .cm__btn {
+  border-radius: 9999px;
+  font-family: 'Inter Var', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+/* "Accept all" — primary */
+#cc-main .cm__btn.cm__btn--accept-all {
+  background: #0A0B19;
+  color: #FFFFFF;
+}
+
+#cc-main .cm__btn.cm__btn--accept-all:hover {
+  background: #1A1B2E;
+}
+
+/* "Reject all" — secondary outline */
+#cc-main .cm__btn.cm__btn--accept-necessary {
+  background: transparent;
+  color: #0A0B19;
+  border: 1px solid rgba(23, 16, 14, 0.2);
+}
+
+#cc-main .cm__btn.cm__btn--accept-necessary:hover {
+  background: #F7F7FC;
+  border-color: #0A0B19;
+}
+
+/* "Manage preferences" — text button */
+#cc-main .cm__btn.cm__btn--manage {
+  background: transparent;
+  color: #0A0B19;
+  opacity: 0.6;
+  padding: 0.5rem 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-size: 0.8125rem;
+}
+
+#cc-main .cm__btn.cm__btn--manage:hover {
+  opacity: 1;
+  color: #D15052;
+}
+
+/* Button group layout */
+#cc-main .cm__btns {
+  gap: 0.5rem;
+}
+
+/* ───────────────────────────── Preferences / Settings Modal */
+#cc-main .pm {
+  font-family: 'Inter Var', system-ui, sans-serif;
+  border-radius: 1rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(23, 16, 14, 0.08);
+  box-shadow:
+    0 25px 80px -12px rgba(23, 16, 14, 0.2),
+    0 4px 16px rgba(23, 16, 14, 0.08);
+  overflow: hidden;
+}
+
+/* Preferences header */
+#cc-main .pm__title {
+  font-family: 'Lora Var', Georgia, serif;
+  color: #0A0B19;
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+/* Close button */
+#cc-main .pm__close-btn {
+  color: #0A0B19;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+#cc-main .pm__close-btn:hover {
+  opacity: 1;
+}
+
+/* Section headings */
+#cc-main .pm__section-title {
+  font-family: 'Inter Var', system-ui, sans-serif;
+  color: #0A0B19;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+/* Section descriptions */
+#cc-main .pm__section-desc {
+  color: #0A0B19;
+  opacity: 0.65;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+#cc-main .pm__section-desc a {
+  color: #0A0B19;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+#cc-main .pm__section-desc a:hover {
+  color: #D15052;
+}
+
+/* Section dividers */
+#cc-main .pm__section {
+  border-color: rgba(23, 16, 14, 0.08);
+}
+
+/* ───────────────────────────── Toggle Switch */
+#cc-main .pm__toggle .toggle__icon {
+  background: rgba(23, 16, 14, 0.15);
+  border-radius: 9999px;
+}
+
+#cc-main .pm__toggle .toggle__icon-circle {
+  background: #FFFFFF;
+}
+
+/* Toggle ON state */
+#cc-main .pm__toggle .toggle__input:checked + .toggle__icon {
+  background: #0A0B19;
+}
+
+/* Toggle readonly (necessary cookies) */
+#cc-main .pm__toggle .toggle__input:disabled + .toggle__icon {
+  background: rgba(23, 16, 14, 0.12);
+  opacity: 0.7;
+}
+
+#cc-main .pm__toggle .toggle__input:checked:disabled + .toggle__icon {
+  background: #0A0B19;
+  opacity: 0.5;
+}
+
+/* ───────────────────────────── Preference modal buttons */
+#cc-main .pm__btn {
+  border-radius: 9999px;
+  font-family: 'Inter Var', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+#cc-main .pm__btn.pm__btn--accept-all {
+  background: #0A0B19;
+  color: #FFFFFF;
+}
+
+#cc-main .pm__btn.pm__btn--accept-all:hover {
+  background: #1A1B2E;
+}
+
+#cc-main .pm__btn.pm__btn--accept-necessary {
+  background: transparent;
+  color: #0A0B19;
+  border: 1px solid rgba(23, 16, 14, 0.2);
+}
+
+#cc-main .pm__btn.pm__btn--accept-necessary:hover {
+  background: #F7F7FC;
+  border-color: #0A0B19;
+}
+
+#cc-main .pm__btn.pm__btn--save {
+  background: transparent;
+  color: #0A0B19;
+  border: 1px solid rgba(23, 16, 14, 0.2);
+}
+
+#cc-main .pm__btn.pm__btn--save:hover {
+  background: #F7F7FC;
+  border-color: #0A0B19;
+}
+
+/* ───────────────────────────── Cookie Table */
+#cc-main .pm__table {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(23, 16, 14, 0.08);
+}
+
+#cc-main .pm__table thead {
+  background: #F7F7FC;
+}
+
+#cc-main .pm__table th {
+  color: #0A0B19;
+  font-weight: 600;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.75rem;
+}
+
+#cc-main .pm__table td {
+  color: #0A0B19;
+  opacity: 0.7;
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid rgba(23, 16, 14, 0.06);
+}
+
+/* ───────────────────────────── Overlay / backdrop */
+#cc-main .pm__overlay {
+  background: rgba(23, 16, 14, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ───────────────────────────── Service badge */
+#cc-main .pm__badge {
+  background: #F7F7FC;
+  color: #0A0B19;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+/* ───────────────────────────── Smooth entrance animation */
+#cc-main .cm--box {
+  animation: ccSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ccSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #cc-main .cm--box {
+    animation: none;
+  }
+}

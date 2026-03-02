@@ -1,0 +1,285 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Inter Var';
+  src: url('/fonts/Inter.var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Serif 4';
+  src: url('/fonts/SourceSerif4.var.woff2') format('woff2');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora Var';
+  src: url('/fonts/Lora.var.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: 'Inter Var', sans-serif;
+  --font-serif: 'Source Serif 4', 'Lora Var', serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Segoe UI Mono', Menlo, monospace;
+
+  --radius-4xl: 2rem;
+
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.025em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   KEYFRAMES
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes move-x {
+  0% { transform: translateX(var(--move-x-from)); }
+  100% { transform: translateX(var(--move-x-to)); }
+}
+
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION REVEAL  –  basic scroll-triggered fade+slide
+   ═══════════════════════════════════════════════════════════════ */
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MARQUEE  –  infinite horizontal scroll for logos
+   ═══════════════════════════════════════════════════════════════ */
+
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 4rem;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CORNER BRACKETS  –  decorative geometric detail on cards
+   ═══════════════════════════════════════════════════════════════ */
+
+.corner-brackets {
+  position: relative;
+}
+
+.corner-brackets::before,
+.corner-brackets::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.corner-brackets::before {
+  top: -1px;
+  right: -1px;
+  border-top: 1.5px solid currentColor;
+  border-right: 1.5px solid currentColor;
+}
+
+.corner-brackets::after {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 1.5px solid currentColor;
+  border-left: 1.5px solid currentColor;
+}
+
+.corner-brackets:hover::before,
+.corner-brackets:hover::after {
+  width: 14px;
+  height: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STAGGERED REVEAL SYSTEM  –  multiple animation variants
+   All GPU-composited (opacity, transform, filter only)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* --- Variant: blur-scale (default) ---
+   Items start blurred + slightly scaled down, then sharpen in */
+.stagger-blur-scale .stagger-item {
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(0.96) translateY(10px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--stagger-index, 0) * var(--stagger-ms, 80ms));
+}
+
+.stagger-blur-scale.stagger-visible .stagger-item {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1) translateY(0);
+}
+
+/* --- Variant: fade-up (classic) --- */
+.stagger-fade-up .stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--stagger-index, 0) * var(--stagger-ms, 80ms));
+}
+
+.stagger-fade-up.stagger-visible .stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Variant: clip-up (mask wipe reveal) --- */
+.stagger-clip-up .stagger-item {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  transition-delay: calc(var(--stagger-index, 0) * var(--stagger-ms, 80ms));
+}
+
+.stagger-clip-up.stagger-visible .stagger-item {
+  clip-path: inset(0 0 0 0);
+}
+
+/* --- Variant: slide-left (enters from right) --- */
+.stagger-slide-left .stagger-item {
+  opacity: 0;
+  transform: translateX(40px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--stagger-index, 0) * var(--stagger-ms, 80ms));
+}
+
+.stagger-slide-left.stagger-visible .stagger-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* --- Variant: slide-right (enters from left) --- */
+.stagger-slide-right .stagger-item {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--stagger-index, 0) * var(--stagger-ms, 80ms));
+}
+
+.stagger-slide-right.stagger-visible .stagger-item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEXT REVEAL  –  word-by-word mask animation
+   Each word is inside a hidden-overflow mask, slides up on reveal.
+   ═══════════════════════════════════════════════════════════════ */
+
+.text-reveal-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em; /* prevents descender clipping */
+}
+
+.text-reveal-word {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+}
+
+.text-reveal-visible {
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LINE GROW  –  decorative line that expands on scroll
+   ═══════════════════════════════════════════════════════════════ */
+
+.line-grow {
+  height: 1px;
+  width: 0;
+  transform-origin: left center;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.line-grow-left {
+  transform-origin: right center;
+  margin-left: auto;
+}
+
+.line-grow-visible {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION  –  respect user preference
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .marquee-track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stagger-blur-scale .stagger-item,
+  .stagger-fade-up .stagger-item,
+  .stagger-clip-up .stagger-item,
+  .stagger-slide-left .stagger-item,
+  .stagger-slide-right .stagger-item {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+
+  .text-reveal-word {
+    transform: none;
+    transition: none;
+  }
+
+  .line-grow {
+    width: 100%;
+    transition: none;
+  }
+}
