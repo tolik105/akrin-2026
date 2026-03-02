@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import sidekickImage from '../../../../../Sidekick-2.avif'
+import sidekickTransparentImage from '../../../../../Ekahau-Sidekick2-Transparent.avif'
 import spectrumAnalyzerImage from '../../../../../spectrum-analyzer.avif'
 import wifiHeatMapImage from '../../../../../wifi-coverage-heat-map.avif'
 import wirelessSignalMapImage from '../../../../../wireless-signal-heat-map.avif'
@@ -423,18 +424,12 @@ export default function JapanEkahauWirelessSurveysJAClient() {
                   {/* Image column — 5 columns */}
                   <div className="mt-10 space-y-6 lg:col-span-5 lg:mt-0">
                     <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-[#E2E5EF] lg:sticky lg:top-32">
-                      <div className="relative aspect-[4/3]">
+                      <div className="p-6">
                         <Image
-                          src={sidekickImage}
+                          src={sidekickTransparentImage}
                           alt="Ekahau Sidekickワイヤレスサーベイデバイス"
-                          fill
-                          className="object-contain p-8"
+                          className="w-full"
                         />
-                      </div>
-                      <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">
-                        <p className="text-center text-[11px] font-medium uppercase tracking-wider text-[#6B6D7C]/60">
-                          Ekahau Sidekick — デュアルバンドサーベイデバイス
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -526,19 +521,13 @@ export default function JapanEkahauWirelessSurveysJAClient() {
 
                   {/* Image — 5 columns */}
                   <div className="mt-10 lg:col-span-5 lg:mt-0">
-                    <div className="overflow-hidden rounded-2xl ring-1 ring-[#E2E5EF]">
-                      <div className="relative aspect-[4/3]">
+                    <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#E2E5EF]">
+                      <div className="p-3">
                         <Image
                           src={flukeReportImage}
                           alt="FLUKEケーブル認証テストレポート — 合否判定結果"
-                          fill
-                          className="object-cover"
+                          className="w-full rounded-lg"
                         />
-                      </div>
-                      <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">
-                        <p className="text-center text-[11px] font-medium uppercase tracking-wider text-[#6B6D7C]/60">
-                          FLUKEケーブル認証 — テストレポート
-                        </p>
                       </div>
                     </div>
                   </div>
