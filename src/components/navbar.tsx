@@ -56,23 +56,6 @@ const SERVICES_INDEX_NAV_ITEMS: SectionNavItem[] = [
   { id: 'service-catalog', number: '02', en: 'Services', ja: 'サービス' },
 ]
 
-const SERVICE_DETAIL_NAV_ITEMS: SectionNavItem[] = [
-  { id: 'overview', number: '01', en: 'Overview', ja: '概要' },
-  { id: 'key-services', number: '02', en: 'Key Services', ja: '提供内容' },
-]
-
-const IT_MANAGED_SERVICES_NAV_ITEMS: SectionNavItem[] = [
-  { id: 'overview', number: '01', en: 'Overview', ja: '概要' },
-  { id: 'monitoring', number: '02', en: 'Monitoring', ja: '監視' },
-  { id: 'help-desk', number: '03', en: 'Help Desk', ja: 'ヘルプデスク' },
-  { id: 'infrastructure', number: '04', en: 'Infrastructure', ja: 'インフラ' },
-  { id: 'security', number: '05', en: 'Security', ja: 'セキュリティ' },
-  { id: 'continuity', number: '06', en: 'Continuity', ja: '事業継続' },
-  { id: 'planning', number: '07', en: 'Planning', ja: 'IT戦略' },
-  { id: 'partnership', number: '08', en: 'Partnership', ja: 'パートナー' },
-  { id: 'faq', number: '09', en: 'FAQ', ja: 'FAQ' },
-]
-
 const IT_ASSET_SECTION_NAV_ITEMS: SectionNavItem[] = [
   { id: 'overview', number: '01', en: 'Overview', ja: '概要' },
   { id: 'benefits', number: '02', en: 'Benefits', ja: 'メリット' },
@@ -81,29 +64,6 @@ const IT_ASSET_SECTION_NAV_ITEMS: SectionNavItem[] = [
   { id: 'why-akrin', number: '05', en: 'Why Akrin', ja: 'AKRINの強み' },
   { id: 'industries', number: '06', en: 'Industries', ja: '対応業界' },
   { id: 'faq', number: '07', en: 'FAQ', ja: 'FAQ' },
-]
-
-const ITAD_SECTION_NAV_ITEMS: SectionNavItem[] = [
-  { id: 'overview', number: '01', en: 'Outcomes', ja: '提供価値' },
-  { id: 'services', number: '02', en: 'Services', ja: 'サービス' },
-  { id: 'compliance', number: '03', en: 'Compliance', ja: 'コンプライアンス' },
-  { id: 'coverage', number: '04', en: 'Coverage', ja: '対応地域' },
-  { id: 'process', number: '05', en: 'Process', ja: '標準フロー' },
-  { id: 'equipment', number: '06', en: 'Equipment', ja: '対応機器' },
-  { id: 'assurance', number: '07', en: 'Assurance', ja: '安心' },
-  { id: 'faq', number: '08', en: 'FAQ', ja: 'FAQ' },
-]
-
-const EKAHAU_SECTION_NAV_ITEMS: SectionNavItem[] = [
-  { id: 'overview', number: '01', en: 'Intro', ja: 'イントロ' },
-  { id: 'what-is', number: '02', en: 'What Is It', ja: 'Ekahauとは' },
-  { id: 'survey-types', number: '03', en: 'Survey Types', ja: '調査タイプ' },
-  { id: 'cabling', number: '04', en: 'Cabling', ja: 'ケーブル' },
-  { id: 'why-akrin', number: '05', en: 'Why Akrin', ja: 'AKRINの強み' },
-  { id: 'process', number: '06', en: 'Process', ja: 'プロセス' },
-  { id: 'industries', number: '07', en: 'Industries', ja: '対応業界' },
-  { id: 'cta', number: '08', en: 'Contact', ja: 'お問い合わせ' },
-  { id: 'faq', number: '09', en: 'FAQ', ja: 'FAQ' },
 ]
 
 function getSectionNavContext(pathname: string | null): SectionNavContext | null {
@@ -140,8 +100,9 @@ function getSectionNavContext(pathname: string | null): SectionNavContext | null
     return null
   }
 
+  // Generic service detail pages now render their own sticky ribbon section nav.
   if (/^\/services\/[^/]+$/.test(pathname) || /^\/ja\/services\/[^/]+$/.test(pathname)) {
-    return { basePath: pathname, items: SERVICE_DETAIL_NAV_ITEMS }
+    return null
   }
 
   return null

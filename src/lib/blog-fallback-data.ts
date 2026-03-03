@@ -1812,6 +1812,46 @@ export const blogPostsEN = {
       { slug: "data-erasure-standards", title: "Data Erasure Standards: The Complete Guide" }
     ]
   },
+  "bilingual-it-support-tokyo": {
+    id: 22,
+    slug: "bilingual-it-support-tokyo",
+    title: "Bilingual IT Support Tokyo: Complete Guide for International Businesses (2026)",
+    metaDescription: "Need English and Japanese IT support in Tokyo? This guide explains what bilingual IT support includes, provider evaluation criteria, and realistic costs for international businesses in Japan.",
+    excerpt: "International businesses in Tokyo need more than translation. This guide explains how true bilingual IT support works, what it should cost, and how to choose the right provider.",
+    image: "/blog-images/placeholder-blog.svg",
+    author: "AKRIN Editorial Team",
+    authorRole: "Managed IT Services Specialists",
+    authorBio: "The AKRIN editorial team focuses on practical IT operations guidance for international businesses in Japan.",
+    date: "2026-01-01",
+    readTime: "12 min read",
+    category: "Managed IT Services",
+    tags: ["bilingual IT support Tokyo", "English IT support Japan", "foreign company IT Japan", "expat IT support Tokyo"],
+    relatedPosts: [
+      { slug: "it-infrastructure-management-japan", title: "IT Infrastructure Management in Japan: The Complete Guide for International Companies" },
+      { slug: "it-relocation-tokyo-checklist", title: "IT Relocation Tokyo: Complete Checklist for Office Technology Moves" },
+      { slug: "wifi-site-survey-guide", title: "The Complete Guide to WiFi Site Surveys" }
+    ]
+  },
+  "it-relocation-tokyo-checklist": {
+    id: 23,
+    slug: "it-relocation-tokyo-checklist",
+    title: "IT Relocation Tokyo: Complete Checklist for Office Technology Moves (2026)",
+    metaDescription: "Planning an office move in Tokyo? This 90-day IT relocation checklist covers internet lead times, vendor coordination, move-day execution, and post-move stabilization.",
+    excerpt: "Tokyo office moves require longer lead times and tighter coordination than most markets. Use this practical 90-day IT relocation checklist to reduce downtime risk.",
+    image: "/blog-images/placeholder-blog.svg",
+    author: "AKRIN Editorial Team",
+    authorRole: "IT Project Management Team",
+    authorBio: "The AKRIN project team manages bilingual office IT relocations and infrastructure rollouts across Japan.",
+    date: "2026-01-10",
+    readTime: "13 min read",
+    category: "IT Project Management",
+    tags: ["IT relocation Tokyo", "office move IT support Japan", "office IT relocation Tokyo", "IT infrastructure move"],
+    relatedPosts: [
+      { slug: "bilingual-it-support-tokyo", title: "Bilingual IT Support Tokyo: Complete Guide for International Businesses" },
+      { slug: "wifi-site-survey-guide", title: "The Complete Guide to WiFi Site Surveys" },
+      { slug: "data-erasure-standards", title: "Data Erasure Standards: The Complete Guide" }
+    ]
+  },
   "wifi-site-survey-guide": wifiSiteSurveyGuideEN,
 }
 
@@ -2692,6 +2732,46 @@ export const blogPostsJA = {
       { slug: "future-of-it-infrastructure-japan", title: "日本のITインフラストラクチャの未来" },
       { slug: "cybersecurity-best-practices-2025", title: "2025年のサイバーセキュリティベストプラクティス" },
       { slug: "data-erasure-standards", title: "データ消去規格：完全ガイド" }
+    ]
+  },
+  "bilingual-it-support-tokyo": {
+    id: 22,
+    slug: "bilingual-it-support-tokyo",
+    title: "東京のバイリンガルITサポート完全ガイド（2026年版）",
+    metaDescription: "東京で英語と日本語のITサポートが必要な企業向けに、サービス範囲、選定基準、費用相場を実務視点で解説します。",
+    excerpt: "東京の外資系企業に必要なのは単なる翻訳対応ではありません。真のバイリンガルITサポートの要件、費用、選定方法を解説します。",
+    image: "/blog-images/placeholder-blog.svg",
+    author: "AKRIN編集チーム",
+    authorRole: "マネージドITサービス専門チーム",
+    authorBio: "AKRIN編集チームは、日本で事業を展開する外資系企業向けに実務的なIT運用情報を発信しています。",
+    date: "2026-01-01",
+    readTime: "12分",
+    category: "マネージドITサービス",
+    tags: ["バイリンガルITサポート 東京", "英語対応 ITサポート 日本", "外資系企業 IT運用 日本", "東京 ITヘルプデスク 英語"],
+    relatedPosts: [
+      { slug: "it-infrastructure-management-japan", title: "日本のITインフラ管理：外資系企業のための完全ガイド" },
+      { slug: "it-relocation-tokyo-checklist", title: "東京IT移転チェックリスト：オフィス移転完全ガイド" },
+      { slug: "wifi-site-survey-guide", title: "WiFiサイト調査の完全ガイド" }
+    ]
+  },
+  "it-relocation-tokyo-checklist": {
+    id: 23,
+    slug: "it-relocation-tokyo-checklist",
+    title: "東京IT移転チェックリスト：オフィス移転の完全ガイド（2026年版）",
+    metaDescription: "東京でオフィス移転を計画する企業向けに、90日間のIT移転チェックリストを時系列で解説。回線手配、ベンダー調整、当日運用まで網羅します。",
+    excerpt: "東京のオフィス移転は、回線開通と管理会社調整が成否を分けます。ダウンタイムを最小化する90日間のIT移転手順をまとめました。",
+    image: "/blog-images/placeholder-blog.svg",
+    author: "AKRIN編集チーム",
+    authorRole: "ITプロジェクトマネジメントチーム",
+    authorBio: "AKRINプロジェクトチームは、東京を中心にバイリンガル対応のIT移転プロジェクトを支援しています。",
+    date: "2026-01-10",
+    readTime: "13分",
+    category: "ITプロジェクト管理",
+    tags: ["IT移転 東京", "オフィス移転 ITサポート 日本", "オフィスIT移転 東京", "ITインフラ移設"],
+    relatedPosts: [
+      { slug: "bilingual-it-support-tokyo", title: "東京のバイリンガルITサポート完全ガイド" },
+      { slug: "wifi-site-survey-guide", title: "WiFiサイト調査の完全ガイド" },
+      { slug: "data-erasure-standards", title: "データ消去規格：安全なデータサニタイゼーション方法の完全ガイド" }
     ]
   },
   "wifi-site-survey-guide": wifiSiteSurveyGuideJA,
