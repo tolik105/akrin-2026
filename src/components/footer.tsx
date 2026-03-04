@@ -186,8 +186,7 @@ export function Footer() {
             ))}
           </div>
           <p className="mt-8 text-sm/6 text-gray-600 md:order-1 md:mt-0">
-            &copy; {new Date().getFullYear()} AKRIN K.K.{' '}
-            {isJapanese ? '無断複写・転載を禁じます。' : 'All rights reserved.'}
+            &copy; 2026 AKRIN株式会社 All rights reserved.
           </p>
         </div>
       </div>
