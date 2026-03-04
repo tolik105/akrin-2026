@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import sidekickImage from '../../../../../Sidekick-2.avif'
-import sidekickTransparentImage from '../../../../../Ekahau-Sidekick2-Transparent.avif'
+import sidekickTransparentImage from '@/assets/Ekahau-Sidekick2-Transparent.avif'
 import spectrumAnalyzerImage from '../../../../../spectrum-analyzer.avif'
 import wifiHeatMapImage from '../../../../../wifi-coverage-heat-map.avif'
 import wirelessSignalMapImage from '../../../../../wireless-signal-heat-map.avif'
