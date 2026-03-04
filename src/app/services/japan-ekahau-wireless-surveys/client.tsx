@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import sidekickImage from '../../../../Sidekick-2.avif'
-import sidekickTransparentImage from '@/assets/Ekahau-Sidekick2-Transparent.avif'
 import spectrumAnalyzerImage from '../../../../spectrum-analyzer.avif'
 import wifiHeatMapImage from '../../../../wifi-coverage-heat-map.avif'
 import wirelessSignalMapImage from '../../../../wireless-signal-heat-map.avif'
@@ -221,11 +220,10 @@ export default function JapanEkahauWirelessSurveysClient() {
           }}
         />
         <div className="relative z-10 flex min-h-[520px] flex-col justify-end px-5 pb-7 sm:min-h-[560px] sm:px-8 sm:pb-9">
-          <nav className="mb-4 flex items-center gap-2 text-[13px] sm:text-[14px]">
-            <Link href="/services" className="text-white/50 transition-colors hover:text-white/80">Services</Link>
-            <span className="text-white/30">&rsaquo;</span>
-            <span className="font-medium text-white">Ekahau Wireless Surveys</span>
-          </nav>
+          <div className="mb-4 flex items-center gap-2">
+            <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-white/60" />
+            <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/60">Ekahau Wireless Surveys</span>
+          </div>
           <h1 className="font-serif text-[24px] font-light leading-[1.12] tracking-[-0.02em] text-white sm:text-[30px]">
             Ekahau Wireless Site Survey Services in Japan
           </h1>
@@ -271,11 +269,10 @@ export default function JapanEkahauWirelessSurveysClient() {
         <div className="relative flex h-[500px] items-center">
           <div className="mx-auto w-full max-w-[1047px] px-12">
             <div className="max-w-lg xl:max-w-xl">
-              <nav className="mb-4 flex items-center gap-2 text-[15px]">
-                <Link href="/services" className="text-white/50 transition-colors hover:text-white/80">Services</Link>
-                <span className="text-white/30">&rsaquo;</span>
-                <span className="font-medium text-white">Ekahau Wireless Surveys</span>
-              </nav>
+              <div className="mb-4 flex items-center gap-2">
+                <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-white/60" />
+                <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/60">Ekahau Wireless Surveys</span>
+              </div>
               <h1 className="font-serif text-[36px] font-light leading-[1.15] tracking-[-0.02em] text-white xl:text-[40px]">
                 Ekahau Wireless Site Survey Services in Japan
               </h1>
@@ -426,12 +423,18 @@ export default function JapanEkahauWirelessSurveysClient() {
                   {/* Image column — 5 columns */}
                   <div className="mt-10 space-y-6 lg:col-span-5 lg:mt-0">
                     <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-[#E2E5EF] lg:sticky lg:top-32">
-                      <div className="p-6">
+                      <div className="relative aspect-[4/3]">
                         <Image
-                          src={sidekickTransparentImage}
+                          src={sidekickImage}
                           alt="Ekahau Sidekick wireless survey device"
-                          className="w-full"
+                          fill
+                          className="object-contain p-8"
                         />
+                      </div>
+                      <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">
+                        <p className="text-center text-[11px] font-medium uppercase tracking-wider text-[#6B6D7C]/60">
+                          Ekahau Sidekick — Dual-Band Survey Device
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -523,13 +526,19 @@ export default function JapanEkahauWirelessSurveysClient() {
 
                   {/* Image — 5 columns */}
                   <div className="mt-10 lg:col-span-5 lg:mt-0">
-                    <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#E2E5EF]">
-                      <div className="p-3">
+                    <div className="overflow-hidden rounded-2xl ring-1 ring-[#E2E5EF]">
+                      <div className="relative aspect-[4/3]">
                         <Image
                           src={flukeReportImage}
                           alt="FLUKE cable certification test report showing pass/fail results"
-                          className="w-full rounded-lg"
+                          fill
+                          className="object-cover"
                         />
+                      </div>
+                      <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">
+                        <p className="text-center text-[11px] font-medium uppercase tracking-wider text-[#6B6D7C]/60">
+                          FLUKE Cable Certification — Test Report
+                        </p>
                       </div>
                     </div>
                   </div>
