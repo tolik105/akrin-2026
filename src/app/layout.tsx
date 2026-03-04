@@ -2,6 +2,7 @@ import { CookieConsent } from '@/components/cookie-consent'
 import { HubSpotChat } from '@/components/hubspot-chat'
 import { SanityLive } from '@/sanity/live'
 import { revalidateSyncTags } from '@/sanity/revalidateSyncTags'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import '@/styles/tailwind.css'
 import type { Metadata, Viewport } from 'next'
 
@@ -134,6 +135,7 @@ export default function RootLayout({
         />
         {children}
         <SanityLive revalidateSyncTags={revalidateSyncTags} />
+        <SpeedInsights />
         <HubSpotChat />
         <CookieConsent />
       </body>
