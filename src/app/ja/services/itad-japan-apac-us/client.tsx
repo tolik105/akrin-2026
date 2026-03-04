@@ -200,11 +200,10 @@ export default function ITADJaClient() {
           }}
         />
         <div className="relative z-10 flex min-h-[520px] flex-col justify-end px-5 pb-7 sm:min-h-[560px] sm:px-8 sm:pb-9">
-          <nav className="mb-4 flex items-center gap-2 text-[13px] sm:text-[14px]">
-            <Link href="/ja/services" className="text-white/50 transition-colors hover:text-white/80">サービス</Link>
-            <span className="text-white/30">&rsaquo;</span>
-            <span className="font-medium text-white">ITADサービス</span>
-          </nav>
+          <div className="mb-4 flex items-center gap-2">
+            <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-white/60" />
+            <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/60">ITAD サービス</span>
+          </div>
           <h1 className="font-serif text-[24px] font-light leading-[1.12] tracking-[-0.02em] text-white sm:text-[30px]">
             東京・日本のITAD（IT資産処分）: 安全・適正・監査対応（Japan / APAC / US）
           </h1>
@@ -250,11 +249,10 @@ export default function ITADJaClient() {
         <div className="relative flex h-[500px] items-center">
           <div className="mx-auto w-full max-w-[1047px] px-12">
             <div className="max-w-lg xl:max-w-xl">
-              <nav className="mb-4 flex items-center gap-2 text-[15px]">
-                <Link href="/ja/services" className="text-white/50 transition-colors hover:text-white/80">サービス</Link>
-                <span className="text-white/30">&rsaquo;</span>
-                <span className="font-medium text-white">ITADサービス</span>
-              </nav>
+              <div className="mb-4 flex items-center gap-2">
+                <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-white/60" />
+                <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/60">ITAD サービス</span>
+              </div>
               <h1 className="font-serif text-[36px] font-light leading-[1.15] tracking-[-0.02em] text-white xl:text-[40px]">
                 東京・日本のITAD（IT資産処分）: 安全・適正・監査対応（Japan / APAC / US）
               </h1>
