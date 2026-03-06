@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { SectionNav } from '@/components/SectionNav'
 import { RevealOnScroll } from '@/components/RevealOnScroll'
 
@@ -225,12 +226,12 @@ export function ItAssetManagementClient() {
               >
                 Schedule Consultation
               </a>
-              <a
+              <Link
                 href="/services"
                 className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md hover:bg-white/10"
               >
                 All Services
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -272,12 +273,12 @@ export function ItAssetManagementClient() {
                 >
                   Schedule Consultation
                 </a>
-                <a
+                <Link
                   href="/services"
                   className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md hover:bg-white/10"
                 >
                   All Services
-                </a>
+                </Link>
               </div>
             </div>
           </div>

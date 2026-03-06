@@ -4,7 +4,7 @@ import { Footer } from '@/components/footer'
 import { GradientBackground } from '@/components/gradient'
 import { Link } from '@/components/link'
 import { Navbar } from '@/components/navbar'
-import { getFallbackImageBySlug } from '@/lib/blog-fallback'
+import { getFallbackImageBySlug, getFallbackPost } from '@/lib/blog-fallback'
 import { blogPostsJA } from '@/lib/blog-fallback-data'
 import { image } from '@/sanity/image'
 import { getPost } from '@/sanity/queries'
@@ -26,13 +26,14 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug
   const { data: post } = await getPost(slug, 'ja')
-  if (!post) return {}
+  const fallbackPost = getFallbackPost(slug, 'ja')
+  if (!post && !fallbackPost) return {}
 
   const localMeta = (blogPostsJA as Record<string, { title?: string; excerpt?: string }>)[slug]
   const canonicalPath = `/ja/blog/${slug}`
   const imageUrl = '/og-image.png'
-  const postTitle = localMeta?.title || post.title || 'AKRINブログ'
-  const postDescription = localMeta?.excerpt || post.excerpt || undefined
+  const postTitle = localMeta?.title || post?.title || fallbackPost?.title || 'AKRINブログ'
+  const postDescription = localMeta?.excerpt || post?.excerpt || fallbackPost?.excerpt || undefined
 
   return {
     title: postTitle,
@@ -65,35 +66,50 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function JapaneseBlogPostPage({ params }: Props) {
   const slug = (await params).slug
   const { data: post } = await getPost(slug, 'ja')
-  if (!post) notFound()
+  const fallbackPost = getFallbackPost(slug, 'ja')
+  if (!post && !fallbackPost) notFound()
+  const resolvedPost = post ?? {
+    title: fallbackPost!.title,
+    excerpt: fallbackPost!.excerpt,
+    publishedAt: fallbackPost!.publishedAt,
+    author: fallbackPost!.author,
+    categories: fallbackPost!.categories,
+    mainImage: null,
+    image: fallbackPost!.image,
+    htmlContent: fallbackPost!.htmlContent,
+  }
   const localFallback = (blogPostsJA as Record<string, { image?: string; content?: string; title?: string; excerpt?: string }>)[slug]
 
   // If this post has no proper JA translation (auto-localized 【日本語版】 or English-only),
   // redirect to the English version instead of showing English content on the JA page.
-  const rawTitle = post.title || ''
-  if (!localFallback?.content && (rawTitle.startsWith('【日本語版】') || rawTitle.startsWith('English Version:'))) {
+  const rawTitle = localFallback?.title || resolvedPost.title || ''
+  if (post && !localFallback?.content && (rawTitle.startsWith('【日本語版】') || rawTitle.startsWith('English Version:'))) {
     redirect(`/blog/${slug}`)
   }
 
-  const localFallbackImage = localFallback?.image || getFallbackImageBySlug(slug, 'ja')
-  const portableBody = 'body' in post ? post.body : undefined
+  const localFallbackImage = localFallback?.image || fallbackPost?.image || getFallbackImageBySlug(slug, 'ja')
+  const portableBody = 'body' in resolvedPost ? resolvedPost.body : undefined
   const sanityHtml =
-    typeof (post as { htmlContent?: string }).htmlContent === 'string'
-      ? (post as { htmlContent: string }).htmlContent
+    typeof (resolvedPost as { htmlContent?: string }).htmlContent === 'string'
+      ? (resolvedPost as { htmlContent: string }).htmlContent
       : ''
   const sanityHasRealHtml = /<[a-z][\s\S]*>/i.test(sanityHtml)
-  const rawHtml = localFallback?.content || (sanityHasRealHtml ? sanityHtml : '') || ''
+  const rawHtml =
+    localFallback?.content ||
+    fallbackPost?.htmlContent ||
+    (sanityHasRealHtml ? sanityHtml : '') ||
+    ''
   // Strip leading <h1> from HTML content — we already render the title in the header
   const htmlContent = rawHtml.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>\s*/i, '')
-  const publishedAt = post.publishedAt || new Date().toISOString()
+  const publishedAt = resolvedPost.publishedAt || new Date().toISOString()
   const publishedDate = new Date(publishedAt)
   const isPublishedDateValid = !Number.isNaN(publishedDate.getTime())
   const formattedPublishedDate = isPublishedDateValid
     ? publishedDate.toISOString()
     : new Date().toISOString()
   const postUrl = `${siteUrl}/ja/blog/${slug}`
-  const postTitle = localFallback?.title || post.title || 'AKRINブログ'
-  const postDescription = localFallback?.excerpt || post.excerpt || ''
+  const postTitle = localFallback?.title || resolvedPost.title || fallbackPost?.title || 'AKRINブログ'
+  const postDescription = localFallback?.excerpt || resolvedPost.excerpt || fallbackPost?.excerpt || ''
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -106,7 +122,7 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
     image: [`${siteUrl}/og-image.png`],
     author: {
       '@type': 'Person',
-      name: post.author?.name || 'AKRIN編集部',
+      name: resolvedPost.author?.name || 'AKRIN編集部',
       url: `${siteUrl}/ja/about`,
     },
     publisher: {
@@ -145,9 +161,9 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
         {/* Article header */}
         <div className="mx-auto mt-8 max-w-3xl">
           {/* Categories */}
-          {Array.isArray(post.categories) && post.categories.length > 0 && (
+          {Array.isArray(resolvedPost.categories) && resolvedPost.categories.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {post.categories.map((category: { slug: string; title: string }) => (
+              {resolvedPost.categories.map((category: { slug: string; title: string }) => (
                 <Link
                   key={category.slug}
                   href={`/ja/blog?category=${category.slug}`}
@@ -173,21 +189,21 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
 
           {/* Meta: date + author */}
           <div className="mt-6 flex items-center gap-4 border-y border-gray-200 py-4">
-            {post.author && (
+            {resolvedPost.author && (
               <div className="flex items-center gap-2.5">
-                {post.author.image && (
+                {resolvedPost.author.image && (
                   <img
                     alt=""
-                    src={image(post.author.image).size(64, 64).url()}
+                    src={image(resolvedPost.author.image).size(64, 64).url()}
                     className="aspect-square size-8 rounded-full object-cover ring-1 ring-gray-200"
                   />
                 )}
                 <span className="text-sm/5 font-medium text-gray-700">
-                  {post.author.name}
+                  {resolvedPost.author.name}
                 </span>
               </div>
             )}
-            {post.author && <span className="text-gray-300">·</span>}
+            {resolvedPost.author && <span className="text-gray-300">·</span>}
             <time className="text-sm/5 text-gray-500" dateTime={formattedPublishedDate}>
               {dayjs(publishedAt).format('YYYY年M月D日')}
             </time>
@@ -197,17 +213,17 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
         {/* Article body */}
         <article className="mx-auto max-w-3xl pb-24">
           {/* Feature image */}
-          {post.mainImage ? (
+          {resolvedPost.mainImage ? (
             <img
-              alt={post.mainImage.alt || ''}
-              src={image(post.mainImage).size(2016, 1344).url()}
+              alt={resolvedPost.mainImage.alt || ''}
+              src={image(resolvedPost.mainImage).size(2016, 1344).url()}
               className="mt-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
               loading="lazy"
             />
-          ) : ((post as Record<string, unknown>).image || localFallbackImage) ? (
+          ) : ((resolvedPost as Record<string, unknown>).image || localFallbackImage) ? (
             <img
               alt={postTitle}
-              src={((post as Record<string, unknown>).image as string) || localFallbackImage || ''}
+              src={((resolvedPost as Record<string, unknown>).image as string) || localFallbackImage || ''}
               className="mt-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
               loading="lazy"
             />

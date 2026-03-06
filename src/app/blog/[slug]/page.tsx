@@ -4,7 +4,7 @@ import { Footer } from '@/components/footer'
 import { GradientBackground } from '@/components/gradient'
 import { Link } from '@/components/link'
 import { Navbar } from '@/components/navbar'
-import { getFallbackImageBySlug } from '@/lib/blog-fallback'
+import { getFallbackImageBySlug, getFallbackPost } from '@/lib/blog-fallback'
 import { blogPostsEN } from '@/lib/blog-fallback-data'
 import { image } from '@/sanity/image'
 import { getPost } from '@/sanity/queries'
@@ -25,12 +25,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const { data: post } = await getPost(slug)
-  if (!post) return {}
+  const fallbackPost = getFallbackPost(slug, 'en')
+  if (!post && !fallbackPost) return {}
 
   const canonicalPath = `/blog/${slug}`
   const imageUrl = '/og-image.png'
-  const postTitle = post.title || 'AKRIN Blog'
-  const postDescription = post.excerpt || undefined
+  const postTitle = post?.title || fallbackPost?.title || 'AKRIN Blog'
+  const postDescription = post?.excerpt || fallbackPost?.excerpt || undefined
 
   return {
     title: postTitle,
@@ -67,27 +68,42 @@ export default async function BlogPost({
 }) {
   const { slug } = await params
   let { data: post } = await getPost(slug)
-  if (!post) notFound()
+  const fallbackPost = getFallbackPost(slug, 'en')
+  if (!post && !fallbackPost) notFound()
+  const resolvedPost = post ?? {
+    title: fallbackPost!.title,
+    excerpt: fallbackPost!.excerpt,
+    publishedAt: fallbackPost!.publishedAt,
+    author: fallbackPost!.author,
+    categories: fallbackPost!.categories,
+    mainImage: null,
+    image: fallbackPost!.image,
+    htmlContent: fallbackPost!.htmlContent,
+  }
   const localFallback = (blogPostsEN as Record<string, { image?: string; content?: string }>)[slug]
-  const localFallbackImage = localFallback?.image || getFallbackImageBySlug(slug, 'en')
-  const portableBody = 'body' in post ? post.body : undefined
+  const localFallbackImage = localFallback?.image || fallbackPost?.image || getFallbackImageBySlug(slug, 'en')
+  const portableBody = 'body' in resolvedPost ? resolvedPost.body : undefined
   const sanityHtml =
-    typeof (post as { htmlContent?: string }).htmlContent === 'string'
-      ? (post as { htmlContent: string }).htmlContent
+    typeof (resolvedPost as { htmlContent?: string }).htmlContent === 'string'
+      ? (resolvedPost as { htmlContent: string }).htmlContent
       : ''
   const sanityHasRealHtml = /<[a-z][\s\S]*>/i.test(sanityHtml)
-  const rawHtml = localFallback?.content || (sanityHasRealHtml ? sanityHtml : '') || ''
+  const rawHtml =
+    localFallback?.content ||
+    fallbackPost?.htmlContent ||
+    (sanityHasRealHtml ? sanityHtml : '') ||
+    ''
   // Strip leading <h1> from HTML content — we already render the title in the header
   const htmlContent = rawHtml.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>\s*/i, '')
-  const publishedAt = post.publishedAt || new Date().toISOString()
+  const publishedAt = resolvedPost.publishedAt || new Date().toISOString()
   const publishedDate = new Date(publishedAt)
   const isPublishedDateValid = !Number.isNaN(publishedDate.getTime())
   const formattedPublishedDate = isPublishedDateValid
     ? publishedDate.toISOString()
     : new Date().toISOString()
   const postUrl = `${siteUrl}/blog/${slug}`
-  const postTitle = post.title || 'AKRIN Blog'
-  const postDescription = post.excerpt || ''
+  const postTitle = resolvedPost.title || fallbackPost?.title || 'AKRIN Blog'
+  const postDescription = resolvedPost.excerpt || fallbackPost?.excerpt || ''
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -100,7 +116,7 @@ export default async function BlogPost({
     image: [`${siteUrl}/og-image.png`],
     author: {
       '@type': 'Person',
-      name: post.author?.name || 'AKRIN Editorial Team',
+      name: resolvedPost.author?.name || 'AKRIN Editorial Team',
       url: `${siteUrl}/about`,
     },
     publisher: {
@@ -139,9 +155,9 @@ export default async function BlogPost({
         {/* Article header */}
         <div className="mx-auto mt-8 max-w-3xl">
           {/* Categories */}
-          {Array.isArray(post.categories) && post.categories.length > 0 && (
+          {Array.isArray(resolvedPost.categories) && resolvedPost.categories.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {post.categories.map((category: { slug: string; title: string }) => (
+              {resolvedPost.categories.map((category: { slug: string; title: string }) => (
                 <Link
                   key={category.slug}
                   href={`../?category=${category.slug}`}
@@ -167,21 +183,21 @@ export default async function BlogPost({
 
           {/* Meta: date + author */}
           <div className="mt-6 flex items-center gap-4 border-y border-gray-200 py-4">
-            {post.author && (
+            {resolvedPost.author && (
               <div className="flex items-center gap-2.5">
-                {post.author.image && (
+                {resolvedPost.author.image && (
                   <img
                     alt=""
-                    src={image(post.author.image).size(64, 64).url()}
+                    src={image(resolvedPost.author.image).size(64, 64).url()}
                     className="aspect-square size-8 rounded-full object-cover ring-1 ring-gray-200"
                   />
                 )}
                 <span className="text-sm/5 font-medium text-gray-700">
-                  {post.author.name}
+                  {resolvedPost.author.name}
                 </span>
               </div>
             )}
-            {post.author && <span className="text-gray-300">·</span>}
+            {resolvedPost.author && <span className="text-gray-300">·</span>}
             <time className="text-sm/5 text-gray-500" dateTime={formattedPublishedDate}>
               {dayjs(publishedAt).format('MMMM D, YYYY')}
             </time>
@@ -191,17 +207,17 @@ export default async function BlogPost({
         {/* Article body */}
         <article className="mx-auto max-w-3xl pb-24">
           {/* Feature image */}
-          {post.mainImage ? (
+          {resolvedPost.mainImage ? (
             <img
-              alt={post.mainImage.alt || ''}
-              src={image(post.mainImage).size(2016, 1344).url()}
+              alt={resolvedPost.mainImage.alt || ''}
+              src={image(resolvedPost.mainImage).size(2016, 1344).url()}
               className="mt-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
               loading="lazy"
             />
-          ) : ((post as Record<string, unknown>).image || localFallbackImage) ? (
+          ) : ((resolvedPost as Record<string, unknown>).image || localFallbackImage) ? (
             <img
               alt={postTitle}
-              src={((post as Record<string, unknown>).image as string) || localFallbackImage || ''}
+              src={((resolvedPost as Record<string, unknown>).image as string) || localFallbackImage || ''}
               className="mt-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
               loading="lazy"
             />

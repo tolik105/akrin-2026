@@ -470,12 +470,10 @@ function getCombinedParsedFallbackMap() {
       const post = buildCombinedLegacyPost(section)
       if (!post?.slug) continue
 
-      const locale = detectLocale(`${post.title || ''} ${post.excerpt || ''} ${post.content || ''}`)
-      if (locale === 'ja') {
-        ja[post.slug] = post
-      } else {
-        en[post.slug] = post
-      }
+      // The combined markdown source is the English blog archive. Some English
+      // posts legitimately mention Japanese terms (for example, 古物商許可),
+      // which makes naive character-based locale detection misclassify them as JA.
+      en[post.slug] = post
     }
 
     // Do NOT auto-generate JA counterparts for EN-only posts.

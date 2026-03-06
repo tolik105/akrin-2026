@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { SectionNav } from '@/components/SectionNav'
 import { RevealOnScroll } from '@/components/RevealOnScroll'
 
@@ -179,9 +180,9 @@ export default function CybersecurityJaClient() {
             <a href="/ja/contact" className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#02304F]">
               セキュリティ相談
             </a>
-            <a href="/ja/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
+            <Link href="/ja/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
               全サービス一覧
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -216,9 +217,9 @@ export default function CybersecurityJaClient() {
             <a href="/ja/contact" className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#02304F]">
               セキュリティ相談
             </a>
-            <a href="/ja/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
+            <Link href="/ja/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
               全サービス一覧
-            </a>
+            </Link>
           </div>
         </div>
       </section>

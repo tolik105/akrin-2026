@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { SectionNav } from '@/components/SectionNav'
 import { RevealOnScroll } from '@/components/RevealOnScroll'
 
@@ -159,9 +160,9 @@ export default function NetworkPenetrationTestingClient() {
             <a href="/contact" className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#02304F]">
               Schedule Assessment
             </a>
-            <a href="/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
+            <Link href="/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
               View All Services
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -196,9 +197,9 @@ export default function NetworkPenetrationTestingClient() {
             <a href="/contact" className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#02304F]">
               Schedule Assessment
             </a>
-            <a href="/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
+            <Link href="/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
               View All Services
-            </a>
+            </Link>
           </div>
         </div>
       </section>
