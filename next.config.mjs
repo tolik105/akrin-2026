@@ -38,6 +38,14 @@ const nextConfig = {
       },
     ]
   },
+  outputFileTracingIncludes: {
+    '/*': [
+      './docs/content/services/AKRIN_SITE_CONTENT_EN_JA.md',
+      './docs/content/blog/AKRIN_Blog_Content_Combined.md',
+      './docs/archive/content/AKRIN_SITE_CONTENT_EN_JA.md.backup',
+      './docs/archive/content/AKRIN_Blog_Content_Combined.md.backup',
+    ],
+  },
   images: {
     remotePatterns: [
       {
