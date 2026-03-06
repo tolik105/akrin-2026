@@ -8,9 +8,9 @@ import {
   ArrowPathRoundedSquareIcon,
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
-import homePageBannerImage from '../../Images/home-page-banner/hero-home-page-1920.avif'
-import homePageBannerMobile from '../../Images/home-page-banner/hero-home-page-mobile.avif'
-import sidekickImage from '../../Sidekick-2.avif'
+import homePageBannerImage from '../assets/images/home-page-banner/hero-home-page-1920.avif'
+import homePageBannerMobile from '../assets/images/home-page-banner/hero-home-page-mobile.avif'
+import sidekickImage from '../assets/images/services/japan-ekahau-wireless-surveys/sidekick-2.avif'
 import { Footer } from '@/components/footer'
 import { HomeCaseStudyParallaxCard } from '@/components/HomeCaseStudyParallaxCard'
 import { Link } from '@/components/link'
@@ -96,9 +96,9 @@ const serviceVisuals = [
 
 const content: Record<Locale, HomeCopy> = {
   en: {
-    heroTitle: 'Managed IT Services in Tokyo \u2014 Built for Business',
+    heroTitle: 'Managed IT Services Across Japan',
     heroSubtitle:
-      'AKRIN delivers end-to-end managed IT services, IT asset management, and certified ITAD across Tokyo and Japan. Our bilingual engineers provide 24/7 operational support, same-day on-site response in Kanto, and compliance-ready documentation aligned with APPI, ISO 27001, and GDPR \u2014 so your business can operate with confidence.',
+      'AKRIN is a managed IT service provider delivering 24/7 infrastructure support, cybersecurity, cloud services, and certified asset disposition for enterprises in Japan — with bilingual engineering and compliance-first delivery aligned with APPI, ISO 27001, and GDPR.',
     heroCta: 'Schedule Free Consultation',
     servicesTitle: 'End-to-End IT Lifecycle Management for Businesses in Japan',
     servicesIntro:
@@ -252,10 +252,10 @@ const content: Record<Locale, HomeCopy> = {
     ctaButton: 'Schedule Free Consultation',
   },
   ja: {
-    heroTitle: '\u6B21\u306B\u8E0F\u307F\u51FA\u3059\u5927\u80C6\u306AIT\u6226\u7565\u306F\uFF1F',
+    heroTitle: '日本全国対応のマネージドITサービス',
     heroSubtitle:
-      '\u6226\u7565\u30B3\u30F3\u30B5\u30EB\u30C6\u30A3\u30F3\u30B0\u3001\u30A8\u30F3\u30C9\u30C4\u30FC\u30A8\u30F3\u30C9\u306E\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u7BA1\u7406\u300124\u6642\u9593365\u65E5\u5BFE\u5FDC\u306E\u30BB\u30AD\u30E5\u30A2\u306A\u30DE\u30CD\u30FC\u30B8\u30C9\u30B5\u30FC\u30D3\u30B9\u3002',
-    heroCta: '\u76F8\u8AC7\u3092\u4E88\u7D04',
+      'AKRINは、24/7インフラサポート、サイバーセキュリティ、クラウドサービス、認定IT資産廃棄を提供するマネージドITサービスプロバイダーです。バイリンガルエンジニアリングとAPPI・ISO 27001・GDPR準拠のコンプライアンス重視のデリバリーで日本の企業を支援します。',
+    heroCta: '無料相談を予約',
     servicesTitle: '\u4E3B\u8981\u30B5\u30FC\u30D3\u30B9',
     servicesIntro:
       'AKRIN\u306F\u3001IT\u8CC7\u7523\u51E6\u5206\u304B\u308924\u6642\u9593365\u65E5\u306E\u904B\u7528\u652F\u63F4\u307E\u3067\u3001\u6771\u4EAC\u304A\u3088\u3073\u65E5\u672C\u5168\u56FD\u306E\u4F01\u696D\u5411\u3051\u306BIT\u30E9\u30A4\u30D5\u30B5\u30A4\u30AF\u30EB\u5168\u4F53\u3092\u4E00\u6C17\u901A\u8CAB\u3067\u652F\u63F4\u3057\u307E\u3059\u3002',
@@ -561,7 +561,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           />
           {/* Content — spacer pushes text to bottom half */}
           <div className="relative z-10 flex min-h-[520px] flex-col justify-end px-5 pb-7 sm:min-h-[560px] sm:px-8 sm:pb-9">
-            <SectionLabel label={locale === 'ja' ? '\u30DE\u30CD\u30FC\u30B8\u30C9IT\u30B5\u30FC\u30D3\u30B9' : 'Managed IT Services in Tokyo'} tone="light" />
+            <SectionLabel label={locale === 'ja' ? 'マネージドITサービスプロバイダー' : 'Managed IT Service Provider in Japan'} tone="light" />
             <TextReveal
               text={copy.heroTitle}
               as="h1"
@@ -612,7 +612,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <div className="relative flex h-[500px] items-center">
             <div className="mx-auto w-full max-w-[1047px] px-12">
               <div className="max-w-lg xl:max-w-xl">
-                <SectionLabel label={locale === 'ja' ? '\u30DE\u30CD\u30FC\u30B8\u30C9IT\u30B5\u30FC\u30D3\u30B9' : 'Managed IT Services in Tokyo'} tone="light" />
+                <SectionLabel label={locale === 'ja' ? 'マネージドITサービスプロバイダー' : 'Managed IT Service Provider in Japan'} tone="light" />
                 <TextReveal
                   text={copy.heroTitle}
                   as="h1"

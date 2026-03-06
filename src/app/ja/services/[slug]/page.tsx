@@ -18,7 +18,10 @@ export async function generateStaticParams() {
       (service) =>
         service.slug !== 'it-asset-management' &&
         service.slug !== 'it-managed-services' &&
-        service.slug !== 'cloud-infrastructure',
+        service.slug !== 'cloud-infrastructure' &&
+        service.slug !== 'it-consulting-project-management' &&
+        service.slug !== 'it-security' &&
+        service.slug !== 'network-penetration-testing',
     )
     .map((service) => ({ slug: service.slug }))
 }

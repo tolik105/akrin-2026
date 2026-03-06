@@ -1,716 +1,475 @@
-"use client"
+'use client'
 
-import React, { useState, useEffect } from "react"
-import Link from "next/link"
-import { AnimatePresence, motion } from 'framer-motion'
-import { cn } from "@/lib/utils"
-import { HeroDiagonal } from "@/components/hero-diagonal"
+import {
+  ClipboardDocumentListIcon,
+  BuildingOffice2Icon,
+  ServerStackIcon,
+  CloudArrowUpIcon,
+  CheckCircleIcon,
+  ChevronDownIcon,
+  UserGroupIcon,
+  ShieldCheckIcon,
+  ClockIcon,
+  WrenchScrewdriverIcon,
+  DocumentTextIcon,
+  ChatBubbleLeftRightIcon,
+} from '@heroicons/react/24/outline'
+import Image from 'next/image'
+import { useState } from 'react'
+import { Link } from '@/components/link'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
+import { SectionNav } from '@/components/SectionNav'
 
-const FAQItem = ({
-  question,
-  answer,
-  setOpen,
-  open,
-}: {
-  question: string;
-  answer: string;
-  open: string | null;
-  setOpen: (open: string | null) => void;
-}) => {
-  const isOpen = open === question;
+type SectionItem = {
+  id: string
+  label: string
+  num: string
+}
 
+const sectionItems: SectionItem[] = [
+  { id: 'overview', label: 'OVERVIEW', num: '01' },
+  { id: 'services', label: 'SERVICES', num: '02' },
+  { id: 'why-akrin', label: 'WHY AKRIN', num: '03' },
+  { id: 'faq', label: 'FAQ', num: '04' },
+]
+
+const serviceCards = [
+  {
+    icon: ClipboardDocumentListIcon,
+    title: 'ITインフラ プロジェクト管理',
+    desc: 'ネットワーク導入、サーバー移行、インフラ更新プロジェクトをエンドツーエンドで管理します。各プロジェクトは体系的な方法論に従います。要件定義、ベンダー調整、リスク管理、実装後の検証を実施。',
+    highlights: ['ネットワーク導入', 'サーバー移行', 'インフラ更新'],
+  },
+  {
+    icon: BuildingOffice2Icon,
+    title: 'オフィス移転とワークスペーステクノロジー',
+    desc: 'ネットワーク廃止、新拠点でのケーブリングとアクセスポイント設置、ダウンタイムを最小化したIT完全移行をコーディネートします。',
+    highlights: ['ネットワーク廃止', 'ケーブリング・AP設置', 'IT完全移行'],
+  },
+  {
+    icon: ServerStackIcon,
+    title: 'データセンター構築と移行',
+    desc: 'データセンタープロジェクトは複数ベンダーにわたる正確な計画と調整が必須です。ラック配置、電力分配、冷却、ケーブリング、ネットワーク構成を監督します。',
+    highlights: ['ラック配置・電力', '冷却・ケーブリング', 'ネットワーク構成'],
+  },
+  {
+    icon: CloudArrowUpIcon,
+    title: 'クラウド移行とデジタル変革',
+    desc: 'クラウドへのワークロード移行には慎重なプロジェクト範囲設定、アプリケーション依存関係マッピング、段階的な移行計画が必要です。AWS、Azure、ハイブリッド環境に対応。',
+    highlights: ['AWS・Azure', '依存関係マッピング', '段階的移行'],
+  },
+]
+
+const whyMetrics = [
+  {
+    icon: UserGroupIcon,
+    metric: '専任PM',
+    title: '配置されたプロジェクトマネージャー',
+    desc: '各プロジェクトに専任のプロジェクトマネージャーを配置し、スケジュール、予算、成果物の品質に直接責任を持たせます。',
+  },
+  {
+    icon: DocumentTextIcon,
+    metric: '体系的',
+    title: '実証済みの方法論',
+    desc: 'スコープ管理、リスクレジスタ、週次ステータスレビューにより、情報技術イニシアチブは軌道上を歩みます。',
+  },
+  {
+    icon: WrenchScrewdriverIcon,
+    metric: 'ハンズオン',
+    title: '技術的な深さ',
+    desc: 'ネットワーク、セキュリティ、クラウド、エンタープライズアプリケーション全域で実践的な専門知識を備えています。',
+  },
+  {
+    icon: ShieldCheckIcon,
+    metric: '全国対応',
+    title: 'ナショナルカバレッジ',
+    desc: '日本全国で対応可能。分散チームや複数拠点のビジネス展開に対して遠隔プロジェクト管理サポートを提供します。',
+  },
+  {
+    icon: ChatBubbleLeftRightIcon,
+    metric: '透明性',
+    title: 'クライアント優先のレポーティング',
+    desc: 'シニアコンサルタントへのダイレクトアクセスを実現。各プロジェクトの開始から、ビジネスコンテキストを踏まえたソリューション設計。',
+  },
+  {
+    icon: ClockIcon,
+    metric: '期日内',
+    title: '測定可能な成果',
+    desc: 'クライアントと協力してビジネス優先事項を理解し、期日内に測定可能な成果を達成するプロジェクト計画を構築します。',
+  },
+]
+
+const faqItems = [
+  {
+    q: 'AKRINのITコンサルティングの範囲は？',
+    a: 'インフラ構築、オフィス移転、データセンタープロジェクト、クラウド移行、テクノロジーリフレッシュプログラムなど、日本全国の組織向けにエンドツーエンドのプロジェクト管理を提供しています。',
+  },
+  {
+    q: 'プロジェクトマネージャーはどのように配置されますか？',
+    a: '技術的背景、プロジェクトの複雑さ、業界経験に基づいてプロジェクトマネージャーを配置します。全てのプロジェクトマネージャーは認定資格を保有し、エンタープライズ規模の情報技術プロジェクトの管理経験があります。',
+  },
+  {
+    q: '東京以外でも対応可能ですか？',
+    a: 'はい。コンサルタントは日本全国に出張し、分散チームや複数拠点のビジネス展開に対するリモートプロジェクト管理サポートも提供しています。',
+  },
+  {
+    q: 'プロジェクト管理にはどのツールを使用していますか？',
+    a: 'MS Project、Jira、Asanaなどの業界標準ソリューションを使用しています。既存のビジネスワークフローとのシームレスな統合のため、お客様のプラットフォームに合わせて対応します。',
+  },
+  {
+    q: 'どのような規模のプロジェクトに対応していますか？',
+    a: '20席規模のオフィス移転から、複数拠点・数百台のエンドポイントにまたがるエンタープライズ規模のインフラ変革まで対応しています。',
+  },
+]
+
+function SectionLabel({ label }: { label: string }) {
   return (
-    <div
-      className="cursor-pointer py-4"
-      onClick={() => {
-        if (isOpen) {
-          setOpen(null);
-        } else {
-          setOpen(question);
-        }
-      }}
-    >
-      <div className="flex items-start">
-        <div className="relative mr-4 mt-1 h-6 w-6 flex-shrink-0">
-          <svg
-            className={cn(
-              "absolute inset-0 h-6 w-6 transform text-[#0A0B19] transition-all duration-200",
-              isOpen && "rotate-90 scale-0",
-            )}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-          </svg>
-          <svg
-            className={cn(
-              "absolute inset-0 h-6 w-6 rotate-90 scale-0 transform text-[#0A0B19] transition-all duration-200",
-              isOpen && "rotate-0 scale-100",
-            )}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
-          </svg>
-        </div>
-        <div>
-          <h3 className="text-lg font-medium text-neutral-700 dark:text-neutral-200">
-            {question}
-          </h3>
-          <AnimatePresence mode="wait">
-            {isOpen && (
-              <motion.div
-                initial={{ height: 0 }}
-                animate={{ height: "auto" }}
-                exit={{ height: 0 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="overflow-hidden text-neutral-500 dark:text-neutral-400"
-              >
-                <p>{answer}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
+    <div className="mb-4 flex items-center gap-2">
+      <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-[#0A0B19]" />
+      <span className="font-mono text-xs uppercase tracking-[0.15em] text-[#0A0B19]/40">{label}</span>
     </div>
-  );
-};
+  )
+}
+
+function DarkSectionLabel({ label }: { label: string }) {
+  return (
+    <div className="mb-4 flex items-center gap-2">
+      <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-white/80" />
+      <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/50">{label}</span>
+    </div>
+  )
+}
+
+function FAQAccordion() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  return (
+    <div className="space-y-3">
+      {faqItems.map((item, idx) => (
+        <div key={idx} className="rounded-xl border border-[#E2E5EF] bg-white">
+          <button
+            onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+            className="flex w-full items-center justify-between px-6 py-4 text-left"
+          >
+            <span className="flex items-center gap-3">
+              <span className="font-mono text-xs text-[#0066CC]">{String(idx + 1).padStart(2, '0')}</span>
+              <span className="text-[15px] font-semibold text-[#0A0B19]">{item.q}</span>
+            </span>
+            <ChevronDownIcon
+              className={`h-5 w-5 shrink-0 text-[#6B6D7C] transition-transform duration-200 ${openIndex === idx ? 'rotate-180' : ''}`}
+            />
+          </button>
+          {openIndex === idx && (
+            <div className="px-6 pb-5">
+              <p className="text-sm leading-relaxed text-[#2D2E3F]/70">{item.a}</p>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default function ITConsultingProjectManagementJaClient() {
-  const [openFaq, setOpenFaq] = useState<string | null>(null)
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-
-  const testimonials = [
-    {
-      quote: "AKRINは私たちの小規模オフィスのクラウド移行をエンドツーエンドで管理し、わずか週末1回のダウンタイムで完了しました。",
-      author: "ITマネージャー、東京デザイン会社"
-    },
-    {
-      title: "48時間で完了した地域クラウド移行",
-      quote: "AKRINは240ユーザー、5拠点の小売チェーンをオンプレミスExchangeからMicrosoft 365に移行しました。すべてのメールボックスを一晩で切り替え、レガシーサーバーを48時間以内に廃止—データ損失なし、営業時間中のダウンタイムゼロでした。",
-      author: "ITディレクター、日本小売グループ"
-    },
-    {
-      quote: "AKRINは名古屋と大阪のオンプレミスルームを閉鎖し、27暦日ですべてをコロケーションに移行しました—すべてのドライブが消去され文書化されました。監査人からのフォローアップは一切ありませんでした。",
-      author: "ITインフラストラクチャマネージャー、中規模製造グループ"
-    },
-    {
-      quote: "彼らのチームは金曜日の夜に到着し、18ラックを取り外し、月曜日の朝にはワークロードがAzureで稼働していました。月曜日にユーザーチケットは1件もありませんでした。",
-      author: "システム責任者、地域医療ネットワーク"
-    },
-    {
-      quote: "6つの支店でクローゼットサーバーを運用していましたが、AKRINは3県にわたるハードウェアを2週末でマッピング、梱包、廃棄しました。プロセスがあまりにもスムーズだったため、財務部門は延期したのかと尋ねました。",
-      author: "運営ディレクター、eコマース小売業者"
-    }
-  ]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 5000) // Change every 5 seconds
-
-    return () => clearInterval(interval)
-  }, [testimonials.length])
-
   return (
-    <div>
-      <div className="bg-white font-sans">
-        {/* Standardized Hero Section (HeroDiagonal) */}
-        <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
-          <HeroDiagonal
-            title={<>
-              ITコンサルティング＆<br />
-              プロジェクト<br />
-              管理サービス
-            </>}
-            breadcrumbs={[
-              { label: 'Services', href: '/ja/services' },
-              { label: 'ITコンサルティング＆プロジェクト管理' }
-            ]}
-            imageSrc="/images/banners/it-consulting-project-management/hero-banner.avif"
-            imageAlt="ITコンサルティングチームミーティング"
+    <main className="bg-[#F7F7FC]">
+      {/* ── Mobile / Tablet hero ── */}
+      <section id="hero" className="relative overflow-hidden bg-[#02304F] lg:hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/banners/it-consulting-project-management/hero-banner.avif"
+            alt="AKRIN ITコンサルティング＆プロジェクト管理"
+            fill
+            priority
+            className="object-cover object-center"
           />
-        </section>
-
-        {/* IT Infrastructure Project Management Section - EireSystems Style */}
-        <div className="bg-[#F8F9FA] py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Left Content */}
-              <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-[#2D2E3F] mb-6 leading-tight">
-                  ITインフラストラクチャ<br />
-                  プロジェクト管理
-                </h2>
-                <p className="text-lg text-[#6B6D7C] mb-8 leading-relaxed">
-                  初期プロジェクトスコープと計画から実装と継続的サポートまで、複雑なテクノロジーイニシアチブの成功した配信を確保する包括的なITプロジェクト管理サービスを提供します。
-                </p>
-
-                {/* Bullet Points with EireSystems styling */}
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">包括的なプロジェクト計画とリソース管理</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">リスク評価と軽減戦略</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">ベンダー調整とステークホルダー管理</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">品質保証と配信監督</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">実装後サポートと最適化</span>
-                  </div>
-                </div>
-
-                <p className="text-[#6B6D7C] leading-relaxed">
-                  経験豊富なプロジェクトマネージャーがお客様のチームと密接に連携し、プロジェクトが時間通り、予算内で、お客様の正確な仕様に従って配信されることを確保します。
-                </p>
-              </div>
-
-              {/* Right Image */}
-              <div>
-                <img
-                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="ITインフラストラクチャプロジェクト管理"
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
         </div>
-
-        {/* Office Relocation Section - EireSystems Style */}
-        <div className="bg-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Left Image */}
-              <div className="order-2 lg:order-1">
-                <img
-                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="オフィス移転サービス"
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-              </div>
-
-              {/* Right Content */}
-              <div className="order-1 lg:order-2">
-                <h2 className="text-4xl lg:text-5xl font-bold text-[#2D2E3F] mb-6 leading-tight">
-                  オフィス移転
-                </h2>
-                <p className="text-lg text-[#6B6D7C] mb-8 leading-relaxed">
-                  オフィスの移転には、ITインフラストラクチャ、機器、人員の慎重な調整が必要です。私たちの包括的な移転サービスは、移行期間中の完全な運用能力を維持しながら、ビジネスの中断を最小限に抑えることを確保します。
-                </p>
-
-                {/* Bullet Points with EireSystems styling */}
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">移転前ITインフラストラクチャ評価と計画</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">新しい場所でのネットワークと通信設定</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">機器移転と安全なデータ移行</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">すべてのシステムのテストと検証</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">移行期間中の従業員トレーニングとサポート</span>
-                  </div>
-                </div>
-
-                <p className="text-[#6B6D7C] leading-relaxed">
-                  同じ建物内での移転でも全国規模での移転でも、精密さと注意深さでIT移転のあらゆる側面を処理します。
-                </p>
-              </div>
-            </div>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, transparent 20%, rgba(2,48,79,0.4) 40%, rgb(2,48,79) 58%)',
+          }}
+        />
+        <div className="relative z-10 flex min-h-[520px] flex-col justify-end px-5 pb-7 sm:min-h-[560px] sm:px-8 sm:pb-9">
+          <div className="mb-4 flex items-center gap-2">
+            <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-white/60" />
+            <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/60">ITコンサルティング</span>
           </div>
-        </div>
-
-        {/* Data Center Build / Relocations - EireSystems Style 4-Column Layout */}
-        <div className="bg-[#F8F9FA] py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold text-[#2D2E3F] mb-6 leading-tight">
-                データセンター構築・移転
-              </h2>
-              <p className="text-lg text-[#6B6D7C] max-w-4xl mx-auto leading-relaxed">
-                初期サイト評価から最終コミッショニングまで、ダウンタイムを最小化し運用効率を最大化するエンドツーエンドのデータセンター構築・移転サービスを提供します。
-              </p>
-            </div>
-
-            {/* 4-Column Service Grid - Exact EireSystems Style */}
-            <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
-              {/* Column 1: Planning */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-[#0A0B19] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2zm8 0h-2a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#2D2E3F] mb-4">計画・設計</h3>
-                <ul className="text-[#6B6D7C] space-y-2 text-left">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>サイト評価と分析</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>インフラストラクチャ設計とレイアウト</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>容量計画とスケーラビリティ</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>リスク評価と軽減</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 2: Build */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-[#0A0B19] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#2D2E3F] mb-4">構築・設置</h3>
-                <ul className="text-[#6B6D7C] space-y-2 text-left">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>電源・冷却システム</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>ネットワークインフラストラクチャ展開</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>サーバーラック・キャビネット設置</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>セキュリティ・アクセス制御システム</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 3: Migration */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-[#0A0B19] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#2D2E3F] mb-4">移行・テスト</h3>
-                <ul className="text-[#6B6D7C] space-y-2 text-left">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>データ移行・転送</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>アプリケーション移転・テスト</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>パフォーマンス検証・最適化</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>災害復旧検証</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 4: Support */}
-              <div className="text-center">
-                <div className="w-20 h-20 bg-[#0A0B19] rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.236a2 2 0 100 4 2 2 0 000-4zM12 17.764a2 2 0 100 4 2 2 0 000-4zM4.343 4.343a2 2 0 100 4 2 2 0 000-4zM19.657 4.343a2 2 0 100 4 2 2 0 000-4z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#2D2E3F] mb-4">継続的サポート</h3>
-                <ul className="text-[#6B6D7C] space-y-2 text-left">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>24/7監視・アラート</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>予防保守プログラム</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>容量管理・スケーリング</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>ドキュメント・トレーニング</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Data Center Image */}
-            <div className="text-center">
-              <img
-                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                alt="データセンターインフラストラクチャ"
-                className="w-full max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Testimonial Section */}
-        <div className="bg-[#F8FAFC] py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto py-12 px-6 md:px-12 lg:px-20 bg-white rounded-lg shadow-md border-l-4 border-[#0A0B19] relative overflow-hidden">
-
-              {/* Testimonial Content */}
-              <div className="relative">
-                {testimonials[currentTestimonial].title && (
-                  <h3 className="text-slate-800 font-semibold text-lg mb-4 transition-opacity duration-500">
-                    {testimonials[currentTestimonial].title}
-                  </h3>
-                )}
-                <blockquote className="text-slate-700 leading-relaxed italic text-lg mb-6 transition-opacity duration-500">
-                  &ldquo;{testimonials[currentTestimonial].quote}&rdquo;
-                </blockquote>
-                <hr className="border-t border-slate-200 mb-4" />
-                <cite className="text-slate-500 text-sm font-normal tracking-wide transition-opacity duration-500" style={{fontVariant: 'small-caps'}}>
-                  {testimonials[currentTestimonial].author}
-                </cite>
-              </div>
-
-              {/* Navigation Dots */}
-              <div className="flex justify-center mt-6 space-x-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentTestimonial(index)}
-                    className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                      index === currentTestimonial ? 'bg-[#0A0B19]' : 'bg-slate-300'
-                    }`}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Business Continuity Planning Section - EireSystems Mint Green Background */}
-        <div className="bg-[#F0F8F5] py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl lg:text-5xl font-bold text-[#2D2E3F] mb-6 leading-tight">
-                事業継続計画
-              </h2>
-              <p className="text-lg text-[#6B6D7C] max-w-4xl mx-auto leading-relaxed">
-                予期しない事象の際に重要なビジネス機能を維持しながら、運用の中断からビジネスを保護する包括的な継続計画でビジネスの回復力を確保します。
-              </p>
-            </div>
-
-            {/* Phase-based Structure - EireSystems Style */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {/* Phase 1: Assessment */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#0A0B19] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
-                    1
-                  </div>
-                  <h3 className="text-xl font-bold text-[#2D2E3F]">評価フェーズ</h3>
-                </div>
-                <ul className="space-y-3 text-[#6B6D7C]">
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>ビジネス影響分析</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>リスク評価と脆弱性特定</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>重要プロセスマッピング</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>復旧時間目標（RTO）定義</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Phase 2: Planning */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#0A0B19] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
-                    2
-                  </div>
-                  <h3 className="text-xl font-bold text-[#2D2E3F]">計画フェーズ</h3>
-                </div>
-                <ul className="space-y-3 text-[#6B6D7C]">
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>災害復旧戦略開発</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>緊急対応手順</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>コミュニケーションプロトコルとチェーン</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>リソース配分とバックアップシステム</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Phase 3: Implementation */}
-              <div className="bg-white p-8 rounded-lg shadow-sm">
-                <div className="flex items-center mb-6">
-                  <div className="w-10 h-10 bg-[#0A0B19] text-white rounded-full flex items-center justify-center mr-4 font-bold text-lg">
-                    3
-                  </div>
-                  <h3 className="text-xl font-bold text-[#2D2E3F]">実装</h3>
-                </div>
-                <ul className="space-y-3 text-[#6B6D7C]">
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>計画テストと検証</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>スタッフトレーニングと意識向上プログラム</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>ドキュメントと手順更新</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>継続的監視と保守</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Bottom Content */}
-            <div className="text-center">
-              <p className="text-lg text-[#6B6D7C] leading-relaxed max-w-4xl mx-auto">
-                事業継続計画への体系的なアプローチにより、組織があらゆる中断に効果的に対応し、必須業務を維持し、ビジネスの評判を保護できることを確保します。
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Business Analysis for IT Section - EireSystems Style */}
-        <div className="bg-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Left Content */}
-              <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-[#2D2E3F] mb-6 leading-tight">
-                  IT向けビジネス分析
-                </h2>
-                <p className="text-lg text-[#6B6D7C] mb-8 leading-relaxed">
-                  ビジネス要件と技術ソリューションの間のギャップを埋めます。私たちのビジネス分析サービスは、ITイニシアチブが戦略的目標と整合し、測定可能なビジネス価値を提供することを確保します。
-                </p>
-
-                {/* Strategic positioning with EireSystems styling */}
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">要件収集とステークホルダー分析</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">プロセスマッピングとワークフロー最適化</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">ソリューション設計と技術仕様</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">変更影響評価と管理</span>
-                  </div>
-                </div>
-
-                <p className="text-[#6B6D7C] leading-relaxed">
-                  経験豊富なビジネスアナリストがお客様のステークホルダーと密接に連携し、ビジネスニーズを組織の成功を推進する実行可能なIT戦略に変換します。
-                </p>
-              </div>
-
-              {/* Right Image - World Map/Global Strategy */}
-              <div>
-                <img
-                  src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="グローバルビジネス戦略"
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Migration and Technology Renewal Section - EireSystems Style */}
-        <div className="bg-[#F8F9FA] py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Left Image */}
-              <div>
-                <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                  alt="テクノロジー移行"
-                  className="w-full h-auto rounded-lg shadow-lg"
-                />
-              </div>
-
-              {/* Right Content */}
-              <div>
-                <h2 className="text-4xl lg:text-5xl font-bold text-[#2D2E3F] mb-6 leading-tight">
-                  移行と<br />
-                  テクノロジー更新
-                </h2>
-                <p className="text-lg text-[#6B6D7C] mb-8 leading-relaxed">
-                  専門的な移行サービスとテクノロジー更新戦略でITインフラストラクチャを近代化します。パフォーマンスと効率を最大化しながら中断を最小化するシームレスな移行を確保します。
-                </p>
-
-                {/* Service breakdown */}
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">レガシーシステム移行と近代化</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">クラウド移行とハイブリッドインフラストラクチャ</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">テクノロジースタック最適化と更新</span>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-lg leading-relaxed">データ移行と整合性検証</span>
-                  </div>
-                </div>
-
-                <p className="text-[#6B6D7C] leading-relaxed">
-                  実証済みの方法論により、運用効率を向上させ、将来の成長に向けて組織を位置づける成功したテクノロジー移行を確保します。
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ Section */}
-        <div className="bg-white py-16 sm:py-24">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-4 py-20 md:grid-cols-2 md:px-8 md:py-40">
-            <h2 className="text-center text-4xl font-bold tracking-tight text-neutral-600 md:text-left md:text-6xl dark:text-neutral-50">
-              よくある質問
-            </h2>
-            <div className="divide-y divide-neutral-200 dark:divide-neutral-800">
-              <FAQItem
-                question="どのような規模のプロジェクトを受け入れますか？"
-                answer="通常、20～500席または1～20ラックのプロジェクトを扱いますが、他の規模についてもお気軽にお問い合わせください。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-              <FAQItem
-                question="東京以外でも作業しますか？"
-                answer="はい。コンサルタントは日本全国どこでも出張し、リモート計画ワークショップも利用可能です。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-              <FAQItem
-                question="どのようなプロジェクト追跡ツールを使用しますか？"
-                answer="高レベルのタイムラインにはMS Project、課題追跡にはJiraを使用しますが、お客様の希望するプラットフォームに適応します。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-              <FAQItem
-                question="どのくらいのリードタイムが必要ですか？"
-                answer="ほとんどのオフィス移転や中規模移行では、4～6週間の事前通知が理想的です。"
-                open={openFaq}
-                setOpen={setOpenFaq}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section - EireSystems Style */}
-        <div className="bg-[#0A0B19] py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">
-              小規模、中規模、大規模企業向けの<br />
-              完全なITインフラストラクチャソリューション
-            </h2>
-            <p className="text-base text-white/90 mb-6 max-w-4xl mx-auto leading-relaxed">
-              ITイニシアチブを加速する準備はできていますか？コンサルティング専門家にお問い合わせいただき、プロジェクト要件について話し合い、デジタルトランスフォーメーションの推進をどのようにサポートできるかをご確認ください。
-            </p>
+          <h1 className="font-serif text-[24px] font-light leading-[1.12] tracking-[-0.02em] text-white sm:text-[30px]">
+            ITコンサルティングサービス＆エンタープライズ向けプロジェクト管理
+          </h1>
+          <p className="mt-3 max-w-md text-[13px] leading-[1.65] text-white/65 sm:text-[14px]">
+            情報技術戦略をビジネス目標と結びつけるエンドツーエンドのITコンサルティングサービス。インフラ構築からクラウド移行まで対応。
+          </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             <Link
-              href="/ja/contact"
-              className="inline-flex items-center px-6 py-2.5 bg-white text-[#0A0B19] font-semibold text-sm rounded-sm hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl"
+              href="/ja/contact?service=it-consulting"
+              className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-[#0A0B19] transition-all duration-300 hover:bg-gray-100"
             >
-              今すぐお問い合わせ
-              <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
+              コンサルテーション予約
+            </Link>
+            <Link
+              href="/ja/services"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.05] px-5 py-2.5 text-[13px] font-medium text-white/80 transition-all duration-300 hover:border-white/40 hover:bg-white/[0.1] hover:text-white"
+            >
+              全サービスを見る
+              <span aria-hidden="true" className="ml-2">&rarr;</span>
             </Link>
           </div>
         </div>
+      </section>
 
-        {/* JSON-LD Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "name": "ITコンサルティング＆プロジェクト管理",
-              "alternateName": "IT Consulting & Project Management",
-              "serviceType": "ITコンサルティング・プロジェクト管理サービス",
-              "provider": {
-                "@type": "Organization",
-                "name": "AKRIN株式会社",
-                "url": "https://akrin.jp"
-              },
-              "areaServed": {
-                "@type": "Country",
-                "name": "Japan"
-              },
-              "availableLanguage": ["ja", "en"],
-              "url": "https://akrin.jp/ja/services/it-consulting-project-management",
-              "description": "戦略的ITコンサルティング、プロジェクト管理、デジタルトランスフォーメーションサービス。テクノロジーイニシアチブ、ベンダー管理、IT戦略の整合性に関する専門的ガイダンス。"
-            })
+      {/* ── Desktop hero ── */}
+      <section id="hero-desktop" className="relative hidden h-[500px] overflow-hidden bg-[#02304F] lg:block">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/banners/it-consulting-project-management/hero-banner.avif"
+            alt="AKRIN ITコンサルティング＆プロジェクト管理"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+        </div>
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to right, rgb(2,48,79) 0%, rgb(2,48,79) 30%, rgba(2,48,79,0.85) 45%, rgba(2,48,79,0.5) 60%, rgba(2,48,79,0.15) 75%, transparent 90%)',
           }}
         />
+        <div className="relative flex h-[500px] items-center">
+          <div className="mx-auto w-full max-w-[1047px] px-12">
+            <div className="max-w-lg xl:max-w-xl">
+              <div className="mb-4 flex items-center gap-2">
+                <span aria-hidden="true" className="inline-block h-2 w-2 rounded-sm bg-white/60" />
+                <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/60">ITコンサルティング</span>
+              </div>
+              <h1 className="font-serif text-[36px] font-light leading-[1.15] tracking-[-0.02em] text-white xl:text-[40px]">
+                ITコンサルティングサービス＆エンタープライズ向けプロジェクト管理
+              </h1>
+              <p className="mt-4 max-w-lg text-[15px] leading-[1.7] text-white/70">
+                AKRIN は情報技術戦略をビジネス目標に結びつけるITコンサルティングサービスを提供しています。日本全国のエンタープライズ向けに、複雑なIT プロジェクトの計画、実行、管理をお手伝いします。
+              </p>
+              <div className="mt-8 flex items-center gap-4">
+                <Link
+                  href="/ja/contact?service=it-consulting"
+                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-[14px] font-semibold text-[#0A0B19] transition-all duration-300 hover:bg-gray-100 hover:shadow-xl hover:shadow-white/10"
+                >
+                  コンサルテーション予約
+                </Link>
+                <Link
+                  href="/ja/services"
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.05] px-6 py-3 text-[14px] font-medium text-white/80 backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-white/[0.1] hover:text-white"
+                >
+                  全サービスを見る
+                  <span aria-hidden="true" className="ml-2">&rarr;</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionNav
+        variant="ribbon"
+        ariaLabel="ページセクション"
+        items={sectionItems}
+      />
+
+      <div className="relative mx-auto max-w-[1400px] overflow-visible px-6 lg:px-8">
+        <div className="min-w-0 flex-1">
+
+          {/* ── 01 OVERVIEW — Two-column with project lifecycle steps ── */}
+          <section id="overview" className="bg-white">
+            <RevealOnScroll>
+              <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+                <SectionLabel label="Overview" />
+                <div className="lg:grid lg:grid-cols-2 lg:gap-16">
+                  <div>
+                    <h2 className="font-serif text-3xl font-light tracking-[-0.04em] text-[#0A0B19] sm:text-4xl">
+                      情報技術プロジェクト管理ソリューション
+                    </h2>
+                    <p className="mt-4 text-base/7 text-[#0A0B19]/70">
+                      当社のプロジェクト管理体制は、情報技術イニシアチブのライフサイクル全体をカバーしています。ターゲットを絞った導入に専任のプロジェクトマネージャーが必要な場合も、エンタープライズ全体の変革に複数のコンサルタントが必要な場合も、ビジネス要件に合わせたソリューションを提供します。
+                    </p>
+                    <p className="mt-4 text-base/7 text-[#0A0B19]/70">
+                      すべてのプロジェクトは明確なスコープ、定義されたマイルストーン、および期日内・予算内での成果物を確保する専任のプロジェクトマネージャーで始まります。スケジュール、リソース割り当て、ステークホルダー通信はチームが対応するため、ビジネスオペレーションは支障なく継続されます。
+                    </p>
+                  </div>
+
+                  <div className="mt-10 lg:mt-0">
+                    <div className="rounded-2xl border border-[#E2E5EF] bg-[#FAFAFC] p-8">
+                      <h3 className="text-sm font-semibold uppercase tracking-wider text-[#0A0B19]/50">プロジェクトライフサイクル</h3>
+                      <div className="mt-6 space-y-0">
+                        {[
+                          { num: '01', label: '要件定義とスコープ確定' },
+                          { num: '02', label: 'プロジェクト計画とリソース配置' },
+                          { num: '03', label: 'ベンダー調整とリスク管理' },
+                          { num: '04', label: '実行とステークホルダー通信' },
+                          { num: '05', label: '実装後の検証' },
+                        ].map((step, idx) => (
+                          <div key={step.num} className="relative flex items-start gap-4 py-3">
+                            {idx < 4 && (
+                              <div className="absolute left-[15px] top-[40px] h-[calc(100%-16px)] w-px bg-gradient-to-b from-[#0066CC]/40 to-[#0066CC]/10" />
+                            )}
+                            <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0066CC] text-xs font-bold text-white">
+                              {step.num}
+                            </span>
+                            <span className="pt-1 text-sm leading-relaxed text-[#2D2E3F]/80">{step.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </RevealOnScroll>
+          </section>
+
+          {/* ── 02 SERVICES — 2×2 cards with highlight chips ── */}
+          <section id="services">
+            <RevealOnScroll>
+              <div className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+                <SectionLabel label="What We Deliver" />
+                <h2 className="font-serif text-3xl font-light tracking-[-0.04em] text-[#0A0B19] sm:text-4xl">
+                  プロジェクトライフサイクル全域のITコンサルティング
+                </h2>
+                <p className="mt-4 max-w-3xl text-base/7 text-[#0A0B19]/70">
+                  VoIPとビデオ会議から、セキュリティシステム、クラウド接続に至るまで、すべての情報技術依存関係に対するエンドツーエンドのソリューションを提供します。
+                </p>
+
+                <div className="mt-14 grid gap-6 sm:grid-cols-2">
+                  {serviceCards.map((card) => (
+                    <div
+                      key={card.title}
+                      className="group relative overflow-hidden rounded-2xl border border-[#E2E5EF] bg-white p-8 transition-all duration-300 hover:border-[#0066CC]/30 hover:shadow-lg hover:shadow-[#0066CC]/5"
+                    >
+                      <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-[#0066CC]/[0.04] transition-all duration-500 group-hover:scale-150 group-hover:bg-[#0066CC]/[0.06]" />
+                      <div className="relative">
+                        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#0066CC]/10 ring-1 ring-[#0066CC]/20">
+                          <card.icon className="h-6 w-6 text-[#0066CC]" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-[#0A0B19]">{card.title}</h3>
+                        <p className="mt-3 text-sm leading-relaxed text-[#0A0B19]/60">{card.desc}</p>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {card.highlights.map((h) => (
+                            <span
+                              key={h}
+                              className="rounded-full border border-[#E2E5EF] bg-[#FAFAFC] px-3 py-1 text-xs text-[#2D2E3F]/70"
+                            >
+                              {h}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </RevealOnScroll>
+          </section>
+
+          {/* ── 03 WHY AKRIN — Metrics-style cards ── */}
+          <section id="why-akrin">
+            <RevealOnScroll>
+              <div className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+                <div className="rounded-3xl bg-gradient-to-br from-[#0A0B19] via-[#0B1F3A] to-[#0A0B19] px-8 py-14 sm:px-12 sm:py-16 lg:px-16">
+                  <DarkSectionLabel label="Why AKRIN" />
+                  <h2 className="font-serif text-3xl font-light tracking-[-0.04em] text-white sm:text-4xl">
+                    企業がAKRINを選ぶ理由
+                  </h2>
+                  <p className="mt-4 max-w-3xl text-[15px] leading-[1.75] text-white/60">
+                    深い情報技術専門知識と実証済みのプロジェクト管理方法論が結合したアプローチ。
+                  </p>
+
+                  <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    {whyMetrics.map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-300 hover:border-white/20 hover:bg-[#0B1F3A]"
+                      >
+                        <div className="mb-3 flex items-center gap-3">
+                          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0066CC]/20 ring-1 ring-[#0066CC]/30">
+                            <item.icon className="h-4 w-4 text-[#0066CC]" />
+                          </div>
+                          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[#0066CC]">
+                            {item.metric}
+                          </span>
+                        </div>
+                        <h3 className="text-[15px] font-semibold text-white">{item.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-white/55">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </RevealOnScroll>
+          </section>
+
+          {/* ── 04 FAQ — Two-column accordion ── */}
+          <section id="faq">
+            <RevealOnScroll>
+              <div className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+                <div className="lg:grid lg:grid-cols-[1fr_2fr] lg:gap-16">
+                  <div>
+                    <SectionLabel label="FAQ" />
+                    <h2 className="font-serif text-3xl font-light tracking-[-0.04em] text-[#0A0B19] sm:text-4xl">
+                      よくあるご質問
+                    </h2>
+                    <p className="mt-4 text-base/7 text-[#0A0B19]/70">
+                      ITコンサルティング サービスとプロジェクト管理についてのよくあるご質問。
+                    </p>
+                  </div>
+                  <div className="mt-10 lg:mt-0">
+                    <FAQAccordion />
+                  </div>
+                </div>
+              </div>
+            </RevealOnScroll>
+          </section>
+
+          {/* ── CTA — Dark section compact ── */}
+          <section id="cta">
+            <RevealOnScroll>
+              <div className="mx-auto max-w-7xl px-6 pb-20 lg:px-8">
+                <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0A0B19] via-[#0B1F3A] to-[#0A0B19]">
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage: 'radial-gradient(circle at 30% 50%, rgba(0,102,204,0.3), transparent 50%)',
+                    }}
+                  />
+                  <div className="relative px-8 py-12 text-center sm:px-12 sm:py-14">
+                    <h2 className="font-serif text-2xl font-light tracking-[-0.04em] text-white md:text-3xl">
+                      次のITプロジェクトを始めましょう
+                    </h2>
+                    <p className="mx-auto mt-3 max-w-xl text-[15px] leading-[1.7] text-white/60">
+                      プロジェクト要件を共有いただければ、スコープ、タイムライン、リソース配置、コスト見積もりを含む体系的な計画をお持ちします。
+                    </p>
+                    <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                      <Link
+                        href="/ja/contact?service=it-consulting"
+                        className="inline-flex items-center justify-center rounded-full bg-[#0066CC] px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#0052A3]"
+                      >
+                        コンサルテーション予約
+                      </Link>
+                      <Link
+                        href="/ja/services"
+                        className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-medium text-white/80 transition-all duration-300 hover:border-white/40 hover:bg-white/[0.1] hover:text-white"
+                      >
+                        全サービスを見る
+                        <span aria-hidden="true" className="ml-2">&rarr;</span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </RevealOnScroll>
+          </section>
+
+        </div>
       </div>
-    </div>
+    </main>
   )
 }

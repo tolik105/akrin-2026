@@ -2,11 +2,11 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import sidekickImage from '../../../../Sidekick-2.avif'
-import spectrumAnalyzerImage from '../../../../spectrum-analyzer.avif'
-import wifiHeatMapImage from '../../../../wifi-coverage-heat-map.avif'
-import wirelessSignalMapImage from '../../../../wireless-signal-heat-map.avif'
-import flukeReportImage from '../../../../fluke-report.avif'
+import sidekickImage from '../../../assets/images/services/japan-ekahau-wireless-surveys/sidekick-2.avif'
+import spectrumAnalyzerImage from '../../../assets/images/services/japan-ekahau-wireless-surveys/spectrum-analyzer.avif'
+import wifiHeatMapImage from '../../../assets/images/services/japan-ekahau-wireless-surveys/wifi-coverage-heat-map.avif'
+import wirelessSignalMapImage from '../../../assets/images/services/japan-ekahau-wireless-surveys/wireless-signal-heat-map.avif'
+import flukeReportImage from '../../../assets/images/services/japan-ekahau-wireless-surveys/fluke-report.avif'
 import { Link } from '@/components/link'
 import { RevealOnScroll } from '@/components/RevealOnScroll'
 import { SectionNav } from '@/components/SectionNav'
@@ -527,12 +527,12 @@ export default function JapanEkahauWirelessSurveysClient() {
                   {/* Image — 5 columns */}
                   <div className="mt-10 lg:col-span-5 lg:mt-0">
                     <div className="overflow-hidden rounded-2xl ring-1 ring-[#E2E5EF]">
-                      <div className="relative aspect-[4/3]">
+                      <div className="relative aspect-[741/960]">
                         <Image
                           src={flukeReportImage}
                           alt="FLUKE cable certification test report showing pass/fail results"
                           fill
-                          className="object-cover"
+                          className="object-contain"
                         />
                       </div>
                       <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">

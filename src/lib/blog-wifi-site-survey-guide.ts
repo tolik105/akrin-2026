@@ -16,137 +16,47 @@ export const wifiSiteSurveyGuideEN = {
     'ekahau site survey',
     'wifi spectrum analysis',
   ],
-  content: `
-    <h1>The Complete Guide to WiFi Site Surveys: How to Plan, Conduct, and Optimize Wireless Network Performance</h1>
+  content: `<h1>The Complete Guide to WiFi Site Surveys: How to Plan, Conduct, and Optimize Wireless Network Performance</h1>
 
-    <p>A wifi site survey is the foundation of every reliable wireless network deployment. Whether you are designing a new wireless network for an office building, warehouse, or campus, or troubleshooting performance issues on an existing network, a thorough wireless site survey gives you the data you need to make informed decisions about access point placement, channel configuration, and capacity planning.</p>
+<p>A wifi site survey is the foundation of every reliable wireless network deployment. Whether designing a new wireless network or troubleshooting performance issues, a thorough wireless site survey provides the data needed for informed decisions about access point placement, channel configuration, and capacity planning.</p>
 
-    <p>In this guide, we cover every aspect of wifi site surveys — from the initial planning stages through data collection, analysis, and post deployment validation. You will learn about the different types of wireless site surveys, the right tools for each scenario, and best practices for conducting surveys that deliver accurate results.</p>
+<h2>What Is a Wireless Site Survey?</h2>
 
-    <h2>What Is a Wireless Site Survey?</h2>
+<p>A wireless site survey is a systematic process of examining a physical environment to plan, deploy, or validate a wifi network. The survey collects data on signal strength, noise level, channel utilization, RF interference, and coverage areas. This data helps network engineers identify weak coverage zones, interference sources, and capacity bottlenecks.</p>
 
-    <p>A wireless site survey is a systematic process of examining a physical environment to plan, deploy, or validate a wifi network. The term can also refer to the walk-testing, auditing, analysis, or diagnosis of an existing wireless network. The survey collects data points on signal strength, noise level, channel utilization, rf interference, and coverage areas to determine how the wireless network performs throughout a facility.</p>
+<h2>Why WiFi Site Surveys Matter</h2>
 
-    <p>Site survey data helps network engineers identify weak coverage zones, interference sources, and capacity bottlenecks. Signal strength and noise levels must be measured to assess the quality of the wireless network at every location. The effective range boundary is set during a wireless site survey, which defines the area over which signal levels can support the intended application. The goal is to ensure that every user and device in the environment receives adequate wireless network connectivity with consistent data rates and low latency.</p>
+<p>Without proper planning, wireless deployments suffer from dead zones, co-channel interference, and capacity limitations. A site survey during initial planning provides a baseline understanding of the RF environment. Organizations that skip this step spend significantly more time troubleshooting network performance issues after deployment.</p>
 
-    <p>A wifi site survey typically involves walking through a facility with specialized survey tools while mapping rf signals against a floor plan. The result is a set of heat maps, charts, and reports that visualize wireless network performance across the entire coverage area.</p>
+<h2>Types of Wireless Site Surveys</h2>
 
-    <h2>Why WiFi Site Surveys Matter for Network Performance</h2>
+<h3>Pre Deployment Site Survey (Predictive Survey)</h3>
 
-    <p>Without proper planning and survey data, wireless network deployments often suffer from dead zones, co-channel interference, and capacity limitations. Common problems that a wireless site survey helps prevent include coverage gaps where users lose connectivity, interference from neighboring networks and non-wifi devices like microwave ovens and cordless phones, poor roaming behavior that disrupts voice and video applications, and insufficient capacity in high-density areas.</p>
+<p>Uses software simulations to design a wireless network without being on-site. Engineers import floor plans, define wall materials, and place virtual access points to simulate coverage patterns, saving time and costs.</p>
 
-    <p>A site survey conducted during the initial planning stages provides a baseline understanding of the rf environment before any equipment is installed. This allows network engineers to determine the optimal number and placement of access points, select appropriate channels and power levels, identify potential interference sources such as rogue aps and neighboring wireless networks, and plan for future growth and capacity requirements.</p>
+<h3>Active Site Survey (Post Deployment Survey)</h3>
 
-    <p>Organizations that skip the site survey step often spend significantly more time and resources troubleshooting network performance issues after deployment. Proper planning through a comprehensive wireless site survey reduces deployment costs and improves the overall user experience.</p>
+<p>Validates wireless network performance after access points are installed. The engineer walks the facility recording real-time metrics. This is the most accurate method for measuring actual network performance from client devices.</p>
 
-    <h2>Types of Wireless Site Surveys</h2>
+<h3>Passive Survey</h3>
 
-    <p>There are several distinct types of wifi site surveys, each serving a different purpose in the network lifecycle. Understanding when to use each type is essential for accurate results.</p>
+<p>Collects RF environment data without connecting to any wireless network. Reveals detected access points, signal strength patterns, channel utilization, and interference levels. Essential for understanding complete RF environments where multiple networks overlap.</p>
 
-    <h3>Pre Deployment Site Survey (Predictive Survey)</h3>
+<h3>RF Spectrum Analysis</h3>
 
-    <p>A pre deployment site survey, also called a predictive survey, uses software simulations to design a wireless network without physically being on-site. Engineers import floor plan drawings into a site survey application, define wall materials and construction types, and then place virtual access points to simulate coverage patterns.</p>
+<p>Examines all radio frequency activity across 2.4 GHz, 5 GHz, and 6 GHz bands. Identifies non-wifi interference sources such as microwave ovens, cordless phones, and Bluetooth devices. Critical for troubleshooting persistent interference problems.</p>
 
-    <p>Predictive survey tools use rf propagation algorithms to calculate expected signal strength, signal-to-noise ratio, and channel utilization across the environment. This approach allows engineers to test multiple design scenarios and determine the optimal number of access points and their placement before making any physical changes.</p>
+<h2>Choosing Tools and Best Practices</h2>
 
-    <p>The pre deployment site survey is most valuable during the initial planning stages of a new construction project or a major network refresh. It saves time and reduces costs by identifying potential coverage issues before equipment arrives on site.</p>
+<p>Professional-grade applications like Ekahau AI Pro combine predictive design with active and passive capabilities. The Ekahau Sidekick provides dual-band radios and spectrum analyzer. For conducting surveys, gather accurate floor plans, define scope and requirements, and coordinate facility access. Walk the survey path at consistent pace, marking locations at intervals. Survey during typical operating hours for realistic results.</p>
 
-    <h3>Active Site Survey (Post Deployment Site Survey)</h3>
+<h2>Analysis and Common Challenges</h2>
 
-    <p>An active site survey, or post deployment site survey, validates wireless network performance after access points have been installed and configured. During an active survey, the engineer connects a wireless adapter or dedicated survey device to the live network and walks the facility while the site survey application records real-time performance metrics.</p>
+<p>Review heat maps and metrics to identify areas meeting design targets. Generate detailed reports with coverage maps and recommendations. Environmental factors like wall materials affect RF propagation unpredictably. High-density environments require careful attention to access point density. Non-wifi interference requires spectrum analysis to detect.</p>
 
-    <p>Active survey data includes signal strength from connected access points, data rates and throughput measurements, roaming behavior between access points, round-trip latency, and packet loss. This type of survey confirms whether the deployed network meets design specifications and performance requirements. It is the most accurate method for measuring how the network performs from the perspective of actual client devices.</p>
+<h2>Conclusion</h2>
 
-    <h3>Passive Survey</h3>
-
-    <p>A passive survey collects data about the rf environment without connecting to any wireless network. The survey device listens to all rf signals in the area, capturing information about every access point and wifi device it can detect.</p>
-
-    <p>Passive survey data reveals the number and location of all detected access points (including rogue aps from neighboring networks), signal strength and coverage patterns for each access point, channel utilization and co-channel interference levels, and noise floor measurements across all frequency bands. Passive surveys are essential for understanding the complete rf environment, especially in locations where multiple wireless networks overlap. This data helps engineers optimize channel assignments and power levels to minimize interference.</p>
-
-    <h3>RF Spectrum Analysis</h3>
-
-    <p>Spectrum analysis goes beyond standard wifi site survey measurements to examine all radio frequency activity across the 2.4 GHz, 5 GHz, and 6 GHz bands. Unlike passive surveys that only detect wifi signals, spectrum analysis identifies non-wifi interference sources such as microwave ovens, cordless phones, Bluetooth devices, wireless cameras, and other equipment operating in the same frequency bands.</p>
-
-    <p>A dedicated spectrum analyzer captures raw rf energy data and displays it as spectrograms, waterfall charts, and real-time FFT plots. This level of detail is critical for troubleshooting persistent interference problems that wifi-only survey tools cannot detect.</p>
-
-    <p>Spectrum analysis is particularly important in environments with dense rf activity, such as hospitals, manufacturing facilities, and multi-tenant office buildings where many wireless devices and interference sources coexist.</p>
-
-    <h2>Choosing the Right Tools for Wireless Site Surveys</h2>
-
-    <p>Selecting the right tools for your wifi site survey directly impacts the accuracy and reliability of your results. The wireless site survey ecosystem includes software applications, hardware measurement devices, and analysis platforms. Tools like NetAlly's AirMapper and Ekahau's suite of products are recommended for conducting professional wireless site surveys.</p>
-
-    <h3>Site Survey Software and Applications</h3>
-
-    <p>A site survey application is the central platform for planning, conducting, and analyzing wireless surveys. Leading site survey tools provide floor plan import and editing capabilities, predictive rf modeling for pre deployment design, real-time data collection and heat map generation, automated report generation with detailed performance metrics, and support for multiple survey types (active, passive, spectrum) in a single platform.</p>
-
-    <p>Professional-grade site survey applications like Ekahau AI Pro combine predictive design with active and passive survey capabilities, giving engineers a complete workflow from initial planning through post deployment validation. Some applications also support iPad and iPhone devices, enhancing data collection accuracy and mobility during on-site walk-testing.</p>
-
-    <h3>Hardware: Wi Fi Adapters, Access Points, and Dedicated Survey Devices</h3>
-
-    <p>For active and passive surveys, you need a capable wireless adapter or dedicated survey device to capture rf data. Standard wi fi adapters built into laptops can perform basic surveys, but dedicated devices provide significantly more accurate results.</p>
-
-    <p>The Ekahau Sidekick, for example, is a purpose-built wifi site survey device with dual-band radios and an integrated spectrum analyzer. It captures signal strength, noise level, channel utilization, and spectrum data simultaneously — providing comprehensive survey data from a single device.</p>
-
-    <p>Using a dedicated survey device ensures consistent, calibrated measurements across all data points. This is especially important for post deployment validation where accurate results determine whether the network meets performance requirements.</p>
-
-    <h3>GPS and Location Tracking</h3>
-
-    <p>For outdoor wireless site surveys and large campus environments, GPS integration helps accurately plot data points on maps. Indoor surveys rely on manual location tracking against floor plan drawings, where the engineer marks their position as they walk through the facility.</p>
-
-    <h2>Best Practices for Conducting Wireless Site Surveys</h2>
-
-    <p>Following established best practices ensures your wifi site survey produces reliable, actionable data. Here are the key recommendations for each phase of the survey process.</p>
-
-    <h3>Preparation, Floor Plan Requirements, and Planning</h3>
-
-    <p>Before the site visit, gather accurate floor plan drawings with wall materials and construction details clearly labeled. Verify that floor plans reflect the current physical layout, as wall changes and renovations can significantly affect rf propagation.</p>
-
-    <p>Define the survey scope, including which areas require coverage, the expected user density and device types, performance requirements (minimum signal strength, data rates, and latency targets), and any special requirements for location services, voice, or video applications. Coordinate with facilities management to ensure access to all coverage areas during the survey. Locked rooms, elevator shafts, and restricted zones can create gaps in your survey data if not properly planned.</p>
-
-    <h3>During Data Collection</h3>
-
-    <p>Walk the survey path at a consistent pace, marking your location on the floor plan at regular intervals. Cover all areas that require wireless network coverage, including hallways, conference rooms, open office areas, and outdoor spaces.</p>
-
-    <p>For active surveys, connect to the same SSID and security configuration that production users will use. Test with representative client devices when possible to capture real-world performance data.</p>
-
-    <p>Conduct surveys during typical operating hours when normal levels of user activity and rf interference are present. A survey conducted in an empty building over a weekend may not reflect the actual performance users experience during peak hours.</p>
-
-    <h3>Signal Strength, Data Rates, and Reporting</h3>
-
-    <p>After data collection, review heat maps and performance metrics to identify areas where the wireless network meets or falls short of design targets. Key metrics to analyze include signal strength coverage (typically targeting -65 dBm or better for high-performance applications), signal-to-noise ratio, channel utilization and interference levels, data rates and throughput, and roaming transition quality between access points.</p>
-
-    <p>Generate detailed survey reports that document your findings, including coverage heat maps, ap locations, channel assignments, and specific recommendations for improvement. These reports provide a baseline for future network optimization and help justify investment in additional access points or infrastructure changes.</p>
-
-    <h2>Common WiFi Site Survey Challenges</h2>
-
-    <p>Even experienced engineers encounter challenges during wireless site surveys. Environmental factors like wall materials, furniture, and moving objects (including people) affect rf propagation in unpredictable ways. Metal structures, glass partitions, and concrete walls create significant signal attenuation.</p>
-
-    <p>High-density environments present particular challenges for site surveys. Conference centers, stadiums, and lecture halls may appear to have adequate coverage when empty but experience severe performance degradation when fully occupied. Designing for capacity in these environments requires careful attention to access point density, channel planning, and airtime management.</p>
-
-    <p>Interference from non-wifi devices is another common challenge. Without spectrum analysis, these interference sources may go undetected during a standard wifi site survey, leading to intermittent performance problems that are difficult to diagnose.</p>
-
-    <h2>When to Conduct a WiFi Site Survey</h2>
-
-    <p>Regular wifi site surveys should be part of every organization's network management strategy. Key triggers for conducting a new survey include pre-deployment planning for new offices, buildings, or campuses, network expansion or refresh projects, persistent user complaints about wireless performance, changes to the physical environment (renovations, furniture moves, new construction), migration to new wifi standards (Wi-Fi 6, Wi-Fi 6E), significant increases in the number of wireless users or devices, and regulatory compliance requirements.</p>
-
-    <p>For mission-critical wireless networks, annual post deployment surveys help identify performance degradation and ensure the network continues to meet operational requirements as the rf environment and usage patterns evolve.</p>
-
-    <h2>WiFi Site Survey and Structured Cabling Considerations</h2>
-
-    <p>A wireless site survey often reveals requirements beyond the radio frequency layer. Each access point requires a network cable connection (typically Cat6 or Cat6A Ethernet) and power delivery through Power over Ethernet (PoE). The structured cabling infrastructure must support the planned access point locations identified during the site survey.</p>
-
-    <p>When conducting a wifi site survey for a new deployment, consider cable pathway availability and distance limitations, PoE power budget requirements for all planned access points, and switch port capacity and network closet locations. Professional cable testing and certification using tools like Fluke Networks DSX CableAnalyzer ensures the physical infrastructure supports the wireless network design documented in the site survey.</p>
-
-    <h2>Conclusion</h2>
-
-    <p>A wifi site survey is not a one-time activity but an ongoing part of wireless network lifecycle management. Regularly conducting wireless site surveys can help maintain optimal network performance over time. From predictive design during the initial planning stages through post deployment validation and periodic reassessment, site surveys provide the data-driven foundation for reliable wireless network performance.</p>
-
-    <p>By understanding the different types of wireless site surveys, selecting the right tools, and following best practices for data collection and analysis, you can design, deploy, and maintain wireless networks that meet the demanding performance requirements of modern enterprise environments.</p>
-
-    <p>Whether you need a pre deployment predictive survey for a new facility or a comprehensive post deployment active survey to validate your existing network, professional wireless site survey services deliver the accurate results and actionable recommendations you need.</p>
-
-    <p><strong>Looking for professional Ekahau wireless survey services in Japan?</strong> AKRIN provides certified Ekahau site surveys, RF spectrum analysis, structured cabling, and wireless network design for enterprise facilities across Japan. <a href="/services/japan-ekahau-wireless-surveys">Learn more about our Ekahau wireless survey services →</a></p>
-  `,
+<p>A wifi site survey provides the foundation for reliable wireless network performance. Professional wireless site survey services deliver accurate results and actionable recommendations. For professional Ekahau wireless survey services in Japan, AKRIN provides certified surveys, RF spectrum analysis, and structured cabling for enterprise environments.</p>`,
   author: 'AKRIN Editorial Team',
   authorRole: 'Wireless Network Engineering Team',
   authorBio:

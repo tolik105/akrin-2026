@@ -1,407 +1,424 @@
-"use client"
+'use client'
 
-import React from "react"
-import Link from "next/link"
-import { PremiumCTA } from "@/components/ui/premium-cta"
-import { HeroDiagonal } from "@/components/hero-diagonal"
-import Image from "next/image"
+import React, { useState } from 'react'
+import Image from 'next/image'
+import { SectionNav } from '@/components/SectionNav'
+import { RevealOnScroll } from '@/components/RevealOnScroll'
 
+/* ─────────────────── data ─────────────────── */
+
+const managedServices = [
+  {
+    id: 'soc',
+    label: 'SOC',
+    title: 'セキュリティオペレーションセンター',
+    body: 'セキュリティオペレーションセンター（SOC）が24時間365日の脅威監視を提供し、専門のセキュリティアナリストがお客様の環境を常時監視します。継続的なモニタリング、アラートのトリアージ、エスカレーションにより、高度な持続的脅威、ランサムウェア、不正アクセスから組織を保護します。',
+    highlights: ['24/7脅威監視', 'アラートトリアージ＆エスカレーション', 'セキュリティログ管理', '脅威インテリジェンスフィード'],
+    icon: (
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'mdr',
+    label: 'MDR',
+    title: 'マネージド検知・対応',
+    body: 'マネージド検知・対応（MDR）は、自動化された脅威検知と人的調査を組み合わせ、セキュリティインシデントがエスカレートする前に特定・封じ込めます。マネージドセキュリティサービスプロバイダーとして、迅速なインシデント対応、フォレンジック分析、修復ガイダンスを提供します。',
+    highlights: ['自動脅威検知', '人的調査', '迅速なインシデント対応', 'フォレンジック分析'],
+    icon: (
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+      </svg>
+    ),
+  },
+  {
+    id: 'endpoint',
+    label: 'エンドポイント＆ネットワーク',
+    title: 'エンドポイント・ネットワークセキュリティ',
+    body: 'エンドポイント、サーバー、ネットワークインフラをマルウェア、ランサムウェア、高度なサイバー攻撃から保護します。次世代ファイアウォール、エンドポイント検知・対応、ネットワークセグメンテーションによる多層防御戦略を展開します。',
+    highlights: ['エンドポイント検知＆対応', '次世代ファイアウォール管理', 'ネットワークセグメンテーション', 'マルウェア対策'],
+    icon: (
+      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z" />
+      </svg>
+    ),
+  },
+]
+
+const assessmentServices = [
+  {
+    title: '脆弱性評価とペネトレーションテスト',
+    body: '定期的な脆弱性スキャンとペネトレーションテストにより、攻撃者に悪用される前にインフラ全体のセキュリティ脆弱性を特定します。リスク評価によりサイバーセキュリティ態勢を評価し、ビジネスインパクトに基づいて修復の優先順位を決定します。',
+    items: ['脆弱性スキャン', 'ペネトレーションテスト', 'リスク評価＆スコアリング', '修復優先順位付け'],
+  },
+  {
+    title: 'コンプライアンスとガバナンス',
+    body: 'ISO 27001、SOC 2、PCI DSS、および国内規制フレームワークに対応する包括的なセキュリティサービス。ガバナンスプログラムがサイバーセキュリティサービスをビジネス目標と規制要件に整合させます。',
+    items: ['ISO 27001コンプライアンス', 'SOC 2準備', 'PCI DSS評価', 'セキュリティポリシー策定'],
+  },
+]
+
+const orgSolutions = [
+  {
+    label: '中小企業・中堅企業',
+    title: '中小・中堅企業向けセキュリティ',
+    body: 'エンタープライズレベルの保護を複雑さなく実現するコスト効果の高いサイバーセキュリティソリューション。マネージドセキュリティサービスはビジネスの成長に合わせてスケールし、予測可能な月額コストでSOCとMDRへのアクセスを提供します。',
+    accent: '#0066CC',
+  },
+  {
+    label: 'エンタープライズ',
+    title: 'エンタープライズ向けサイバーセキュリティサービス',
+    body: '複雑なハイブリッド環境、複数拠点運用、厳格なコンプライアンス要件を持つ大規模組織向けの高度なセキュリティプログラム。専任セキュリティアナリスト、カスタム検知ルール、経営層向けレポーティングと戦略的セキュリティコンサルティングを提供します。',
+    accent: '#0B1F3A',
+  },
+]
+
+const whyItems = [
+  {
+    title: '専門セキュリティチーム',
+    body: '脅威検知、インシデント対応、脆弱性管理、コンプライアンスフレームワークに深い専門知識を持つ認定セキュリティプロフェッショナル。セキュリティアナリストがお客様チームの延長として機能します。',
+  },
+  {
+    title: 'バイリンガルサービス提供',
+    body: 'セキュリティ監視ダッシュボード、インシデントレポート、経営ブリーフィング、コンプライアンス文書まで、英語・日本語の完全バイリンガルでサイバーセキュリティサービスを提供し、日本で事業を展開する国際企業をサポートします。',
+  },
+  {
+    title: '実証済みのサイバーセキュリティプロセス',
+    body: 'NIST、MITRE ATT&CK、業界標準フレームワークに準拠した構造化された方法論により、透明性のあるレポーティングと説明責任のもと、一貫した測定可能なセキュリティ態勢の改善を実現します。',
+  },
+]
+
+const faqItems = [
+  { q: 'AKRINが提供するサイバーセキュリティサービスは？', a: 'AKRINは、24/7セキュリティオペレーションセンター監視、マネージド検知・対応、エンドポイント・ネットワークセキュリティ、脆弱性評価、ペネトレーションテスト、コンプライアンスコンサルティング、インシデント対応など、日本で事業を展開する組織向けのマネージドセキュリティサービスを提供しています。' },
+  { q: 'SOCとMDRの違いは何ですか？', a: 'セキュリティオペレーションセンター（SOC）は継続的な監視とアラート管理を提供し、マネージド検知・対応（MDR）はさらに積極的な脅威ハンティング、自動封じ込め、ハンズオンのインシデント対応を行います。多くの組織が多層セキュリティ戦略の一環として両方を活用しています。' },
+  { q: '中小企業向けのサイバーセキュリティサービスはありますか？', a: 'はい。マネージドサイバーセキュリティサービスは、中小企業から大企業まで対応できるよう設計されています。中小企業のお客様は、共有SOCリソースとパッケージ化されたセキュリティサービスを予測可能な月額コストでご利用いただけます。' },
+  { q: 'セキュリティインシデント発生時の対応は？', a: '確立されたフレームワークに基づくインシデント対応プロセス：SOCによる検知・トリアージ、MDRチームによる調査・封じ込め、根絶・復旧、そして防御強化のための事後レビューと推奨事項の提供を行います。' },
+  { q: 'どのコンプライアンスフレームワークに対応していますか？', a: 'ISO 27001、SOC 2、PCI DSS、GDPR、および日本固有の規制要件に対応しています。ギャップ評価、ポリシー策定、監査準備、コンプライアンス態勢を維持するための継続的な監視を含むコンプライアンスサービスを提供しています。' },
+  { q: 'バイリンガルでのサイバーセキュリティサービス提供は可能ですか？', a: 'はい。すべてのサイバーセキュリティサービスを英語・日本語の両方で提供しています。セキュリティダッシュボード、インシデントアラートから経営レポート、コンプライアンス文書まで対応し、日本で事業を展開する多国籍企業をサポートします。' },
+]
+
+const sectionItems = [
+  { id: 'overview', label: '概要', num: '01' },
+  { id: 'managed-security', label: 'マネージドセキュリティ', num: '02' },
+  { id: 'assessment', label: '評価', num: '03' },
+  { id: 'solutions', label: 'ソリューション', num: '04' },
+  { id: 'why-akrin', label: 'AKRINの強み', num: '05' },
+  { id: 'faq', label: 'FAQ', num: '06' },
+]
+
+/* ─────────────────── FAQ accordion ─────────────────── */
+
+function FAQAccordion({ items }: { items: { q: string; a: string }[] }) {
+  const [open, setOpen] = useState<number | null>(0)
+  return (
+    <div className="divide-y divide-gray-200">
+      {items.map((item, i) => (
+        <div key={i}>
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="flex w-full items-center justify-between py-5 text-left"
+          >
+            <span className="flex items-center gap-3">
+              <span className="font-mono text-xs text-[#0066CC]">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span className="text-sm font-semibold text-gray-950 sm:text-base">
+                {item.q}
+              </span>
+            </span>
+            <svg
+              className={`h-5 w-5 shrink-0 text-gray-400 transition-transform ${open === i ? 'rotate-180' : ''}`}
+              fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+            </svg>
+          </button>
+          {open === i && (
+            <p className="pb-5 pl-8 text-sm/7 text-gray-600">{item.a}</p>
+          )}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* ─────────────────── component ─────────────────── */
 
 export default function CybersecurityJaClient() {
-
   return (
-    <div>
-      <style jsx>{`
-        .japanese-typography {
-          font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", "Meiryo", "Yu Gothic Medium", "Yu Gothic", sans-serif;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          text-rendering: optimizeLegibility;
-        }
-        .japanese-typography h1, .japanese-typography h2, .japanese-typography h3 {
-          font-weight: 700;
-          letter-spacing: 0.02em;
-        }
-        .japanese-typography p, .japanese-typography span, .japanese-typography li {
-          letter-spacing: 0.03em;
-          line-height: 1.7;
-        }
-        @media (max-width: 640px) {
-          .japanese-typography h1 { font-size: 1.75rem; line-height: 1.3; }
-          .japanese-typography h2 { font-size: 1.5rem; line-height: 1.3; }
-          .japanese-typography h3 { font-size: 1.125rem; line-height: 1.4; }
-          .japanese-typography p { font-size: 0.875rem; line-height: 1.7; }
-        }
-      `}</style>
-
-      <div className="bg-white font-sans japanese-typography">
-        {/* 標準化ヒーロー（HeroDiagonal） */}
-        <section className="relative bg-white overflow-hidden" aria-labelledby="hero-heading">
-          <HeroDiagonal
-            title={<>
-              サイバーセキュリティ<br />
-              ソリューション＆<br />
-              プロテクション
-            </>}
-            breadcrumbs={[
-              { label: 'Services', href: '/ja/services' },
-              { label: 'Cybersecurity' }
-            ]}
-            imageSrc="/images/banners/cybersecurity/banner1.avif"
-            imageAlt="サイバーセキュリティソリューション"
-          />
-        </section>
-
-        {/* Security Assessment Section - EireSystems Style */}
-        <div className="bg-[#F8F9FA] py-12 sm:py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-              {/* Left Content */}
-              <div className="text-center lg:text-left">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-[#2D2E3F] mb-4 sm:mb-6 leading-[1.3]" style={{ letterSpacing: '0.02em' }}>
-                  セキュリティ評価<br />
-                  ＆監査
-                </h2>
-                <p className="text-sm sm:text-base lg:text-lg text-[#6B6D7C] mb-6 sm:mb-8 leading-[1.7]" style={{ letterSpacing: '0.05em' }}>
-                  脆弱性評価、ペネトレーションテスト、コンプライアンス監査を含む包括的なセキュリティ評価により、お客様のインフラにおけるセキュリティギャップを特定し、対処します。
-                </p>
-
-                {/* Bullet Points with EireSystems styling */}
-                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-base leading-[1.6]" style={{ letterSpacing: '0.03em' }}>脆弱性評価とペネトレーションテスト</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-base leading-[1.6]" style={{ letterSpacing: '0.03em' }}>コンプライアンス監査とギャップ分析</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-base leading-[1.6]" style={{ letterSpacing: '0.03em' }}>リスク評価と優先順位付け</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-base leading-[1.6]" style={{ letterSpacing: '0.03em' }}>セキュリティポリシーの策定</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-base leading-[1.6]" style={{ letterSpacing: '0.03em' }}>改善計画と実施</span>
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-base text-[#6B6D7C] leading-[1.7]" style={{ letterSpacing: '0.05em' }}>
-                  当社の徹底したセキュリティ評価により、お客様のセキュリティ状況を明確に把握し、改善のための実行可能な推奨事項を提示します。
-                </p>
-              </div>
-
-              {/* Right Image */}
-              <div className="mt-8 lg:mt-0">
-                <Image
-                  src="/images/banners/cybersecurity/Security-Assessment.avif"
-                  alt="セキュリティ評価・監査"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                  quality={70}
-                />
-              </div>
-            </div>
+    <main>
+      {/* ── Mobile / Tablet Hero ── */}
+      <section className="relative min-h-[520px] bg-[#02304F] lg:hidden" aria-labelledby="hero-mobile">
+        <Image
+          src="/images/banners/cybersecurity/banner1.avif"
+          alt="日本の組織向けサイバーセキュリティサービス"
+          fill
+          className="object-cover"
+          priority
+          quality={70}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to bottom, transparent 20%, rgba(2,48,79,0.4) 40%, rgb(2,48,79) 58%)' }}
+        />
+        <div className="relative flex min-h-[520px] flex-col justify-end px-6 pb-10">
+          <div className="flex items-center gap-2 text-sm text-white/60">
+            <span className="inline-block h-2 w-2 rounded-sm bg-white/60" />
+            <span className="font-mono text-xs tracking-[0.14em] uppercase">サイバーセキュリティサービス</span>
+          </div>
+          <h1 id="hero-mobile" className="mt-3 font-serif text-3xl leading-tight font-light tracking-[-0.02em] text-white sm:text-4xl">
+            サイバーセキュリティサービス
+          </h1>
+          <p className="mt-4 max-w-lg text-base leading-7 text-white/75">
+            24/7監視、脅威検知、インシデント対応で日本の組織を守るマネージドセキュリティソリューション。
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href="/ja/contact" className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#02304F]">
+              セキュリティ相談
+            </a>
+            <a href="/ja/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
+              全サービス一覧
+            </a>
           </div>
         </div>
+      </section>
 
-        {/* Managed Detection & Response Section - EireSystems Style */}
-        <div className="bg-white py-12 sm:py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-              {/* Left Image */}
-              <div className="order-2 lg:order-1">
-                <Image
-                  src="/images/banners/cybersecurity/detection-response.avif"
-                  alt="マネージド検知・対応"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                  quality={70}
-                />
-              </div>
-
-              {/* Right Content */}
-              <div className="order-1 lg:order-2 text-center lg:text-left">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-[#2D2E3F] mb-4 sm:mb-6 leading-[1.3]" style={{ letterSpacing: '0.02em' }}>
-                  マネージド検知<br />
-                  ＆対応（MDR）
-                </h2>
-                <p className="text-sm sm:text-base lg:text-lg text-[#6B6D7C] mb-6 sm:mb-8 leading-[1.7]" style={{ letterSpacing: '0.05em' }}>
-                  高度な脅威検知、リアルタイム分析、セキュリティインシデントへの迅速な対応による、24時間365日の脅威監視とインシデント対応サービス。
-                </p>
-
-                {/* Bullet Points with EireSystems styling */}
-                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">24時間365日のセキュリティ監視とアラート</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">高度な脅威検知と分析</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">迅速なインシデント対応と封じ込め</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">脅威インテリジェンス＆ハンティング</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">フォレンジック分析とレポート</span>
-                  </div>
-                </div>
-
-                <p className="text-sm sm:text-base text-[#6B6D7C] leading-relaxed">
-                  当社の専門セキュリティアナリストが脅威への即時対応による継続的な保護を提供し、ビジネスへの影響を最小限に抑え、迅速な復旧を実現します。
-                </p>
-              </div>
-            </div>
+      {/* ── Desktop Hero ── */}
+      <section className="relative hidden h-[500px] bg-[#02304F] lg:block" aria-labelledby="hero-desktop">
+        <Image
+          src="/images/banners/cybersecurity/banner1.avif"
+          alt="日本の組織向けサイバーセキュリティサービス"
+          fill
+          className="object-cover"
+          priority
+          quality={70}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to right, rgb(2,48,79) 0%, rgb(2,48,79) 35%, rgba(2,48,79,0.8) 55%, rgba(2,48,79,0.45) 75%, transparent 90%)' }}
+        />
+        <div className="relative mx-auto flex h-full max-w-[1047px] flex-col justify-center px-8">
+          <div className="flex items-center gap-2 text-sm text-white/60">
+            <span className="inline-block h-2 w-2 rounded-sm bg-white/60" />
+            <span className="font-mono text-xs tracking-[0.14em] uppercase">サイバーセキュリティサービス</span>
+          </div>
+          <h1 id="hero-desktop" className="mt-3 font-serif text-5xl leading-tight font-light tracking-[-0.02em] text-white">
+            サイバーセキュリティサービス
+          </h1>
+          <p className="mt-4 max-w-xl text-lg leading-8 text-white/75">
+            24/7監視、脅威検知、インシデント対応で日本の組織を守るマネージドセキュリティソリューション。
+          </p>
+          <div className="mt-8 flex gap-3">
+            <a href="/ja/contact" className="rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#02304F]">
+              セキュリティ相談
+            </a>
+            <a href="/ja/services" className="rounded-full border border-white/20 bg-white/[0.05] px-6 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
+              全サービス一覧
+            </a>
           </div>
         </div>
+      </section>
 
-        {/* Security Operations Center Section - EireSystems Style 4-Column Layout */}
-        <div className="bg-[#F8F9FA] py-12 sm:py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#2D2E3F] mb-4 sm:mb-6 leading-[1.3]" style={{ letterSpacing: '0.02em' }}>
-                セキュリティオペレーションセンター（SOC）
+      {/* ── SectionNav Ribbon ── */}
+      <SectionNav variant="ribbon" items={sectionItems} ariaLabel="ページセクション" />
+
+      {/* ── Body wrapper ── */}
+      <div className="relative mx-auto max-w-[1400px] overflow-visible px-6 lg:px-8">
+        <div className="min-w-0 flex-1">
+
+          {/* ── Overview ── */}
+          <section id="overview" className="py-16 sm:py-20">
+            <RevealOnScroll>
+              <h2 className="text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
+                組織にサイバーセキュリティサービスが必要な理由
               </h2>
-              <p className="text-sm sm:text-base lg:text-lg text-[#6B6D7C] max-w-4xl mx-auto leading-[1.7]" style={{ letterSpacing: '0.05em' }}>
-                専門アナリストによる専用セキュリティ監視により、継続的な監視、脅威インテリジェンス、プロアクティブなセキュリティ管理を提供します。
+              <p className="mt-6 max-w-4xl text-base/8 text-gray-700 sm:text-lg/8">
+                日本の組織を標的とするサイバー脅威は、量・巧妙さともに増加し続けています。ランサムウェア攻撃、フィッシング攻撃から内部脅威、サプライチェーン侵害まで、クラウドインフラ、リモートワーク、デジタルオペレーションの導入に伴い攻撃対象が拡大しています。専門のサイバーセキュリティサービスなしでは、データ侵害、規制上のペナルティ、業務中断、そして長期的な評判の損害に直面するリスクがあります。
               </p>
-            </div>
-
-            {/* 4-Column Service Grid - Mobile Responsive */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12 sm:mb-16">
-              {/* Column 1: Monitoring */}
-              <div className="text-center sm:text-left lg:text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0A0B19] rounded-full flex items-center justify-center mx-auto sm:mx-0 lg:mx-auto mb-4 sm:mb-6">
-                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-[#2D2E3F] mb-3 sm:mb-4 leading-[1.4]" style={{ letterSpacing: '0.02em' }}>継続的な監視</h3>
-                <ul className="text-[#6B6D7C] space-y-2 text-left text-xs sm:text-sm">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span style={{ letterSpacing: '0.03em', lineHeight: '1.6' }}>24時間365日のセキュリティ監視</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span style={{ letterSpacing: '0.03em', lineHeight: '1.6' }}>リアルタイム脅威検知</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span style={{ letterSpacing: '0.03em', lineHeight: '1.6' }}>アラートの自動相関</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span style={{ letterSpacing: '0.03em', lineHeight: '1.6' }}>行動分析</span>
-                  </li>
-                </ul>
+              <p className="mt-4 max-w-4xl text-base/8 text-gray-700 sm:text-lg/8">
+                マネージドセキュリティサービスプロバイダーは、社内チームだけでは維持が困難な専門知識、ツール、継続的な監視を提供し、予測可能なコストでエンタープライズグレードのセキュリティサービスを実現します。
+              </p>
+              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                {[
+                  { stat: '24/7', label: '継続的セキュリティ監視' },
+                  { stat: '< 15分', label: '平均インシデント対応時間' },
+                  { stat: '100%', label: 'バイリンガルEN/JA対応' },
+                ].map((s) => (
+                  <div key={s.label} className="flex items-center gap-4 rounded-xl border border-[#0066CC]/15 bg-[#0066CC]/[0.03] px-5 py-4">
+                    <span className="text-2xl font-bold text-[#0066CC]">{s.stat}</span>
+                    <span className="text-sm text-gray-600">{s.label}</span>
+                  </div>
+                ))}
               </div>
+            </RevealOnScroll>
+          </section>
 
-              {/* Column 2: Analysis */}
-              <div className="text-center sm:text-left lg:text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0A0B19] rounded-full flex items-center justify-center mx-auto sm:mx-0 lg:mx-auto mb-4 sm:mb-6">
-                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-[#2D2E3F] mb-3 sm:mb-4">脅威分析</h3>
-                <ul className="text-[#6B6D7C] space-y-2 text-left text-sm sm:text-base">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>専門セキュリティ・アナリスト</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>脅威インテリジェンスの統合</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>リスク評価とスコアリング</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>攻撃パターン認識</span>
-                  </li>
-                </ul>
+          {/* ── Managed Security Services ── */}
+          <section id="managed-security" className="pb-20">
+            <RevealOnScroll>
+              <h2 className="text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
+                マネージドセキュリティサービス
+              </h2>
+              <p className="mt-4 max-w-3xl text-base/8 text-gray-700">
+                24時間体制の監視、高度な脅威検知、エキスパート主導のインシデント対応を組み合わせたマネージドサイバーセキュリティサービスで、進化するサイバー脅威から組織を保護します。
+              </p>
+              <div className="mt-10 space-y-5">
+                {managedServices.map((svc) => (
+                  <div key={svc.id} className="group flex gap-6 rounded-2xl border border-gray-200 bg-white p-6 transition-all hover:border-[#0066CC]/30 hover:shadow-sm sm:p-8">
+                    <div className="hidden w-1 shrink-0 rounded-full bg-[#0066CC] sm:block" />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#0066CC]/10 text-[#0066CC]">
+                          {svc.icon}
+                        </div>
+                        <span className="font-mono text-[10px] tracking-[0.14em] text-gray-400 uppercase">{svc.label}</span>
+                      </div>
+                      <h3 className="mt-3 text-lg font-semibold text-gray-950">{svc.title}</h3>
+                      <p className="mt-2 text-sm/7 text-gray-600">{svc.body}</p>
+                      <ul className="mt-4 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                        {svc.highlights.map((h) => (
+                          <li key={h} className="flex items-center gap-2 text-sm text-gray-700">
+                            <svg className="h-4 w-4 shrink-0 text-[#0066CC]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ))}
               </div>
+            </RevealOnScroll>
+          </section>
 
-              {/* Column 3: Response */}
-              <div className="text-center sm:text-left lg:text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0A0B19] rounded-full flex items-center justify-center mx-auto sm:mx-0 lg:mx-auto mb-4 sm:mb-6">
-                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-[#2D2E3F] mb-3 sm:mb-4">インシデント対応</h3>
-                <ul className="text-[#6B6D7C] space-y-2 text-left text-sm sm:text-base">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>迅速な脅威の封じ込め</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>自動化されたレスポンス・アクション</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>フォレンジック調査</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>復旧の調整</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Column 4: Compliance */}
-              <div className="text-center sm:text-left lg:text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#0A0B19] rounded-full flex items-center justify-center mx-auto sm:mx-0 lg:mx-auto mb-4 sm:mb-6">
-                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg sm:text-xl font-bold text-[#2D2E3F] mb-3 sm:mb-4">コンプライアンス管理</h3>
-                <ul className="text-[#6B6D7C] space-y-2 text-left text-sm sm:text-base">
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>ISO 27001サポート</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>SOC 2コンプライアンス</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>GDPR文書化</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <div className="w-1.5 h-1.5 bg-[#0A0B19] rounded-full mt-2 flex-shrink-0"></div>
-                    <span>監査準備</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* SOC Image */}
-            <div className="text-center">
-              <Image
-                src="/images/banners/cybersecurity/Security-Operations.webp"
-                alt="セキュリティオペレーションセンター"
-                width={1280}
-                height={720}
-                className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-5xl mx-auto h-auto rounded-lg shadow-lg"
-                quality={70}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Your Security Partner Section - EireSystems Style */}
-        <div className="bg-white py-12 sm:py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-              {/* Left Content */}
-              <div className="text-center lg:text-left">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-bold text-[#2D2E3F] mb-4 sm:mb-6 leading-[1.3]" style={{ letterSpacing: '0.02em' }}>
-                  お客様のサイバーセキュリティ<br />
-                  パートナー
+          {/* ── Security Assessment & Compliance ── */}
+          <section id="assessment" className="pb-20">
+            <RevealOnScroll>
+              <div className="rounded-3xl bg-gradient-to-br from-[#0A0B19] via-[#0B1F3A] to-[#0A0B19] p-8 sm:p-12">
+                <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+                  セキュリティ評価・コンプライアンスサービス
                 </h2>
-                <p className="text-sm sm:text-base lg:text-lg text-[#6B6D7C] mb-6 sm:mb-8 leading-[1.7]" style={{ letterSpacing: '0.05em' }}>
-                  効果的なサイバーセキュリティの構築には、専門知識、高度なツール、継続的な監視が必要です。当社のセキュリティ専門家がお客様のチームの延長として機能し、現代の脅威から防御するために必要な知識とリソースを提供します。
+                <p className="mt-4 max-w-3xl text-base/7 text-white/70">
+                  リスクを特定し、サイバーセキュリティ態勢を強化し、業界標準へのコンプライアンスを維持するプロアクティブなセキュリティ評価とガバナンスプログラム。
                 </p>
-
-                {/* Strategic positioning with EireSystems styling */}
-                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">エンタープライズグレードのセキュリティツールとプラットフォーム</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">認定セキュリティ専門家</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">実証済みのインシデント対応手法</span>
-                  </div>
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="w-2 h-2 bg-[#0A0B19] rounded-full mt-2 sm:mt-3 flex-shrink-0"></div>
-                    <span className="text-[#2D2E3F] text-sm sm:text-base lg:text-lg leading-relaxed">継続的な脅威状況の監視</span>
-                  </div>
+                <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                  {assessmentServices.map((svc) => (
+                    <div key={svc.title} className="rounded-xl border border-white/10 bg-white/[0.04] p-6 transition-colors hover:bg-[#0B1F3A]">
+                      <h3 className="text-base font-semibold text-white">{svc.title}</h3>
+                      <p className="mt-3 text-sm/6 text-white/60">{svc.body}</p>
+                      <ul className="mt-4 space-y-2">
+                        {svc.items.map((item) => (
+                          <li key={item} className="flex items-center gap-2 text-sm text-white/70">
+                            <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#0066CC]" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
-
-                <p className="text-sm sm:text-base text-[#6B6D7C] leading-relaxed">
-                  最先端のテクノロジーと実証済みの手法を組み合わせ、脅威の状況に合わせて進化する包括的なセキュリティソリューションを提供します。
-                </p>
               </div>
+            </RevealOnScroll>
+          </section>
 
-              {/* Right Image */}
-              <div className="mt-8 lg:mt-0">
-                <Image
-                  src="/images/banners/cybersecurity/Cybersecurity-Partner.avif"
-                  alt="サイバーセキュリティ・パートナーシップ"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto rounded-lg shadow-lg max-w-md mx-auto lg:max-w-none"
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                  quality={70}
-                />
+          {/* ── Solutions by Org Size ── */}
+          <section id="solutions" className="pb-20">
+            <RevealOnScroll>
+              <h2 className="text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
+                あらゆる組織向けサイバーセキュリティソリューション
+              </h2>
+              <p className="mt-4 max-w-3xl text-base/8 text-gray-700">
+                成長企業から大規模エンタープライズまで、セキュリティ要件と予算に合わせてスケールするサイバーセキュリティソリューションを提供します。
+              </p>
+              <div className="mt-10 space-y-4">
+                {orgSolutions.map((sol) => (
+                  <div
+                    key={sol.label}
+                    className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 sm:p-8"
+                  >
+                    <div
+                      className="absolute left-0 top-0 h-full w-1"
+                      style={{ backgroundColor: sol.accent }}
+                    />
+                    <span className="font-mono text-[10px] tracking-[0.14em] uppercase" style={{ color: sol.accent }}>
+                      {sol.label}
+                    </span>
+                    <h3 className="mt-2 text-lg font-semibold text-gray-950">{sol.title}</h3>
+                    <p className="mt-3 max-w-3xl text-sm/7 text-gray-600">{sol.body}</p>
+                  </div>
+                ))}
+              </div>
+            </RevealOnScroll>
+          </section>
+
+          {/* ── Why AKRIN ── */}
+          <section id="why-akrin" className="pb-20">
+            <RevealOnScroll>
+              <h2 className="text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
+                AKRINをサイバーセキュリティプロバイダーに選ぶ理由
+              </h2>
+              <p className="mt-4 max-w-3xl text-base/8 text-gray-700">
+                AKRINは、深い技術的専門知識と日本で事業を展開する組織固有の運用要件への理解を兼ね備えたサイバーセキュリティサービスを提供します。
+              </p>
+              <div className="mt-10 grid gap-5 sm:grid-cols-3">
+                {whyItems.map((item, i) => (
+                  <div key={item.title} className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6">
+                    <div className="absolute left-0 right-0 top-0 h-1 bg-[#0066CC]" />
+                    <span className="font-mono text-3xl font-bold text-[#0066CC]/15">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-2 text-base font-semibold text-gray-950">{item.title}</h3>
+                    <p className="mt-2 text-sm/7 text-gray-600">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </RevealOnScroll>
+          </section>
+
+          {/* ── FAQ ── */}
+          <section id="faq" className="pb-20">
+            <RevealOnScroll>
+              <div className="grid gap-12 lg:grid-cols-[280px_1fr]">
+                <div>
+                  <h2 className="text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
+                    サイバーセキュリティ<br />サービスFAQ
+                  </h2>
+                  <p className="mt-3 text-sm/7 text-gray-600">
+                    マネージドサイバーセキュリティサービスに関するよくある質問。
+                  </p>
+                </div>
+                <FAQAccordion items={faqItems} />
+              </div>
+            </RevealOnScroll>
+          </section>
+
+          {/* ── CTA ── */}
+          <section className="pb-24">
+            <div className="rounded-2xl border border-gray-200 bg-[#FAFAFC] p-8">
+              <h2 className="text-2xl font-semibold tracking-tight text-gray-950 md:text-3xl">
+                AKRINのサイバーセキュリティサービスで組織を保護
+              </h2>
+              <p className="mt-4 max-w-3xl text-base/8 text-gray-700">
+                AKRINのマネージドサイバーセキュリティサービスでセキュリティ態勢を強化しましょう。セキュリティ要件についてご相談いただき、日本全国の組織を保護するサイバーセキュリティソリューションをご確認ください。
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="/ja/contact" className="inline-flex items-center rounded-sm bg-[#0066CC] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#0052A3]">
+                  お問い合わせ
+                </a>
+                <a href="https://cal.com/akrinsupport/30min" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-sm border border-[#0A0B19]/20 px-6 py-2.5 text-sm font-semibold text-[#0A0B19] transition-colors hover:border-[#0066CC] hover:text-[#0066CC]">
+                  無料相談予約
+                </a>
               </div>
             </div>
-          </div>
+          </section>
+
         </div>
-
-        {/* Premium CTA Section */}
-        <PremiumCTA
-          variant="teal"
-          title="セキュリティ強化の準備はできていますか？"
-          description="包括的なサイバーセキュリティでAKRINを信頼する数百社の企業に加わりましょう。専門サポートと24時間365日の監視によるエンタープライズグレードの保護を手に入れましょう。"
-          buttonText="セキュリティ評価を開始"
-          buttonHref="/ja/contact"
-        />
-
-        {/* JSON-LD Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Service",
-              "name": "サイバーセキュリティ＆脅威対策",
-              "alternateName": "Cybersecurity & Threat Protection",
-              "serviceType": "サイバーセキュリティ・情報セキュリティサービス",
-              "provider": {
-                "@type": "Organization",
-                "name": "AKRIN株式会社",
-                "url": "https://akrin.jp"
-              },
-              "areaServed": {
-                "@type": "Country",
-                "name": "Japan"
-              },
-              "availableLanguage": ["ja", "en"],
-              "url": "https://akrin.jp/ja/services/cybersecurity",
-              "description": "24時間365日のセキュリティ監視、脅威検知、インシデント対応。進化するサイバー脅威からエンタープライズグレードのセキュリティソリューションでビジネスを保護します。"
-            })
-          }}
-        />
       </div>
-    </div>
+    </main>
   )
 }

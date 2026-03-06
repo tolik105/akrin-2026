@@ -1,0 +1,222 @@
+{
+  "generatedAt": "2026-03-06T00:16:52.143Z",
+  "sourceDir": "assets/images/blog/posts",
+  "outputDir": "/blog-images/posts",
+  "settings": {
+    "format": "avif",
+    "quality": 82,
+    "effort": 9,
+    "chromaSubsampling": "4:4:4",
+    "keepMetadata": true
+  },
+  "count": 23,
+  "files": [
+    {
+      "source": "assets/images/blog/posts/blog-1-2-24-7-it-support/hero.jpg",
+      "output": "/blog-images/posts/blog-1-2-24-7-it-support-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 102450,
+      "outputBytes": 94370,
+      "ratio": 0.9211
+    },
+    {
+      "source": "assets/images/blog/posts/blog-1-3-foreign-company-it/hero.jpg",
+      "output": "/blog-images/posts/blog-1-3-foreign-company-it-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 100224,
+      "outputBytes": 87955,
+      "ratio": 0.8776
+    },
+    {
+      "source": "assets/images/blog/posts/blog-1-4-expat-it-support/hero.jpg",
+      "output": "/blog-images/posts/blog-1-4-expat-it-support-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 96902,
+      "outputBytes": 84916,
+      "ratio": 0.8763
+    },
+    {
+      "source": "assets/images/blog/posts/blog-1-5-outsourced-it-support/hero.jpg",
+      "output": "/blog-images/posts/blog-1-5-outsourced-it-support-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 110472,
+      "outputBytes": 103006,
+      "ratio": 0.9324
+    },
+    {
+      "source": "assets/images/blog/posts/blog-2-1-itad-japan-guide/hero.jpg",
+      "output": "/blog-images/posts/blog-2-1-itad-japan-complete-guide.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 112259,
+      "outputBytes": 99466,
+      "ratio": 0.886
+    },
+    {
+      "source": "assets/images/blog/posts/blog-2-2-nist-800-88/hero.jpg",
+      "output": "/blog-images/posts/blog-2-2-nist-800-88-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 62937,
+      "outputBytes": 48856,
+      "ratio": 0.7763
+    },
+    {
+      "source": "assets/images/blog/posts/blog-2-3-secure-data-wiping/hero.jpg",
+      "output": "/blog-images/posts/blog-2-3-secure-data-wiping-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 127118,
+      "outputBytes": 123158,
+      "ratio": 0.9688
+    },
+    {
+      "source": "assets/images/blog/posts/blog-2-4-kobutsusho-kyoka/hero.jpg",
+      "output": "/blog-images/posts/blog-2-4-kobutsusho-kyoka-itad.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 108225,
+      "outputBytes": 96390,
+      "ratio": 0.8906
+    },
+    {
+      "source": "assets/images/blog/posts/blog-2-5-data-destruction-certificate/hero.jpg",
+      "output": "/blog-images/posts/blog-2-5-data-destruction-certificate-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 71069,
+      "outputBytes": 55113,
+      "ratio": 0.7755
+    },
+    {
+      "source": "assets/images/blog/posts/blog-3-1-it-asset-management/hero.jpg",
+      "output": "/blog-images/posts/blog-3-1-it-asset-management-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 134180,
+      "outputBytes": 128521,
+      "ratio": 0.9578
+    },
+    {
+      "source": "assets/images/blog/posts/blog-3-2-it-lifecycle/hero.jpg",
+      "output": "/blog-images/posts/blog-3-2-it-lifecycle-management-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 136395,
+      "outputBytes": 116558,
+      "ratio": 0.8546
+    },
+    {
+      "source": "assets/images/blog/posts/blog-3-3-software-asset/hero.jpg",
+      "output": "/blog-images/posts/blog-3-3-software-asset-management-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 96828,
+      "outputBytes": 82887,
+      "ratio": 0.856
+    },
+    {
+      "source": "assets/images/blog/posts/blog-3-4-it-inventory/hero.jpg",
+      "output": "/blog-images/posts/blog-3-4-it-inventory-management-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 154023,
+      "outputBytes": 150227,
+      "ratio": 0.9754
+    },
+    {
+      "source": "assets/images/blog/posts/blog-3-5-hardware-asset/hero.jpg",
+      "output": "/blog-images/posts/blog-3-5-hardware-asset-management-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 132055,
+      "outputBytes": 127992,
+      "ratio": 0.9692
+    },
+    {
+      "source": "assets/images/blog/posts/blog-4-2-office-move/hero.jpg",
+      "output": "/blog-images/posts/blog-4-2-office-move-it-support-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 92668,
+      "outputBytes": 80131,
+      "ratio": 0.8647
+    },
+    {
+      "source": "assets/images/blog/posts/blog-4-3-new-office-infra/hero.jpg",
+      "output": "/blog-images/posts/blog-4-3-new-office-it-infrastructure-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 138026,
+      "outputBytes": 125440,
+      "ratio": 0.9088
+    },
+    {
+      "source": "assets/images/blog/posts/blog-4-4-it-project-mgmt/hero.jpg",
+      "output": "/blog-images/posts/blog-4-4-it-project-management-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 95699,
+      "outputBytes": 81884,
+      "ratio": 0.8556
+    },
+    {
+      "source": "assets/images/blog/posts/blog-4-5-office-it-shien/hero.jpg",
+      "output": "/blog-images/posts/blog-4-5-ofice-it-shien-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 165019,
+      "outputBytes": 152227,
+      "ratio": 0.9225
+    },
+    {
+      "source": "assets/images/blog/posts/blog-5-1-ekahau-survey/hero.jpg",
+      "output": "/blog-images/posts/blog-5-1-ekahau-wireless-survey-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 103242,
+      "outputBytes": 91699,
+      "ratio": 0.8882
+    },
+    {
+      "source": "assets/images/blog/posts/blog-5-2-wifi-assessment/hero.jpg",
+      "output": "/blog-images/posts/blog-5-2-wifi-assessment-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 90636,
+      "outputBytes": 76853,
+      "ratio": 0.8479
+    },
+    {
+      "source": "assets/images/blog/posts/blog-5-3-enterprise-wifi/hero.jpg",
+      "output": "/blog-images/posts/blog-5-3-enterprise-wifi-japan.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 159413,
+      "outputBytes": 149865,
+      "ratio": 0.9401
+    },
+    {
+      "source": "assets/images/blog/posts/blog-5-4-wireless-survey/hero.jpg",
+      "output": "/blog-images/posts/blog-5-4-wireless-site-survey-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 79720,
+      "outputBytes": 65972,
+      "ratio": 0.8275
+    },
+    {
+      "source": "assets/images/blog/posts/blog-5-5-musenlan-survey/hero.jpg",
+      "output": "/blog-images/posts/blog-5-5-musenlan-site-survey-tokyo.avif",
+      "width": 1344,
+      "height": 768,
+      "sourceBytes": 150915,
+      "outputBytes": 132891,
+      "ratio": 0.8806
+    }
+  ]
+}

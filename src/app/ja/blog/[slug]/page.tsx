@@ -4,7 +4,7 @@ import { Footer } from '@/components/footer'
 import { GradientBackground } from '@/components/gradient'
 import { Link } from '@/components/link'
 import { Navbar } from '@/components/navbar'
-import { Heading, Subheading } from '@/components/text'
+import { getFallbackImageBySlug } from '@/lib/blog-fallback'
 import { blogPostsJA } from '@/lib/blog-fallback-data'
 import { image } from '@/sanity/image'
 import { getPost } from '@/sanity/queries'
@@ -13,6 +13,7 @@ import dayjs from 'dayjs'
 import type { Metadata } from 'next'
 import { PortableText } from 'next-sanity'
 import { notFound } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
 const siteUrl = 'https://akrin.jp'
 
@@ -27,10 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data: post } = await getPost(slug, 'ja')
   if (!post) return {}
 
+  const localMeta = (blogPostsJA as Record<string, { title?: string; excerpt?: string }>)[slug]
   const canonicalPath = `/ja/blog/${slug}`
   const imageUrl = '/og-image.png'
-  const postTitle = post.title || 'AKRINブログ'
-  const postDescription = post.excerpt || undefined
+  const postTitle = localMeta?.title || post.title || 'AKRINブログ'
+  const postDescription = localMeta?.excerpt || post.excerpt || undefined
 
   return {
     title: postTitle,
@@ -64,15 +66,25 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
   const slug = (await params).slug
   const { data: post } = await getPost(slug, 'ja')
   if (!post) notFound()
-  const localFallback = (blogPostsJA as Record<string, { image?: string; content?: string }>)[slug]
-  const localFallbackImage = localFallback?.image
+  const localFallback = (blogPostsJA as Record<string, { image?: string; content?: string; title?: string; excerpt?: string }>)[slug]
+
+  // If this post has no proper JA translation (auto-localized 【日本語版】 or English-only),
+  // redirect to the English version instead of showing English content on the JA page.
+  const rawTitle = post.title || ''
+  if (!localFallback?.content && (rawTitle.startsWith('【日本語版】') || rawTitle.startsWith('English Version:'))) {
+    redirect(`/blog/${slug}`)
+  }
+
+  const localFallbackImage = localFallback?.image || getFallbackImageBySlug(slug, 'ja')
   const portableBody = 'body' in post ? post.body : undefined
   const sanityHtml =
     typeof (post as { htmlContent?: string }).htmlContent === 'string'
       ? (post as { htmlContent: string }).htmlContent
       : ''
   const sanityHasRealHtml = /<[a-z][\s\S]*>/i.test(sanityHtml)
-  const htmlContent = localFallback?.content || (sanityHasRealHtml ? sanityHtml : '') || ''
+  const rawHtml = localFallback?.content || (sanityHasRealHtml ? sanityHtml : '') || ''
+  // Strip leading <h1> from HTML content — we already render the title in the header
+  const htmlContent = rawHtml.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>\s*/i, '')
   const publishedAt = post.publishedAt || new Date().toISOString()
   const publishedDate = new Date(publishedAt)
   const isPublishedDateValid = !Number.isNaN(publishedDate.getTime())
@@ -80,8 +92,8 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
     ? publishedDate.toISOString()
     : new Date().toISOString()
   const postUrl = `${siteUrl}/ja/blog/${slug}`
-  const postTitle = post.title || 'AKRINブログ'
-  const postDescription = post.excerpt || ''
+  const postTitle = localFallback?.title || post.title || 'AKRINブログ'
+  const postDescription = localFallback?.excerpt || post.excerpt || ''
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -118,146 +130,179 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Navbar />
-        <Subheading className="mt-16">
-          {dayjs(publishedAt).format('YYYY/MM/DD')}
-        </Subheading>
-        <Heading as="h1" className="mt-2">
-          {postTitle}
-        </Heading>
-        <div className="mt-16 grid grid-cols-1 gap-8 pb-24 lg:grid-cols-[15rem_1fr] xl:grid-cols-[15rem_1fr_15rem]">
-          <div className="flex flex-wrap items-center gap-8 max-lg:justify-between lg:flex-col lg:items-start">
+
+        {/* Back link */}
+        <div className="mt-10">
+          <Link
+            href="/ja/blog"
+            className="inline-flex items-center gap-1 text-sm/6 font-medium text-gray-500 hover:text-gray-700"
+          >
+            <ChevronLeftIcon className="size-4" />
+            ブログ一覧へ
+          </Link>
+        </div>
+
+        {/* Article header */}
+        <div className="mx-auto mt-8 max-w-3xl">
+          {/* Categories */}
+          {Array.isArray(post.categories) && post.categories.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {post.categories.map((category: { slug: string; title: string }) => (
+                <Link
+                  key={category.slug}
+                  href={`/ja/blog?category=${category.slug}`}
+                  className="rounded-full border border-dotted border-gray-300 bg-[#FAFAFC] px-2.5 py-0.5 text-xs/5 font-medium text-gray-500 hover:border-gray-400 hover:text-gray-700"
+                >
+                  {category.title}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* Title */}
+          <h1 className="mt-4 text-3xl/tight font-semibold tracking-tight text-gray-950 sm:text-4xl/tight">
+            {postTitle}
+          </h1>
+
+          {/* Excerpt */}
+          {postDescription && (
+            <p className="mt-4 text-lg/7 text-gray-600">
+              {postDescription}
+            </p>
+          )}
+
+          {/* Meta: date + author */}
+          <div className="mt-6 flex items-center gap-4 border-y border-gray-200 py-4">
             {post.author && (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2.5">
                 {post.author.image && (
                   <img
                     alt=""
                     src={image(post.author.image).size(64, 64).url()}
-                    className="aspect-square size-6 rounded-full object-cover"
+                    className="aspect-square size-8 rounded-full object-cover ring-1 ring-gray-200"
                   />
                 )}
-                <div className="text-sm/5 text-gray-700">
+                <span className="text-sm/5 font-medium text-gray-700">
                   {post.author.name}
-                </div>
+                </span>
               </div>
             )}
-            {Array.isArray(post.categories) && (
-              <div className="flex flex-wrap gap-2">
-                {post.categories.map((category: { slug: string; title: string }) => (
-                  <Link
-                    key={category.slug}
-                    href={`/ja/blog?category=${category.slug}`}
-                    className="rounded-full border border-dotted border-gray-300 bg-[#FAFAFC] px-2 text-sm/6 font-medium text-gray-500"
-                  >
-                    {category.title}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-          <div className="text-gray-700">
-            <div className="max-w-2xl xl:mx-auto">
-              {post.mainImage ? (
-                <img
-                  alt={post.mainImage.alt || ''}
-                  src={image(post.mainImage).size(2016, 1344).url()}
-                  className="mb-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
-                  loading="lazy"
-                />
-              ) : ((post as Record<string, unknown>).image || localFallbackImage) ? (
-                <img
-                  alt={postTitle}
-                  src={((post as Record<string, unknown>).image as string) || localFallbackImage || ''}
-                  className="mb-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
-                  loading="lazy"
-                />
-              ) : null}
-              {htmlContent ? (
-                <div
-                  className="[&>h1]:mt-0 [&>h1]:mb-6 [&>h1]:text-3xl [&>h1]:font-semibold [&>h1]:tracking-tight [&>h1]:text-gray-950 [&>h2]:mt-12 [&>h2]:mb-6 [&>h2]:text-2xl [&>h2]:font-semibold [&>h2]:tracking-tight [&>h2]:text-gray-950 [&_h3]:mt-10 [&_h3]:mb-5 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:text-gray-950 [&_h4]:mt-8 [&_h4]:mb-4 [&_h4]:text-lg [&_h4]:font-semibold [&_h4]:tracking-tight [&_h4]:text-gray-950 [&_p]:my-6 [&_p]:text-base/8 [&_p]:text-gray-700 [&_ul]:my-6 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6 [&_ul]:text-base/8 [&_ul]:text-gray-700 [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:pl-6 [&_ol]:text-base/8 [&_ol]:text-gray-700 [&_li]:pl-1 [&_strong]:font-semibold [&_strong]:text-gray-950 [&_a]:font-medium [&_a]:text-gray-950 [&_a]:underline [&_a]:decoration-gray-400 [&_a]:underline-offset-4"
-                  dangerouslySetInnerHTML={{ __html: htmlContent }}
-                />
-              ) : portableBody ? (
-                <PortableText
-                  value={portableBody}
-                  components={{
-                    block: {
-                      normal: ({ children }) => (
-                        <p className="my-10 text-base/8 first:mt-0 last:mb-0">
-                          {children}
-                        </p>
-                      ),
-                      h2: ({ children }) => (
-                        <h2 className="mt-12 mb-10 text-2xl/8 font-medium tracking-tight text-gray-950 first:mt-0 last:mb-0">
-                          {children}
-                        </h2>
-                      ),
-                      h3: ({ children }) => (
-                        <h3 className="mt-12 mb-10 text-xl/8 font-medium tracking-tight text-gray-950 first:mt-0 last:mb-0">
-                          {children}
-                        </h3>
-                      ),
-                      blockquote: ({ children }) => (
-                        <blockquote className="my-10 border-l-2 border-l-gray-300 pl-6 text-base/8 text-gray-950 first:mt-0 last:mb-0">
-                          {children}
-                        </blockquote>
-                      ),
-                    },
-                    types: {
-                      image: ({ value }) => (
-                        <img
-                          alt={value.alt || ''}
-                          src={image(value).width(2000).url()}
-                          className="w-full rounded-2xl"
-                        />
-                      ),
-                      separator: ({ value }) => {
-                        switch (value.style) {
-                          case 'line':
-                            return (
-                              <hr className="my-8 border-t border-gray-200" />
-                            )
-                          case 'space':
-                            return <div className="my-8" />
-                          default:
-                            return null
-                        }
-                      },
-                    },
-                    list: {
-                      bullet: ({ children }) => (
-                        <ul className="list-disc pl-4 text-base/8 marker:text-gray-400">
-                          {children}
-                        </ul>
-                      ),
-                      number: ({ children }) => (
-                        <ol className="list-decimal pl-4 text-base/8 marker:text-gray-400">
-                          {children}
-                        </ol>
-                      ),
-                    },
-                    listItem: {
-                      bullet: ({ children }) => (
-                        <li className="my-2 pl-2 has-[br]:mb-8">{children}</li>
-                      ),
-                      number: ({ children }) => (
-                        <li className="my-2 pl-2 has-[br]:mb-8">{children}</li>
-                      ),
-                    },
-                  }}
-                />
-              ) : null}
-              <div className="mt-10 flex flex-wrap items-center gap-3">
-                <Button variant="outline" href="/ja/blog">
-                  <ChevronLeftIcon className="size-4" />
-                  ブログ一覧へ
-                </Button>
-                <Button variant="outline" href="/ja/case-studies">
-                  導入事例を見る
-                </Button>
-              </div>
-            </div>
+            {post.author && <span className="text-gray-300">·</span>}
+            <time className="text-sm/5 text-gray-500" dateTime={formattedPublishedDate}>
+              {dayjs(publishedAt).format('YYYY年M月D日')}
+            </time>
           </div>
         </div>
+
+        {/* Article body */}
+        <article className="mx-auto max-w-3xl pb-24">
+          {/* Feature image */}
+          {post.mainImage ? (
+            <img
+              alt={post.mainImage.alt || ''}
+              src={image(post.mainImage).size(2016, 1344).url()}
+              className="mt-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
+              loading="lazy"
+            />
+          ) : ((post as Record<string, unknown>).image || localFallbackImage) ? (
+            <img
+              alt={postTitle}
+              src={((post as Record<string, unknown>).image as string) || localFallbackImage || ''}
+              className="mt-10 aspect-3/2 w-full rounded-2xl object-cover shadow-xl"
+              loading="lazy"
+            />
+          ) : null}
+
+          {/* Content */}
+          <div className="mt-10">
+            {htmlContent ? (
+              <div
+                className="prose prose-gray max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-h2:mt-12 prose-h2:text-2xl prose-h3:mt-10 prose-h3:text-xl prose-h4:mt-8 prose-h4:text-lg prose-a:font-medium prose-a:text-gray-950 prose-a:decoration-gray-400 prose-a:underline-offset-4 hover:prose-a:decoration-gray-600 prose-img:rounded-2xl"
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+              />
+            ) : portableBody ? (
+              <PortableText
+                value={portableBody}
+                components={{
+                  block: {
+                    normal: ({ children }) => (
+                      <p className="my-6 text-base/8 text-gray-700 first:mt-0 last:mb-0">
+                        {children}
+                      </p>
+                    ),
+                    h2: ({ children }) => (
+                      <h2 className="mt-12 mb-6 text-2xl/8 font-semibold tracking-tight text-gray-950 first:mt-0 last:mb-0">
+                        {children}
+                      </h2>
+                    ),
+                    h3: ({ children }) => (
+                      <h3 className="mt-10 mb-5 text-xl/8 font-semibold tracking-tight text-gray-950 first:mt-0 last:mb-0">
+                        {children}
+                      </h3>
+                    ),
+                    blockquote: ({ children }) => (
+                      <blockquote className="my-8 border-l-2 border-l-[#0066CC] pl-6 text-base/8 text-gray-700 first:mt-0 last:mb-0">
+                        {children}
+                      </blockquote>
+                    ),
+                  },
+                  types: {
+                    image: ({ value }) => (
+                      <img
+                        alt={value.alt || ''}
+                        src={image(value).width(2000).url()}
+                        className="my-8 w-full rounded-2xl"
+                      />
+                    ),
+                    separator: ({ value }) => {
+                      switch (value.style) {
+                        case 'line':
+                          return (
+                            <hr className="my-8 border-t border-gray-200" />
+                          )
+                        case 'space':
+                          return <div className="my-8" />
+                        default:
+                          return null
+                      }
+                    },
+                  },
+                  list: {
+                    bullet: ({ children }) => (
+                      <ul className="my-6 list-disc space-y-2 pl-6 text-base/8 text-gray-700 marker:text-gray-400">
+                        {children}
+                      </ul>
+                    ),
+                    number: ({ children }) => (
+                      <ol className="my-6 list-decimal space-y-2 pl-6 text-base/8 text-gray-700 marker:text-gray-400">
+                        {children}
+                      </ol>
+                    ),
+                  },
+                  listItem: {
+                    bullet: ({ children }) => (
+                      <li className="pl-1">{children}</li>
+                    ),
+                    number: ({ children }) => (
+                      <li className="pl-1">{children}</li>
+                    ),
+                  },
+                }}
+              />
+            ) : null}
+          </div>
+
+          {/* Bottom CTAs */}
+          <div className="mt-12 flex flex-wrap items-center gap-3 border-t border-gray-200 pt-8">
+            <Button variant="outline" href="/ja/blog">
+              <ChevronLeftIcon className="size-4" />
+              ブログ一覧へ
+            </Button>
+            <Button variant="outline" href="/ja/case-studies">
+              導入事例を見る
+            </Button>
+          </div>
+        </article>
       </Container>
       <Footer />
     </main>

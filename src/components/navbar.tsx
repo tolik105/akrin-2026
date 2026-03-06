@@ -81,8 +81,9 @@ function getSectionNavContext(pathname: string | null): SectionNavContext | null
     return { basePath: pathname, items: SERVICES_INDEX_NAV_ITEMS }
   }
 
+  // IT Asset Management uses its own ribbon SectionNav in the client component
   if (pathname === '/services/it-asset-management' || pathname === '/ja/services/it-asset-management') {
-    return { basePath: pathname, items: IT_ASSET_SECTION_NAV_ITEMS }
+    return null
   }
 
   // IT Managed Services uses its own ribbon SectionNav in the client component

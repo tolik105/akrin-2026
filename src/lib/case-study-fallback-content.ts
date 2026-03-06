@@ -70,7 +70,10 @@ function extractMarkdownBody(localeBlock: string | undefined) {
 }
 
 const getCaseStudyFallbackMap = cache(async () => {
-  const absolutePath = path.join(process.cwd(), 'AKRIN_SITE_CONTENT_EN_JA.md')
+  const absolutePath = path.join(
+    process.cwd(),
+    'docs/content/services/AKRIN_SITE_CONTENT_EN_JA.md',
+  )
   const raw = await readFile(absolutePath, 'utf8')
 
   const map = new Map<string, CaseStudyFallbackEntry>()
