@@ -11,11 +11,18 @@ import { getPost } from '@/sanity/queries'
 import { ChevronLeftIcon } from '@heroicons/react/16/solid'
 import dayjs from 'dayjs'
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
 import { PortableText } from 'next-sanity'
 import { notFound } from 'next/navigation'
 import { redirect } from 'next/navigation'
 
-const siteUrl = 'https://akrin.jp'
+async function getRequestSiteUrl() {
+  const headerStore = await headers()
+  const host = headerStore.get('x-forwarded-host') || headerStore.get('host')
+  const protocol = headerStore.get('x-forwarded-proto') || (host?.includes('localhost') ? 'http' : 'https')
+
+  return host ? `${protocol}://${host}` : 'https://akrin.jp'
+}
 
 export const dynamic = 'force-dynamic'
 
@@ -33,25 +40,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const englishFallbackPost = getFallbackPost(slug, 'en')
   if (!post && !fallbackPost) return {}
 
+  const siteUrl = await getRequestSiteUrl()
   const localMeta = (blogPostsJA as Record<string, { title?: string; excerpt?: string }>)[slug]
   const canonicalPath = `/ja/blog/${slug}`
   const imageUrl = '/og-image.png'
   const postTitle = localMeta?.title || post?.title || fallbackPost?.title || 'AKRINブログ'
   const postDescription = localMeta?.excerpt || post?.excerpt || fallbackPost?.excerpt || undefined
   const languages: NonNullable<Metadata['alternates']>['languages'] = {
-    ja: canonicalPath,
-    'x-default': englishPost || englishFallbackPost ? `/blog/${slug}` : canonicalPath,
+    ja: `${siteUrl}${canonicalPath}`,
+    'x-default': englishPost || englishFallbackPost ? `${siteUrl}/blog/${slug}` : `${siteUrl}${canonicalPath}`,
   }
 
   if (englishPost || englishFallbackPost) {
-    languages.en = `/blog/${slug}`
+    languages.en = `${siteUrl}/blog/${slug}`
   }
 
   return {
     title: postTitle,
     description: postDescription,
     alternates: {
-      canonical: canonicalPath,
+      canonical: `${siteUrl}${canonicalPath}`,
       languages,
     },
     openGraph: {
@@ -59,7 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: 'ja_JP',
       title: postTitle,
       description: postDescription,
-      url: canonicalPath,
+      url: `${siteUrl}${canonicalPath}`,
       images: [{ url: imageUrl }],
     },
     twitter: {
@@ -72,6 +80,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function JapaneseBlogPostPage({ params }: Props) {
+  const siteUrl = await getRequestSiteUrl()
   const slug = (await params).slug
   const { data: post } = await getPost(slug, 'ja')
   const fallbackPost = getFallbackPost(slug, 'ja')

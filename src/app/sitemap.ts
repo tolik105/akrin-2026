@@ -1,11 +1,19 @@
 import type { MetadataRoute } from 'next'
+import { headers } from 'next/headers'
 import { getFallbackPostSlugs } from '@/lib/blog-fallback'
 import { routeMap } from '@/lib/route-map'
 import { getPostsForFeed } from '@/sanity/queries'
 
-const baseUrl = 'https://akrin.jp'
+async function getRequestSiteUrl() {
+  const headerStore = await headers()
+  const host = headerStore.get('x-forwarded-host') || headerStore.get('host')
+  const protocol = headerStore.get('x-forwarded-proto') || (host?.includes('localhost') ? 'http' : 'https')
+
+  return host ? `${protocol}://${host}` : 'https://akrin.jp'
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = await getRequestSiteUrl()
   const lastModified = new Date()
   const routes = new Set<string>()
   for (const pair of routeMap.localized) {

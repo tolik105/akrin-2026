@@ -11,10 +11,17 @@ import { getPost } from '@/sanity/queries'
 import { ChevronLeftIcon } from '@heroicons/react/16/solid'
 import dayjs from 'dayjs'
 import type { Metadata } from 'next'
+import { headers } from 'next/headers'
 import { PortableText } from 'next-sanity'
 import { notFound } from 'next/navigation'
 
-const siteUrl = 'https://akrin.jp'
+async function getRequestSiteUrl() {
+  const headerStore = await headers()
+  const host = headerStore.get('x-forwarded-host') || headerStore.get('host')
+  const protocol = headerStore.get('x-forwarded-proto') || (host?.includes('localhost') ? 'http' : 'https')
+
+  return host ? `${protocol}://${host}` : 'https://akrin.jp'
+}
 
 export const dynamic = 'force-dynamic'
 
@@ -32,24 +39,25 @@ export async function generateMetadata({
   const japaneseFallbackPost = getFallbackPost(slug, 'ja')
   if (!post && !fallbackPost) return {}
 
+  const siteUrl = await getRequestSiteUrl()
   const canonicalPath = `/blog/${slug}`
   const imageUrl = '/og-image.png'
   const postTitle = post?.title || fallbackPost?.title || 'AKRIN Blog'
   const postDescription = post?.excerpt || fallbackPost?.excerpt || undefined
   const languages: NonNullable<Metadata['alternates']>['languages'] = {
-    en: canonicalPath,
-    'x-default': canonicalPath,
+    en: `${siteUrl}${canonicalPath}`,
+    'x-default': `${siteUrl}${canonicalPath}`,
   }
 
   if (japanesePost || japaneseFallbackPost) {
-    languages.ja = `/ja/blog/${slug}`
+    languages.ja = `${siteUrl}/ja/blog/${slug}`
   }
 
   return {
     title: postTitle,
     description: postDescription,
     alternates: {
-      canonical: canonicalPath,
+      canonical: `${siteUrl}${canonicalPath}`,
       languages,
     },
     openGraph: {
@@ -57,7 +65,7 @@ export async function generateMetadata({
       locale: 'en_US',
       title: postTitle,
       description: postDescription,
-      url: canonicalPath,
+      url: `${siteUrl}${canonicalPath}`,
       images: [{ url: imageUrl }],
     },
     twitter: {
@@ -74,6 +82,7 @@ export default async function BlogPost({
 }: {
   params: Promise<{ slug: string }>
 }) {
+  const siteUrl = await getRequestSiteUrl()
   const { slug } = await params
   let { data: post } = await getPost(slug)
   const fallbackPost = getFallbackPost(slug, 'en')
