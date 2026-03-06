@@ -429,6 +429,28 @@ export default function ITConsultingProjectManagementClient() {
             </RevealOnScroll>
           </section>
 
+          {/* ── Related Blog ── */}
+          <section className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="border-t border-[#E2E5EF] py-10">
+              <p className="text-[13px] font-medium uppercase tracking-widest text-[#6B6D7C]/60">Related Guide</p>
+              <h3 className="mt-2 text-[22px] font-light tracking-[-0.01em] text-[#0A0B19]">
+                Office Move IT Support Japan: How to Minimize Downtime
+              </h3>
+              <p className="mt-3 max-w-3xl text-[15px] leading-[1.6] text-[#6B6D7C]">
+                A practical guide to IT relocation planning in Japan — covering network migration, vendor coordination, and business continuity during office moves.
+              </p>
+              <Link
+                href="/blog/office-move-it-support-japan"
+                className="mt-4 inline-flex items-center gap-1 text-[14px] font-normal text-[#0066CC] transition-colors hover:text-[#0052A3]"
+              >
+                Read the full guide
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </Link>
+            </div>
+          </section>
+
           {/* ── CTA — Dark section compact ── */}
           <section id="cta">
             <RevealOnScroll>

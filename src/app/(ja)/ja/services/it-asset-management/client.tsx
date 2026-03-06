@@ -521,6 +521,28 @@ export function ItAssetManagementJaClient() {
             </RevealOnScroll>
           </section>
 
+          {/* ── Related Blog ── */}
+          <section className="mx-auto max-w-6xl">
+            <div className="border-t border-[#E2E5EF] py-10">
+              <p className="text-[13px] font-medium uppercase tracking-widest text-[#6B6D7C]/60">関連ガイド</p>
+              <h3 className="mt-2 text-[22px] font-light tracking-[-0.01em] text-[#0A0B19]">
+                東京のハードウェア資産管理：ライフサイクルのベストプラクティス
+              </h3>
+              <p className="mt-3 max-w-3xl text-[15px] leading-[1.6] text-[#6B6D7C]">
+                日本でのハードウェア資産のライフサイクル管理方法 — 調達、追跡、安全な廃棄、コンプライアンスまでを解説します。
+              </p>
+              <Link
+                href="/ja/blog/hardware-asset-management-tokyo"
+                className="mt-4 inline-flex items-center gap-1 text-[14px] font-normal text-[#0066CC] transition-colors hover:text-[#0052A3]"
+              >
+                ガイドを読む
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </Link>
+            </div>
+          </section>
+
           {/* ── CTA ── */}
           <section className="pb-20 sm:pb-24">
             <div className="mx-auto max-w-6xl">

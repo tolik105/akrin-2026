@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
   devIndicators: false,
   experimental: {
     devtoolSegmentExplorer: false,
@@ -34,6 +35,16 @@ const nextConfig = {
       {
         source: '/ja/blog/it-relocation-tokyo',
         destination: '/ja/blog/it-relocation-tokyo-checklist',
+        permanent: true,
+      },
+      {
+        source: '/services/wifi-assessment',
+        destination: '/services/japan-ekahau-wireless-surveys',
+        permanent: true,
+      },
+      {
+        source: '/ja/services/wifi-assessment',
+        destination: '/ja/services/japan-ekahau-wireless-surveys',
         permanent: true,
       },
     ]

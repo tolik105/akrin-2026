@@ -1005,6 +1005,7 @@ export const blogPostsEN = {
     id: 6,
     slug: "5g-impact-business-operations",
     title: "5G Impact on Business Operations | AKRIN IT",
+    metaTitle: "5G Impact on Business Operations in Japan",
     metaDescription: "Discover how 5G technology transforms business operations in Japan. Learn about ultra-low latency, IoT connectivity, private networks, and enterprise applications driving digital transformation.",
     excerpt: "The enterprise 5G market is projected to reach USD 600 billion in 2025, and Japan stands at the forefront of this technological revolution with massive IoT infrastructure investments.",
     image: "/blog-images/5g.avif",
@@ -1627,6 +1628,7 @@ export const blogPostsEN = {
     id: 21,
     slug: "it-infrastructure-management-japan",
     title: "IT Infrastructure Management in Japan: The Complete Guide for International Companies",
+    metaTitle: "IT Infrastructure Management Japan Guide",
     metaDescription: "Complete guide to IT infrastructure management in Japan. Learn how international companies navigate bilingual IT support, compliance frameworks, vendor management, and managed service providers in Tokyo.",
     excerpt: "International companies operating in Japan face unique IT infrastructure challenges — from bilingual support requirements and local compliance frameworks to vendor navigation and 24/7 monitoring needs. This guide covers everything you need to know.",
     image: "",
@@ -1729,6 +1731,62 @@ export const blogPostsEN = {
     ]
   },
   "wifi-site-survey-guide": wifiSiteSurveyGuideEN,
+  // Metadata-only entries — content comes from markdown archives via smart merge
+  "ekahau-wireless-survey-japan": {
+    slug: "ekahau-wireless-survey-japan",
+    metaTitle: "Ekahau Wireless Survey Japan | WiFi Assessment",
+    metaDescription: "Professional Ekahau wireless surveys in Japan. Expert WiFi site assessment, heatmap analysis, and network design for enterprise offices in Tokyo and across Japan.",
+  },
+  "future-of-it-infrastructure-japan": {
+    slug: "future-of-it-infrastructure-japan",
+    metaTitle: "Future of IT Infrastructure in Japan 2025",
+    metaDescription: "Explore the future of IT infrastructure in Japan. Cloud adoption, edge computing, 5G integration, and digital transformation trends for enterprise businesses.",
+  },
+  "wireless-site-survey-tokyo": {
+    slug: "wireless-site-survey-tokyo",
+    metaTitle: "Wireless Site Survey Tokyo | WiFi Assessment",
+    metaDescription: "Professional wireless site surveys in Tokyo. RF analysis, coverage mapping, and WiFi optimization for offices, warehouses, and enterprise environments.",
+  },
+  "it-relocation-tokyo-checklist": {
+    slug: "it-relocation-tokyo-checklist",
+    metaTitle: "IT Relocation Tokyo Checklist | Office Move",
+    metaDescription: "Complete IT relocation checklist for Tokyo office moves. Network migration, server relocation, workstation setup, and business continuity planning guide.",
+  },
+  "it-lifecycle-management-tokyo": {
+    slug: "it-lifecycle-management-tokyo",
+    metaTitle: "IT Lifecycle Management Tokyo | Asset Planning",
+    metaDescription: "IT lifecycle management services in Tokyo. Hardware procurement, deployment, maintenance, and end-of-life disposal for enterprise IT assets in Japan.",
+  },
+  "itad-japan-complete-guide": {
+    slug: "itad-japan-complete-guide",
+    metaTitle: "ITAD Japan Complete Guide | IT Asset Disposal",
+    metaDescription: "Complete guide to IT asset disposition in Japan. Secure data destruction, certified recycling, compliance requirements, and ITAD best practices.",
+  },
+  "foreign-company-it-japan": {
+    slug: "foreign-company-it-japan",
+    metaTitle: "Foreign Company IT in Japan | Setup Guide",
+    metaDescription: "Guide for foreign companies managing IT in Japan. Compliance, vendor management, bilingual support, and cultural considerations for international businesses.",
+  },
+  "hardware-asset-management-tokyo": {
+    slug: "hardware-asset-management-tokyo",
+    metaTitle: "Hardware Asset Management Tokyo | Tracking",
+    metaDescription: "Hardware asset management services in Tokyo. IT inventory tracking, lifecycle planning, procurement optimization, and compliance reporting for enterprises.",
+  },
+  "expat-it-support-tokyo": {
+    slug: "expat-it-support-tokyo",
+    metaTitle: "Expat IT Support Tokyo | English IT Help",
+    metaDescription: "English-language IT support for expats in Tokyo. Bilingual helpdesk, workstation setup, VPN configuration, and remote work solutions for international professionals.",
+  },
+  "data-destruction-certificate-japan": {
+    slug: "data-destruction-certificate-japan",
+    metaTitle: "Data Destruction Certificate Japan | Compliance",
+    metaDescription: "Data destruction certificates in Japan. NIST 800-88 compliant data wiping, certified evidence of destruction, and regulatory compliance for enterprise data security.",
+  },
+  "it-project-management-tokyo": {
+    slug: "it-project-management-tokyo",
+    metaTitle: "IT Project Management Tokyo | Planning Guide",
+    metaDescription: "IT project management services in Tokyo. Agile methodology, vendor coordination, bilingual PMO, and infrastructure deployment for enterprises in Japan.",
+  },
 }
 
 export const blogPostsJA = {
@@ -1859,6 +1917,8 @@ export const blogPostsJA = {
     id: 3,
     slug: "cloud-migration-success-stories",
     title: "クライアントのクラウド移行成功事例",
+    metaTitle: "クラウド移行成功事例 | 日本企業の実績紹介",
+    metaDescription: "日本企業のクラウド移行成功事例を紹介。コスト削減、業務効率化、デジタル変革の成果と、AKRINクライアントが実践した移行戦略を解説。",
     excerpt: "世界のクラウド市場は2024年に6,754億米ドルに達していますが、日本のクラウド導入率はIT支出のわずか4％にとどまり、北米の12％と比較して低い水準です。しかしながら、日本企業がクラウド技術の変革力を発見するにつれ、潮流は変わりつつあります。",
     image: "/blog-images/Cloud-Migration-Success.avif",
     content: `
@@ -2725,6 +2785,8 @@ export const blogPostsJA = {
     id: 6,
     slug: "5g-impact-business-operations",
     title: "5Gがビジネス運営に与える影響",
+    metaTitle: "5Gがビジネスに与える影響 | 日本の企業向けガイド",
+    metaDescription: "5G技術が日本のビジネス運営をどう変革するか解説。超低遅延、IoT接続、プライベートネットワーク、エンタープライズ向けアプリケーションによるデジタル変革の最前線。",
     image: "/blog-images/5g.avif",
     excerpt: "エンタープライズ5G市場は2025年に6,000億米ドルに達すると予測されており、日本はこの技術革命の最前線に立っています。",
     content: `
@@ -3766,6 +3828,8 @@ export const blogPostsJA = {
     id: 109,
     slug: "ekahau-wireless-survey-japan",
     title: "東京でのEkahau無線サーベイ：プロフェッショナルなWiFi評価と設計",
+    metaTitle: "Ekahau無線サーベイ東京 | WiFi評価と設計",
+    metaDescription: "東京オフィス向けのプロフェッショナルなEkahau無線サーベイ。予測型・実測型サーベイ、WiFiヒートマップ分析、チャネル計画、ネットワーク設計。",
     image: "/blog-images/posts/blog-5-1-ekahau-wireless-survey-japan.avif",
     excerpt: "東京オフィス向けのプロフェッショナルなEkahau無線サーベイについて解説。予測型と実測型サーベイ、WiFiヒートマップ、チャネル計画、プロフェッショナルな無線サーベイの活用時期を学びます。",
     content: `
@@ -3792,6 +3856,72 @@ export const blogPostsJA = {
     date: "2026-03-05",
     category: "無線ネットワークエンジニアリング",
     tags: ["無線ネットワーク", "WiFi", "Ekahau", "東京", "ネットワーク設計"],
+  },
+  // Metadata-only entries — prevents JA→EN redirects; content from markdown archives via smart merge
+  "future-of-it-infrastructure-japan": {
+    slug: "future-of-it-infrastructure-japan",
+    metaTitle: "日本のITインフラの未来 2025年版ガイド",
+    metaDescription: "日本のITインフラの未来を探る。クラウド導入、エッジコンピューティング、5G統合、企業向けデジタルトランスフォーメーションのトレンドを解説。",
+  },
+  "wifi-assessment-tokyo": {
+    slug: "wifi-assessment-tokyo",
+    metaTitle: "WiFiアセスメント東京 | 無線ネットワーク評価",
+    metaDescription: "東京でのプロフェッショナルなWiFiアセスメント。電波強度測定、カバレッジ分析、干渉調査、ネットワーク最適化。",
+  },
+  "enterprise-wifi-japan": {
+    slug: "enterprise-wifi-japan",
+    metaTitle: "エンタープライズWiFi日本 | 企業向け無線LAN",
+    metaDescription: "日本企業向けエンタープライズWiFiソリューション。大規模オフィス、複数拠点のWiFi設計と導入ガイド。",
+  },
+  "wireless-site-survey-tokyo": {
+    slug: "wireless-site-survey-tokyo",
+    metaTitle: "無線サイトサーベイ東京 | WiFi調査サービス",
+    metaDescription: "東京でのプロフェッショナルな無線サイトサーベイ。RF分析、カバレッジマッピング、オフィス・倉庫・企業環境向けWiFi最適化。",
+  },
+  "office-move-it-support-japan": {
+    slug: "office-move-it-support-japan",
+    metaTitle: "オフィス移転ITサポート日本 | 移転ガイド",
+    metaDescription: "日本でのオフィス移転ITサポート。ネットワーク移行、サーバー移設、ワークステーション設定、事業継続計画の完全ガイド。",
+  },
+  "it-lifecycle-management-tokyo": {
+    slug: "it-lifecycle-management-tokyo",
+    metaTitle: "ITライフサイクル管理東京 | 資産計画",
+    metaDescription: "東京でのITライフサイクル管理サービス。ハードウェア調達、導入、保守、廃棄処分まで企業IT資産の一括管理。",
+  },
+  "it-inventory-management-japan": {
+    slug: "it-inventory-management-japan",
+    metaTitle: "IT在庫管理日本 | 資産追跡システム",
+    metaDescription: "日本でのIT在庫管理サービス。IT資産の追跡、ライフサイクル計画、調達最適化、コンプライアンスレポートの企業向けソリューション。",
+  },
+  "nist-800-88-japan": {
+    slug: "nist-800-88-japan",
+    metaTitle: "NIST 800-88日本 | データ消去基準ガイド",
+    metaDescription: "日本におけるNIST 800-88データ消去基準ガイド。セキュアなデータ消去方法、コンプライアンス要件、認証プロセスを解説。",
+  },
+  "hardware-asset-management-tokyo": {
+    slug: "hardware-asset-management-tokyo",
+    metaTitle: "ハードウェア資産管理東京 | IT機器追跡",
+    metaDescription: "東京でのハードウェア資産管理サービス。IT機器の追跡、ライフサイクル計画、調達最適化、コンプライアンスレポート。",
+  },
+  "secure-data-wiping-japan": {
+    slug: "secure-data-wiping-japan",
+    metaTitle: "セキュアデータ消去日本 | データワイプ",
+    metaDescription: "日本でのセキュアデータ消去サービス。NIST 800-88準拠のデータワイプ、証明書発行、規制コンプライアンス対応。",
+  },
+  "24-7-it-support-tokyo": {
+    slug: "24-7-it-support-tokyo",
+    metaTitle: "24時間ITサポート東京 | 常時対応ヘルプデスク",
+    metaDescription: "東京での24時間365日ITサポート。バイリンガルヘルプデスク、リモート対応、オンサイトサポート、インシデント管理サービス。",
+  },
+  "data-destruction-certificate-japan": {
+    slug: "data-destruction-certificate-japan",
+    metaTitle: "データ消去証明書日本 | コンプライアンス",
+    metaDescription: "日本でのデータ消去証明書サービス。NIST 800-88準拠のデータ消去、破壊証明書発行、企業データセキュリティ規制対応。",
+  },
+  "expat-it-support-tokyo": {
+    slug: "expat-it-support-tokyo",
+    metaTitle: "外国人向けITサポート東京 | 英語対応IT",
+    metaDescription: "東京の外国人向け英語ITサポート。バイリンガルヘルプデスク、ワークステーション設定、VPN構成、リモートワークソリューション。",
   },
 }
 

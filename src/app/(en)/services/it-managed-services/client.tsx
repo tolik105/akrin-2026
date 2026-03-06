@@ -568,6 +568,29 @@ export default function ITManagedServicesClient() {
         </div>
       </section>
 
+      <section className="bg-white pb-4 pt-4">
+        <div className="mx-auto max-w-[1200px] px-6 lg:px-9">
+          <div className="border-t border-[#E4E4EB] px-0 py-10">
+            <p className="text-[13px] font-medium uppercase tracking-widest text-[#4E4F5F]/50">Related Guide</p>
+            <h3 className="mt-2 text-[24px] font-light tracking-[-0.01em] text-[#0A0B10]">
+              Expat IT Support Tokyo: Essential Services for International Employees
+            </h3>
+            <p className="mt-3 max-w-3xl text-[16px] leading-[1.6] text-[#4E4F5F]">
+              Discover how international companies provide bilingual IT support for expat employees in Tokyo — from onboarding and device setup to ongoing helpdesk services.
+            </p>
+            <Link
+              href="/blog/expat-it-support-tokyo"
+              className="mt-4 inline-flex items-center gap-1 text-[14px] font-normal text-[#006DC7] transition-colors hover:text-[#0052A3]"
+            >
+              Read the full guide
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section id="cta" className="bg-white pb-16 pt-4">
         <div className="mx-auto max-w-[1200px] px-6 lg:px-9">
           <div className="border-t border-[#E4E4EB] py-12 text-center">

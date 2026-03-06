@@ -116,8 +116,8 @@ You can manage cookies through your browser settings. Below are links to cookie 
 
 - **Google Chrome:** https://support.google.com/chrome/answer/95647
 - **Mozilla Firefox:** https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer
-- **Apple Safari:** https://support.apple.com/guide/safari/manage-cookies-sfri11471
-- **Microsoft Edge:** https://support.microsoft.com/en-us/microsoft-edge/manage-cookies-in-microsoft-edge-0f14e734-2fc0-402e-8e1a-06c04b011c60
+- **Apple Safari:** https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac
+- **Microsoft Edge:** https://support.microsoft.com/en-us/windows/manage-cookies-in-microsoft-edge-view-allow-block-delete-and-use-168dab11-0753-043d-7c16-ede5947fc64d
 - **Safari on iOS:** https://support.apple.com/en-us/105082
 - **Chrome on Android:** https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DAndroid
 

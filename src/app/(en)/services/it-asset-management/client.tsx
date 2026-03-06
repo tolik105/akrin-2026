@@ -524,6 +524,28 @@ export function ItAssetManagementClient() {
             </RevealOnScroll>
           </section>
 
+          {/* ── Related Blog ── */}
+          <section className="mx-auto max-w-6xl">
+            <div className="border-t border-[#E2E5EF] py-10">
+              <p className="text-[13px] font-medium uppercase tracking-widest text-[#6B6D7C]/60">Related Guide</p>
+              <h3 className="mt-2 text-[22px] font-light tracking-[-0.01em] text-[#0A0B19]">
+                Hardware Asset Management in Tokyo: Lifecycle Best Practices
+              </h3>
+              <p className="mt-3 max-w-3xl text-[15px] leading-[1.6] text-[#6B6D7C]">
+                Learn how to manage hardware assets throughout their lifecycle in Japan — from procurement and tracking to secure disposal and compliance.
+              </p>
+              <Link
+                href="/blog/hardware-asset-management-tokyo"
+                className="mt-4 inline-flex items-center gap-1 text-[14px] font-normal text-[#0066CC] transition-colors hover:text-[#0052A3]"
+              >
+                Read the full guide
+                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </Link>
+            </div>
+          </section>
+
           {/* ── CTA ── */}
           <section className="pb-20 sm:pb-24">
             <div className="mx-auto max-w-6xl">

@@ -9,7 +9,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'AKRINブログ・インサイト',
-  description: 'AKRINのIT運用、セキュリティ、クラウドに関する知見を掲載。',
+  description: '日本のIT運用、サイバーセキュリティ、クラウドインフラ、マネージドITサービスに関するAKRINの最新記事と専門知識をご紹介。',
   alternates: {
     canonical: '/ja/blog',
     languages: {

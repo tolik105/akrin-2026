@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const postDescription = normalizeMetaText(
     localMeta?.metaDescription || localMeta?.excerpt || post?.excerpt || fallbackPost?.metaDescription || fallbackPost?.excerpt,
     150,
-    'AKRINのIT運用、セキュリティ、クラウドに関する知見を掲載。',
+    'AKRINの技術ブログ。日本企業向けIT運用、インフラ管理、セキュリティ対策の実践的な情報を発信。',
   )
   const languages: NonNullable<Metadata['alternates']>['languages'] = {
     ja: `${siteUrl}${canonicalPath}`,

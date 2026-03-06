@@ -602,7 +602,14 @@ function getRawMap(locale: BlogLocale) {
   }
 
   for (const [slug, post] of Object.entries(codeMap)) {
-    merged[slug] = post as LegacyBlogPost
+    // Smart merge: code-defined metadata supplements parsed content rather than
+    // replacing it entirely. This lets us add metaTitle/metaDescription in code
+    // while preserving full content from the markdown archives.
+    if (merged[slug]) {
+      merged[slug] = { ...merged[slug], ...post } as LegacyBlogPost
+    } else {
+      merged[slug] = post as LegacyBlogPost
+    }
   }
 
   return merged
