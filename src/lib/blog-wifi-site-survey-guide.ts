@@ -1,10 +1,8 @@
 export const wifiSiteSurveyGuideEN = {
   id: 22,
   slug: 'wifi-site-survey-guide',
-  title:
-    'The Complete Guide to WiFi Site Surveys: How to Plan, Conduct, and Optimize Wireless Network Performance',
-  metaTitle:
-    'WiFi Site Survey Guide: Plan, Conduct & Optimize Wireless Networks | AKRIN',
+  title: 'Complete Guide to WiFi Site Surveys',
+  metaTitle: 'WiFi Site Survey Guide: Planning and Optimization | AKRIN',
   metaDescription:
     'Complete guide to wifi site surveys — predictive, active, passive surveys and RF spectrum analysis. Learn best practices for wireless site survey planning, tools like Ekahau and NetAlly, and structured cabling considerations.',
   excerpt:
@@ -16,7 +14,7 @@ export const wifiSiteSurveyGuideEN = {
     'ekahau site survey',
     'wifi spectrum analysis',
   ],
-  content: `<h1>The Complete Guide to WiFi Site Surveys: How to Plan, Conduct, and Optimize Wireless Network Performance</h1>
+  content: `<h1>Complete Guide to WiFi Site Surveys</h1>
 
 <p>A wifi site survey is the foundation of every reliable wireless network deployment. Whether designing a new wireless network or troubleshooting performance issues, a thorough wireless site survey provides the data needed for informed decisions about access point placement, channel configuration, and capacity planning.</p>
 

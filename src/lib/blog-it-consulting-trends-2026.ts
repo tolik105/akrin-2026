@@ -2,8 +2,7 @@ export const itConsultingTrends2026EN = {
   id: 8,
   slug: 'it-consulting-trends-2026',
   title: "IT Consulting Trends 2026: What's Actually Changing (And What Matters)",
-  metaTitle:
-    "IT Consulting Trends 2026: What's Actually Changing (And What Matters) | AKRIN",
+  metaTitle: 'IT Consulting Trends 2026: What Matters Most | AKRIN',
   metaDescription:
     'Seven IT consulting trends reshaping 2026—agentic AI, AI-native architectures, edge + multi-agent systems, specialization, and an action plan for firms and buyers.',
   excerpt:

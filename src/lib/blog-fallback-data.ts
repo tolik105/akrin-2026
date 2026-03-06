@@ -350,12 +350,12 @@ export const blogPostsEN = {
   "ai-transforming-it-support": {
     id: 4,
     slug: "ai-transforming-it-support",
-    title: "Information Technology Service Artificial Intelligence: How AI is Transforming IT Support Services in Japan 2025",
+    title: "How AI Is Transforming IT Support in Japan (2025)",
     metaDescription: "Discover how artificial intelligence is transforming information technology services in Japan. Learn about AI-powered IT support, machine learning, NLP, AIOps, predictive analytics, and real-world implementations from AKRIN's AI specialists.",
     image: "/blog-images/ai-transform.avif",
     excerpt: "Japan is positioning itself as an AI powerhouse, with over 20,000 Pepper robots deployed globally and major corporations like JAL implementing company-wide AI platforms. Discover how artificial intelligence is fundamentally transforming information technology services through predictive analytics, machine learning, NLP, and intelligent automation.",
     content: `
-      <h1>Information Technology Service Artificial Intelligence: How AI is Transforming IT Support Services in Japan 2025</h1>
+      <h1>How AI Is Transforming IT Support in Japan (2025)</h1>
 
       <h2>How AI is Transforming IT Support Services in Japan 2025</h2>
       <p>Japan is positioning itself as an AI powerhouse, with over 20,000 Pepper robots deployed globally and major corporations like JAL implementing company-wide AI platforms for tens of thousands of employees. Artificial intelligence is rapidly transforming information technology services in Japan, automating processes, enhancing cybersecurity, and reshaping IT operations across industries. The transformation of IT support through artificial intelligence is not just a trend—it's a fundamental shift in how we deliver and experience technology services in 2025 and beyond.</p>

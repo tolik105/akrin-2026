@@ -538,6 +538,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
         />
+        <h1 className="sr-only">{copy.heroTitle}</h1>
         {/* ── Mobile / Tablet hero (WWT style: image top, gradient blend, text below) ── */}
         <section id="hero" className="relative overflow-hidden bg-[#02304F] lg:hidden">
           {/* Full-bleed background image */}
@@ -564,7 +565,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             <SectionLabel label={locale === 'ja' ? 'マネージドITサービスプロバイダー' : 'Managed IT Service Provider in Japan'} tone="light" />
             <TextReveal
               text={copy.heroTitle}
-              as="h1"
+              as="p"
               className="font-serif text-[24px] font-light leading-[1.12] tracking-[-0.02em] text-white sm:text-[30px]"
               staggerMs={50}
             />
@@ -615,7 +616,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                 <SectionLabel label={locale === 'ja' ? 'マネージドITサービスプロバイダー' : 'Managed IT Service Provider in Japan'} tone="light" />
                 <TextReveal
                   text={copy.heroTitle}
-                  as="h1"
+                  as="p"
                   className="font-serif text-[36px] font-light leading-[1.15] tracking-[-0.02em] text-white xl:text-[40px]"
                   staggerMs={50}
                 />
