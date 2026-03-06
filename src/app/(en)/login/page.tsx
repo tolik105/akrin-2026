@@ -30,6 +30,7 @@ export default function Login() {
             <div className="flex items-start">
               <Link href="/" title="Home">
                 <Mark className="h-9 fill-black" />
+                <span className="sr-only">Home</span>
               </Link>
             </div>
             <h1 className="mt-8 text-base/6 font-medium">Welcome back!</h1>

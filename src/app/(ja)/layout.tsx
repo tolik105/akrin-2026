@@ -7,7 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import '@/styles/tailwind.css'
 import type { Metadata, Viewport } from 'next'
 
-const siteUrl = 'https://www.akrin.ai'
+const siteUrl = 'https://akrin.ai'
 
 export const viewport: Viewport = {
   width: 'device-width',

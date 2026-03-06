@@ -717,7 +717,7 @@ function toFallbackPost(raw: LegacyBlogPost, locale: BlogLocale): FallbackBlogPo
 export function getFallbackPosts(locale: BlogLocale): FallbackBlogPost[] {
   const posts = Object.values(getRawMap(locale))
     .map((raw) => toFallbackPost(raw, locale))
-    .filter((post) => post.slug.length > 0)
+    .filter((post) => post.slug.length > 0 && post.htmlContent.length > 0)
 
   posts.sort((a, b) => {
     return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()

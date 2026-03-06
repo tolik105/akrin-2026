@@ -30,6 +30,7 @@ export default function JapaneseLoginPage() {
             <div className="flex items-start">
               <Link href="/ja" title="ホーム">
                 <Mark className="h-9 fill-black" />
+                <span className="sr-only">ホーム</span>
               </Link>
             </div>
             <h1 className="mt-8 text-base/6 font-medium">おかえりなさい</h1>

@@ -20295,7 +20295,7 @@ Sequenced by region over one quarter with pilot → rollout waves; change freeze
 
 ## Technology
 ## Next steps
-Scale standard to acquired offices and refresh survey cadence. Related services: [Wi‑Fi Assessment & Optimization](/services/wifi-assessment), [Cloud Infrastructure](/services/cloud-infrastructure).
+Scale standard to acquired offices and refresh survey cadence. Related services: [Wi‑Fi Assessment & Optimization](/services/japan-ekahau-wireless-surveys), [Cloud Infrastructure](/services/cloud-infrastructure).
 
 Ekahau, enterprise WLAN controller, Fluke DSX
 ```
@@ -20342,7 +20342,7 @@ Ekahau, enterprise WLAN controller, Fluke DSX
 - 週次のプログラム定例、例外はタイガーチームが是正
 
 ## 次のステップ
-買収拠点への標準展開とサーベイ頻度のリフレッシュ。関連サービス：[Wi‑Fi アセスメント＆最適化](/ja/services/wifi-assessment)、[クラウドインフラ](/ja/services/cloud-infrastructure)。
+買収拠点への標準展開とサーベイ頻度のリフレッシュ。関連サービス：[Wi‑Fi アセスメント＆最適化](/ja/services/japan-ekahau-wireless-surveys)、[クラウドインフラ](/ja/services/cloud-infrastructure)。
 
 > クライアント：日本に 30拠点を持つグローバル企業
 
