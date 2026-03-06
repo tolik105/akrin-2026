@@ -3,30 +3,30 @@ import { Link } from '@/components/link'
 
 const timeline = [
   {
-    name: 'ビジネスパートナーシップ',
+    name: '対応するのは営業ではなく、エンジニアです',
     description:
-      'アカウントマネージャーの伝言ゲームなし。シニアエンジニアに直接アクセスでき、ビジネスと技術の両面を深く理解します。',
+      'お電話に出るのは、問題を解決するエンジニア本人です。チケットのたらい回しや伝言リレーはありません。シニアエンジニアがお客様の環境を一貫して担当します。',
     date: '柱 01',
     dateTime: '2025-01',
   },
   {
-    name: '継続的な信頼性',
+    name: '問題は、お客様が気づく前に解決します',
     description:
-      '24時間365日の監視、2時間以内のSLA対応、99.9%の稼働率保証。止まらないインフラで、止まらないビジネスを。',
+      '24時間365日の監視と自動復旧により、ほとんどのインシデントはお客様に届く前に対処されます。万が一の場合も、2時間以内に対応 — 2営業日後ではありません。',
     date: '柱 02',
     dateTime: '2025-02',
   },
   {
-    name: '体系的な成長',
+    name: 'お客様の成長に、インフラが追いつきます',
     description:
-      'ビジネスの成長に合わせて拡張できるソリューション。スタートアップからエンタープライズまで、成功を支えるインフラ基盤を提供します。',
+      '現在だけでなく、将来を見据えた設計を行います。30名の東京オフィスでも、2,000席のAPAC展開でも、入れ替え不要でスケールする仕組みを構築します。',
     date: '柱 03',
     dateTime: '2025-03',
   },
   {
-    name: 'オートメーションファースト',
+    name: '人を増やすのではなく、自動化する',
     description:
-      '標準化された運用と自動復旧により、品質とコンプライアンスを維持しながら復旧時間を短縮します。',
+      '他社が手作業で行うことを、私たちはスクリプトで解決します。IaC、自動プロビジョニング、標準化された復旧手順 — より速く、ミスなく、低コストに。',
     date: '柱 04',
     dateTime: '2025-04',
   },
@@ -36,64 +36,72 @@ const serviceItems = [
   {
     id: 1,
     title: 'マネージドIT・クラウド',
-    href: '/ja/services/cloud-infrastructure',
+    href: '/ja/services/it-managed-services',
     description:
-      'Microsoft 365、Azure、AWS、ハイブリッド環境における設計・移行・24時間運用までを一気通貫で提供。',
+      'Microsoft 365、Azure、AWSのフルスタック管理。移行、日常運用、ユーザーサポート、セキュリティ強化まで — お客様はビジネスに集中し、インフラは私たちにお任せください。',
     detail: '日本・APACをカバー',
   },
   {
     id: 2,
-    title: 'ネットワークエンジニアリング',
+    title: 'Wi-Fiサーベイ＆ワイヤレス設計',
     href: '/ja/services/japan-ekahau-wireless-surveys',
     description:
-      '有線／無線ネットワークの設計・構築・最適化。拠点間WANからオフィス内Wi-Fiサイトサーベイまで対応。',
-    detail: 'オフィス・データセンター・拠点展開',
+      'Ekahau予測サイトサーベイ、ヒートマップ、スペクトラム解析、無線ネットワーク設計。アクセスポイントを設置する前に、Wi-Fiが確実に機能することを保証します。',
+    detail: 'Ekahau認定エンジニア',
   },
   {
     id: 3,
-    title: 'プロジェクトマネジメント・デリバリー',
-    href: '/ja/services/it-consulting-project-management',
+    title: 'ネットワークエンジニアリング',
+    href: '/ja/services/japan-ekahau-wireless-surveys',
     description:
-      'PMPに基づくフレームワークで、複雑なロールアウトを納期・予算・ドキュメントの面で確実に遂行。',
-    detail: '可視化された進行管理と報告',
+      '有線・無線インフラ — 構造化配線、スイッチ、ファイアウォール、マルチサイトWAN展開。東京の1フロアから全国の拠点ロールアウトまで対応。',
+    detail: 'オフィス・データセンター・拠点ネットワーク',
   },
   {
     id: 4,
-    title: 'カスタムAIソリューション',
+    title: 'オフィス移転・ITリロケーション',
     href: '/ja/services/it-consulting-project-management',
     description:
-      '業務ドメインに特化したチャットボット、ワークフロー自動化、データコパイロットを、貴社のスタックに合わせて構築。',
-    detail: '自社プラットフォームの知見を還元',
+      'オフィス移転のエンドツーエンドIT計画。ネットワーク設計、配線、ハードウェア設置、クラウド準備、初日からの接続性確保 — チームが出社した瞬間からすべてが稼働します。',
+    detail: 'ゼロダウンタイム移行',
   },
   {
     id: 5,
+    title: 'プロジェクトマネジメント・デリバリー',
+    href: '/ja/services/it-consulting-project-management',
+    description:
+      'PMP認定のプロジェクトリードが複雑なITロールアウトをエンドツーエンドで管理。クラウド移行、セキュリティ刷新、インフラアップグレード — 納期厳守、全工程ドキュメント化。',
+    detail: '構造化された実行と完全なドキュメント',
+  },
+  {
+    id: 6,
     title: 'サイバーセキュリティ・コンプライアンス',
     href: '/ja/services/cybersecurity',
     description:
-      'ハードニング、リアルタイム監視、インシデント対応、ISO 27001等のフレームワーク取得に向けた実践的支援。',
-    detail: '運用セキュリティと監査対応',
+      'ペネトレーションテスト、脆弱性診断、24時間365日監視、ISO 27001・APPI・SOC 2のコンプライアンスガイダンス。チェックリストではなく、実践的なセキュリティを。',
+    detail: 'セキュリティ運用とコンプライアンス対応',
   },
 ]
 
 const coreValues = [
   {
     value: '99.9%',
-    title: '稼働率保証',
-    description: '業務を止めないためのインフラ信頼性。',
+    title: '稼働率',
+    description: '約束ではなく、実測値。全マネージド環境での実績。',
     className: 'bg-[#FAFAFC] text-gray-900',
     bodyClassName: 'text-gray-600',
   },
   {
     value: '< 2h',
-    title: 'SLA初動対応',
-    description: '営業日2時間以内の責任あるサポート。',
+    title: '応答時間',
+    description: '営業時間内の重大障害に対して。全契約に明記。',
     className: 'bg-[#F7F7FC] text-[#0A0B19]',
     bodyClassName: 'text-[#0A0B19]/60',
   },
   {
     value: '40%',
     title: 'MTTR短縮',
-    description: '自動化により復旧時間を大幅に短縮。',
+    description: '業界平均比。自動化ファーストの復旧アプローチによる実績。',
     className: 'bg-[#F7F7FC] text-[#0A0B19]',
     bodyClassName: 'text-[#0A0B19]/60',
   },
@@ -114,9 +122,14 @@ export default function AboutClient() {
             </h1>
             <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
               <p className="text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-                AKRINは2025年、経験豊富なインフラエンジニアにより東京で設立。15年以上の大規模IT運用の知見を、無駄のないオートメーションファーストの考え方と融合させています。
+                東京を拠点とするインフラエンジニアリング企業です。日本で15年以上にわたり、ダウンタイムが許されない企業のエンタープライズIT環境を構築・運用してきました。
               </p>
-              <p className="mt-4 text-base/7 text-gray-600">エンタープライズ級の信頼性、スタートアップの俊敏性。</p>
+              <p className="mt-4 text-base/7 text-gray-600">
+                AKRINを立ち上げた理由 — 日本のIT市場は二極化しています。グローバルMSPはエンタープライズ料金を請求しながらオフショアヘルプデスクに丸投げ。ローカルベンダーは市場を知っていても、複雑なマルチサイトインフラに対応できない。私たちは、その両方を提供します。
+              </p>
+              <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-[#0066CC]">
+                エンジニア主導のIT運用 — 日本全国対応
+              </p>
               <div className="mt-8">
                 <Link
                   href="/ja/contact"
@@ -182,12 +195,12 @@ export default function AboutClient() {
         <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-12 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
             <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
-              <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">私たちについて</h2>
+              <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">お客様がAKRINを選ぶ理由</h2>
               <p className="mt-6 text-xl/8 text-gray-700">
-                私たちの使命は明確です。日本の成長企業に、フォーチュン500が享受する稼働率・セキュリティ・イノベーションを、適正なコストで提供すること。
+                日本のIT企業の多くは、契約を結んだらヘルプデスクに引き継ぎます。私たちのやり方は違います。AKRINの全案件は、Microsoft 365、Azure、AWS、Ciscoネットワーキング、エンドポイントセキュリティ、日本国内のオフィス展開に精通したシニアエンジニアが主導します。
               </p>
               <p className="mt-6 text-base/7 text-gray-600">
-                エンジニア主導のサービス、オートメーションファースト、ジャパン・グローバルブリッジ。日本現場の実行力とグローバル基準を両立します。
+                日本語でのベンダー交渉、APPIや古物商許可などの国内コンプライアンス対応、そしてお客様がロンドン、ニューヨーク、シンガポールのオフィスで使用するのと同じSLAフレームワークでの納品。両方を理解する一つのチームとして対応します。
               </p>
             </div>
             <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
@@ -237,10 +250,10 @@ export default function AboutClient() {
       <section id="values" className="mx-auto mt-24 max-w-7xl px-6 sm:mt-28 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
-            私たちは、仕組みをより良くするために働きます
+            私たちが守る基準
           </h2>
           <p className="mt-6 text-base/7 text-gray-600">
-            明瞭さ、スピード、責任、パートナーシップ。AKRINはこの価値観を運用と提案の中心に据えています。
+            これらは目標ではありません。お客様が毎月私たちを評価する実績数値です。
           </p>
         </div>
         <div className="mx-auto mt-16 flex max-w-2xl flex-col gap-8 lg:mx-0 lg:mt-20 lg:max-w-none lg:flex-row lg:items-end">
@@ -264,7 +277,7 @@ export default function AboutClient() {
           <div className="w-full lg:max-w-lg lg:flex-auto">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">提供サービス</h2>
             <p className="mt-6 text-xl/8 text-gray-600">
-              日本・APAC向けに、セキュリティ、可用性、拡張性を重視したエンドツーエンドのITサービスを提供します。
+              日本・APACで事業を展開する企業向けに構築された、インフラ、ネットワーキング、セキュリティサービス。
             </p>
             <Image
               alt="AKRIN 対応エリア"

@@ -3,30 +3,30 @@ import { Link } from '@/components/link'
 
 const timeline = [
   {
-    name: 'Business partnership',
+    name: 'You talk to engineers, not account managers',
     description:
-      'Direct access to senior engineers; no account-manager relay. We understand your business needs and technical challenges equally.',
+      'The person who picks up your call is the person who fixes the problem. No ticket queues, no relay chains. Senior engineers own your account end-to-end.',
     date: 'Pillar 01',
     dateTime: '2025-01',
   },
   {
-    name: 'Continuous reliability',
+    name: 'We catch problems before you notice them',
     description:
-      '24/7 monitoring, < 2h response SLA, and 99.9% uptime guarantee. Your infrastructure stays running so your business never stops.',
+      '24/7 monitoring with automated remediation means most incidents are resolved before they reach your inbox. When they do, we respond within 2 hours — not 2 business days.',
     date: 'Pillar 02',
     dateTime: '2025-02',
   },
   {
-    name: 'Systematic growth',
+    name: 'Your infrastructure won\u2019t outgrow us',
     description:
-      'Scalable solutions that grow with your business. From startup to enterprise, we provide the infrastructure foundation for success.',
+      'We architect for where you\u2019re going, not just where you are. Whether you\u2019re a 30-person Tokyo office or a 2,000-seat APAC operation, the systems we build scale without rip-and-replace.',
     date: 'Pillar 03',
     dateTime: '2025-03',
   },
   {
-    name: 'Automation first',
+    name: 'Automation over headcount',
     description:
-      'Scripted remediation and standardized operations reduce mean-time-to-restore while maintaining quality and compliance.',
+      'We script what others do manually. Infrastructure-as-code, automated provisioning, standardized remediation — faster resolution, fewer human errors, lower cost for you.',
     date: 'Pillar 04',
     dateTime: '2025-04',
   },
@@ -36,41 +36,49 @@ const serviceItems = [
   {
     id: 1,
     title: 'Managed IT & Cloud',
-    href: '/services/cloud-infrastructure',
+    href: '/services/it-managed-services',
     description:
-      'End-to-end design, migration, and 24/7 operations for Microsoft 365, Azure, AWS, and hybrid environments.',
-    detail: 'Japan and APAC support',
+      'Full-stack management of Microsoft 365, Azure, and AWS. Migrations, daily operations, user support, and security hardening — your team focuses on business, we handle the infrastructure.',
+    detail: 'Japan and APAC coverage',
   },
   {
     id: 2,
-    title: 'Network Engineering',
+    title: 'Wi-Fi Surveys & Wireless Design',
     href: '/services/japan-ekahau-wireless-surveys',
     description:
-      'Planning, installation, and optimisation of wired / wireless networks-from multi-site WANs to in-office Wi-Fi surveys.',
-    detail: 'Office, data center, and branch rollouts',
+      'Ekahau predictive site surveys, heat mapping, spectrum analysis, and wireless network design. We make sure your Wi-Fi works before a single access point goes on the wall.',
+    detail: 'Ekahau certified engineers',
   },
   {
     id: 3,
-    title: 'Project Management & Delivery',
-    href: '/services/it-consulting-project-management',
+    title: 'Network Engineering',
+    href: '/services/japan-ekahau-wireless-surveys',
     description:
-      'PMP-driven frameworks that keep complex roll-outs on time, on budget, and fully documented.',
-    detail: 'Structured execution with transparent reporting',
+      'Wired and wireless infrastructure — structured cabling, switches, firewalls, and multi-site WAN deployments. From a single Tokyo floor to a nationwide branch rollout.',
+    detail: 'Office, data center, and branch networks',
   },
   {
     id: 4,
-    title: 'Custom AI Solutions',
+    title: 'Office Moves & IT Relocation',
     href: '/services/it-consulting-project-management',
     description:
-      'We build domain-specific chatbots, workflow automations, and data copilots tailored to your stack.',
-    detail: 'Private beta lessons applied to client delivery',
+      'End-to-end IT planning for office relocations. Network design, cabling, hardware setup, cloud readiness, and day-one connectivity — so your team walks in and everything works.',
+    detail: 'Zero-downtime transitions',
   },
   {
     id: 5,
+    title: 'Project Management & Delivery',
+    href: '/services/it-consulting-project-management',
+    description:
+      'PMP-certified project leads managing complex IT rollouts end-to-end. Cloud migrations, security overhauls, infrastructure upgrades — on time, documented, no surprises.',
+    detail: 'Structured execution with full documentation',
+  },
+  {
+    id: 6,
     title: 'Cybersecurity & Compliance',
     href: '/services/cybersecurity',
     description:
-      'Hardening, real-time monitoring, incident response, and hands-on guidance toward frameworks such as ISO 27001.',
+      'Penetration testing, vulnerability assessments, 24/7 monitoring, and compliance guidance for ISO 27001, APPI, SOC 2. Practical security, not checkbox exercises.',
     detail: 'Security operations and compliance readiness',
   },
 ]
@@ -78,22 +86,22 @@ const serviceItems = [
 const coreValues = [
   {
     value: '99.9%',
-    title: 'Uptime guarantee',
-    description: 'Infrastructure reliability that keeps operations running.',
+    title: 'Uptime',
+    description: 'Measured, not promised. Across all managed client environments.',
     className: 'bg-[#FAFAFC] text-gray-900',
     bodyClassName: 'text-gray-600',
   },
   {
     value: '< 2h',
-    title: 'Response SLA',
-    description: 'Accountable support response during business hours.',
+    title: 'Response time',
+    description: 'For critical issues during business hours. Documented in every contract.',
     className: 'bg-[#F7F7FC] text-[#0A0B19]',
     bodyClassName: 'text-[#0A0B19]/60',
   },
   {
     value: '40%',
     title: 'Faster MTTR',
-    description: 'Automation-first remediation shortens restoration time.',
+    description: 'Compared to industry average, driven by automation-first remediation.',
     className: 'bg-[#F7F7FC] text-[#0A0B19]',
     bodyClassName: 'text-[#0A0B19]/60',
   },
@@ -114,11 +122,17 @@ export default function AboutClient() {
             </h1>
             <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
               <p className="text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-                Founded in Tokyo in 2025 by veteran infrastructure engineers, AKRIN blends 15 years of large-scale IT
-                experience with a lean, automation-first mindset.
+                We&apos;re an infrastructure engineering firm based in Tokyo. Our team has spent 15+ years building and
+                operating enterprise IT environments across Japan — for companies that can&apos;t afford downtime and
+                don&apos;t tolerate excuses.
               </p>
               <p className="mt-4 text-base/7 text-gray-600">
-                Enterprise Reliability, Startup Agility.
+                We started AKRIN because the market here is broken: global MSPs charge enterprise rates but route
+                everything through offshore help desks. Local vendors know the market but can&apos;t handle complex,
+                multi-site infrastructure. We do both.
+              </p>
+              <p className="mt-4 text-sm font-semibold uppercase tracking-wider text-[#0066CC]">
+                Engineer-Led IT Operations for Japan
               </p>
               <div className="mt-8">
                 <Link
@@ -186,14 +200,16 @@ export default function AboutClient() {
         <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-12 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
             <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
-              <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Who We Are</h2>
+              <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Why Clients Choose Us</h2>
               <p className="mt-6 text-xl/8 text-gray-700">
-                Our mission is simple: give high-growth companies in Japan the uptime, security, and innovation the
-                Fortune 500 enjoy-without the enterprise price tag.
+                Most IT providers in Japan sell you a contract and hand you off to a help desk. We don&apos;t work that
+                way. Every AKRIN engagement is led by senior engineers with direct experience in Microsoft 365, Azure,
+                AWS, Cisco networking, endpoint security, and physical office deployments across Japan.
               </p>
               <p className="mt-6 text-base/7 text-gray-600">
-                Engineer-Led Service, Automation First, Japan-Global Bridge. We combine local execution with global
-                standards to keep your business resilient and scalable.
+                We handle vendor negotiations in Japanese, navigate local compliance requirements like APPI and
+                Kobutsusho licensing, and deliver to the same SLA frameworks our clients use in their London, New York,
+                or Singapore offices. You get one team that understands both sides.
               </p>
             </div>
             <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
@@ -243,10 +259,10 @@ export default function AboutClient() {
       <section id="values" className="mx-auto mt-24 max-w-7xl px-6 sm:mt-28 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
-            We approach work as a place to make systems better
+            What we hold ourselves to
           </h2>
           <p className="mt-6 text-base/7 text-gray-600">
-            Clarity, velocity, accountability, and partnership are the operating values behind every AKRIN engagement.
+            These aren&apos;t aspirations. They&apos;re the numbers our clients measure us against every month.
           </p>
         </div>
         <div className="mx-auto mt-16 flex max-w-2xl flex-col gap-8 lg:mx-0 lg:mt-20 lg:max-w-none lg:flex-row lg:items-end">
@@ -270,7 +286,7 @@ export default function AboutClient() {
           <div className="w-full lg:max-w-lg lg:flex-auto">
             <h2 className="text-3xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-4xl">What We Do</h2>
             <p className="mt-6 text-xl/8 text-gray-600">
-              End-to-end IT services designed for security, resilience, and scalable growth in Japan and APAC.
+              Infrastructure, networking, and security services built for companies operating in Japan and APAC.
             </p>
             <Image
               alt="AKRIN service delivery"
