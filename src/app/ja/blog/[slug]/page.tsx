@@ -25,8 +25,12 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug
-  const { data: post } = await getPost(slug, 'ja')
+  const [{ data: post }, { data: englishPost }] = await Promise.all([
+    getPost(slug, 'ja'),
+    getPost(slug),
+  ])
   const fallbackPost = getFallbackPost(slug, 'ja')
+  const englishFallbackPost = getFallbackPost(slug, 'en')
   if (!post && !fallbackPost) return {}
 
   const localMeta = (blogPostsJA as Record<string, { title?: string; excerpt?: string }>)[slug]
@@ -34,17 +38,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const imageUrl = '/og-image.png'
   const postTitle = localMeta?.title || post?.title || fallbackPost?.title || 'AKRINブログ'
   const postDescription = localMeta?.excerpt || post?.excerpt || fallbackPost?.excerpt || undefined
+  const languages: NonNullable<Metadata['alternates']>['languages'] = {
+    ja: canonicalPath,
+    'x-default': englishPost || englishFallbackPost ? `/blog/${slug}` : canonicalPath,
+  }
+
+  if (englishPost || englishFallbackPost) {
+    languages.en = `/blog/${slug}`
+  }
 
   return {
     title: postTitle,
     description: postDescription,
     alternates: {
       canonical: canonicalPath,
-      languages: {
-        en: `/blog/${slug}`,
-        ja: canonicalPath,
-        'x-default': `/blog/${slug}`,
-      },
+      languages,
     },
     openGraph: {
       type: 'article',

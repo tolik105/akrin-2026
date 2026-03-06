@@ -36,7 +36,7 @@ const serviceItems = [
   {
     id: 1,
     title: 'Managed IT & Cloud',
-    href: '/services/managed-it-cloud-infrastructure-japan',
+    href: '/services/cloud-infrastructure',
     description:
       'End-to-end design, migration, and 24/7 operations for Microsoft 365, Azure, AWS, and hybrid environments.',
     detail: 'Japan and APAC support',
@@ -68,7 +68,7 @@ const serviceItems = [
   {
     id: 5,
     title: 'Cybersecurity & Compliance',
-    href: '/services/cybersecurity-compliance',
+    href: '/services/cybersecurity',
     description:
       'Hardening, real-time monitoring, incident response, and hands-on guidance toward frameworks such as ISO 27001.',
     detail: 'Security operations and compliance readiness',

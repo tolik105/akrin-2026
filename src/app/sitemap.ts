@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { getFallbackPostSlugs } from '@/lib/blog-fallback'
 import { routeMap } from '@/lib/route-map'
 import { getPostsForFeed } from '@/sanity/queries'
 
@@ -21,6 +22,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   } catch {
     // Keep sitemap generation resilient if Sanity is unavailable at build time.
+  }
+
+  for (const slug of getFallbackPostSlugs('en', true)) {
+    routes.add(`/blog/${slug}`)
+  }
+
+  for (const slug of getFallbackPostSlugs('ja', true)) {
+    routes.add(`/ja/blog/${slug}`)
   }
 
   return Array.from(routes).map((path) => ({

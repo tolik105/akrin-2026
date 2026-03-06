@@ -36,7 +36,7 @@ const serviceItems = [
   {
     id: 1,
     title: 'マネージドIT・クラウド',
-    href: '/ja/services/managed-it-cloud-infrastructure-japan',
+    href: '/ja/services/cloud-infrastructure',
     description:
       'Microsoft 365、Azure、AWS、ハイブリッド環境における設計・移行・24時間運用までを一気通貫で提供。',
     detail: '日本・APACをカバー',
@@ -68,7 +68,7 @@ const serviceItems = [
   {
     id: 5,
     title: 'サイバーセキュリティ・コンプライアンス',
-    href: '/ja/services/cybersecurity-compliance',
+    href: '/ja/services/cybersecurity',
     description:
       'ハードニング、リアルタイム監視、インシデント対応、ISO 27001等のフレームワーク取得に向けた実践的支援。',
     detail: '運用セキュリティと監査対応',

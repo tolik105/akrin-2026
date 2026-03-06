@@ -54,6 +54,8 @@ type ParsedFallbackMap = {
 
 const PRIMARY_BLOG_CONTENT_FILE = 'docs/content/services/AKRIN_SITE_CONTENT_EN_JA.md'
 const COMBINED_BLOG_CONTENT_FILE = 'docs/content/blog/AKRIN_Blog_Content_Combined.md'
+const ARCHIVE_PRIMARY_BLOG_CONTENT_FILE = 'docs/archive/content/AKRIN_SITE_CONTENT_EN_JA.md.backup'
+const ARCHIVE_COMBINED_BLOG_CONTENT_FILE = 'docs/archive/content/AKRIN_Blog_Content_Combined.md.backup'
 
 const categoryPairs: Record<string, string> = {
   'Managed IT Services': 'マネージドITサービス',
@@ -426,15 +428,9 @@ function buildCombinedLegacyPost(section: { fileName: string; body: string }): L
   }
 }
 
-let primaryParsedFallbackMap: ParsedFallbackMap | null | undefined
-
-function getPrimaryParsedFallbackMap() {
-  if (primaryParsedFallbackMap !== undefined) {
-    return primaryParsedFallbackMap
-  }
-
+function parsePrimaryFallbackFile(relativePath: string) {
   try {
-    const absolutePath = path.join(process.cwd(), PRIMARY_BLOG_CONTENT_FILE)
+    const absolutePath = path.join(process.cwd(), relativePath)
     const raw = readFileSync(absolutePath, 'utf8')
     const en: Record<string, LegacyBlogPost> = {}
     const ja: Record<string, LegacyBlogPost> = {}
@@ -445,23 +441,15 @@ function getPrimaryParsedFallbackMap() {
       ja[section.slug] = buildLegacyPost(section.slug, localeBlocks.Japanese)
     }
 
-    primaryParsedFallbackMap = { en, ja }
-    return primaryParsedFallbackMap
+    return { en, ja }
   } catch {
-    primaryParsedFallbackMap = null
-    return primaryParsedFallbackMap
+    return null
   }
 }
 
-let combinedParsedFallbackMap: ParsedFallbackMap | null | undefined
-
-function getCombinedParsedFallbackMap() {
-  if (combinedParsedFallbackMap !== undefined) {
-    return combinedParsedFallbackMap
-  }
-
+function parseCombinedFallbackFile(relativePath: string) {
   try {
-    const absolutePath = path.join(process.cwd(), COMBINED_BLOG_CONTENT_FILE)
+    const absolutePath = path.join(process.cwd(), relativePath)
     const raw = readFileSync(absolutePath, 'utf8')
     const en: Record<string, LegacyBlogPost> = {}
     const ja: Record<string, LegacyBlogPost> = {}
@@ -481,52 +469,92 @@ function getCombinedParsedFallbackMap() {
     // on the JA blog — confusing for users. Only properly translated JA posts
     // (from blogPostsJA or JA-authored markdown) should appear on the JA blog.
 
-    combinedParsedFallbackMap = { en, ja }
-    return combinedParsedFallbackMap
+    return { en, ja }
   } catch {
-    combinedParsedFallbackMap = null
-    return combinedParsedFallbackMap
+    return null
   }
+}
+
+function mergeParsedFallbackMaps(
+  ...maps: Array<ParsedFallbackMap | null | undefined>
+): ParsedFallbackMap | null {
+  const en: Record<string, LegacyBlogPost> = {
+    ...(maps.find((map) => map)?.en ?? {}),
+  }
+  const ja: Record<string, LegacyBlogPost> = {
+    ...(maps.find((map) => map)?.ja ?? {}),
+  }
+
+  const validMaps = maps.filter((map): map is ParsedFallbackMap => Boolean(map))
+  if (validMaps.length === 0) return null
+
+  for (const map of validMaps.slice(1)) {
+    const slugs = new Set([
+      ...Object.keys(map.en),
+      ...Object.keys(map.ja),
+    ])
+
+    for (const slug of slugs) {
+      if (!en[slug] && map.en[slug]) {
+        en[slug] = map.en[slug]
+      }
+      if (!ja[slug] && map.ja[slug]) {
+        ja[slug] = map.ja[slug]
+      }
+    }
+  }
+
+  return { en, ja }
+}
+
+let primaryParsedFallbackMap: ParsedFallbackMap | null | undefined
+
+function getPrimaryParsedFallbackMap() {
+  if (primaryParsedFallbackMap === undefined) {
+    primaryParsedFallbackMap = parsePrimaryFallbackFile(PRIMARY_BLOG_CONTENT_FILE)
+  }
+
+  return primaryParsedFallbackMap
+}
+
+let combinedParsedFallbackMap: ParsedFallbackMap | null | undefined
+
+function getCombinedParsedFallbackMap() {
+  if (combinedParsedFallbackMap === undefined) {
+    combinedParsedFallbackMap = parseCombinedFallbackFile(COMBINED_BLOG_CONTENT_FILE)
+  }
+
+  return combinedParsedFallbackMap
+}
+
+let archiveParsedFallbackMap: ParsedFallbackMap | null | undefined
+
+function getArchiveParsedFallbackMap() {
+  if (archiveParsedFallbackMap === undefined) {
+    archiveParsedFallbackMap = mergeParsedFallbackMaps(
+      parsePrimaryFallbackFile(ARCHIVE_PRIMARY_BLOG_CONTENT_FILE),
+      parseCombinedFallbackFile(ARCHIVE_COMBINED_BLOG_CONTENT_FILE),
+    )
+  }
+
+  return archiveParsedFallbackMap
 }
 
 let mergedParsedFallbackMap: ParsedFallbackMap | null | undefined
 
 function getMergedParsedFallbackMap() {
-  if (mergedParsedFallbackMap !== undefined) {
-    return mergedParsedFallbackMap
+  if (mergedParsedFallbackMap === undefined) {
+    mergedParsedFallbackMap = mergeParsedFallbackMaps(
+      getPrimaryParsedFallbackMap(),
+      getCombinedParsedFallbackMap(),
+    )
   }
 
-  const primary = getPrimaryParsedFallbackMap()
-  const combined = getCombinedParsedFallbackMap()
-
-  if (!primary && !combined) {
-    mergedParsedFallbackMap = null
-    return mergedParsedFallbackMap
-  }
-
-  const en: Record<string, LegacyBlogPost> = {
-    ...(primary?.en ?? {}),
-  }
-  const ja: Record<string, LegacyBlogPost> = {
-    ...(primary?.ja ?? {}),
-  }
-
-  const combinedSlugs = new Set([
-    ...Object.keys(combined?.en ?? {}),
-    ...Object.keys(combined?.ja ?? {}),
-  ])
-
-  for (const slug of combinedSlugs) {
-    if (!en[slug] && combined?.en?.[slug]) {
-      en[slug] = combined.en[slug]
-    }
-    if (!ja[slug] && combined?.ja?.[slug]) {
-      ja[slug] = combined.ja[slug]
-    }
-  }
-
-  mergedParsedFallbackMap = { en, ja }
   return mergedParsedFallbackMap
+}
+
+function getArchiveRawPost(locale: BlogLocale, slug: string) {
+  return getArchiveParsedFallbackMap()?.[locale]?.[slug]
 }
 
 function slugifyCategory(value: string) {
@@ -581,7 +609,7 @@ export function getFallbackImageBySlug(
   slug: string,
   locale: BlogLocale,
 ): string | undefined {
-  const raw = getRawMap(locale)[slug]
+  const raw = getRawMap(locale)[slug] || getArchiveRawPost(locale, slug)
   const image = raw?.image
   if (typeof image === 'string' && image.trim().length > 0) {
     return image
@@ -690,9 +718,24 @@ export function getFallbackPost(
   slug: string,
   locale: BlogLocale,
 ): FallbackBlogPost | null {
-  const raw = getRawMap(locale)[slug]
+  const raw = getRawMap(locale)[slug] || getArchiveRawPost(locale, slug)
   if (!raw) return null
   return toFallbackPost(raw, locale)
+}
+
+export function getFallbackPostSlugs(
+  locale: BlogLocale,
+  includeArchive = false,
+) {
+  const slugs = new Set(Object.keys(getRawMap(locale)))
+
+  if (includeArchive) {
+    for (const slug of Object.keys(getArchiveParsedFallbackMap()?.[locale] ?? {})) {
+      slugs.add(slug)
+    }
+  }
+
+  return Array.from(slugs)
 }
 
 export function getFallbackPostsCount(locale: BlogLocale, category?: string) {

@@ -136,7 +136,7 @@ export default async function JapaneseCaseStudyDetailPage({ params }: Props) {
           <Container className="pb-10">
             <img
               src={imageUrl}
-              alt=""
+              alt={title}
               className="w-full rounded-2xl border border-gray-200 object-cover"
               loading="lazy"
             />

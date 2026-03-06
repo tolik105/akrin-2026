@@ -24,25 +24,33 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const { data: post } = await getPost(slug)
+  const [{ data: post }, { data: japanesePost }] = await Promise.all([
+    getPost(slug),
+    getPost(slug, 'ja'),
+  ])
   const fallbackPost = getFallbackPost(slug, 'en')
+  const japaneseFallbackPost = getFallbackPost(slug, 'ja')
   if (!post && !fallbackPost) return {}
 
   const canonicalPath = `/blog/${slug}`
   const imageUrl = '/og-image.png'
   const postTitle = post?.title || fallbackPost?.title || 'AKRIN Blog'
   const postDescription = post?.excerpt || fallbackPost?.excerpt || undefined
+  const languages: NonNullable<Metadata['alternates']>['languages'] = {
+    en: canonicalPath,
+    'x-default': canonicalPath,
+  }
+
+  if (japanesePost || japaneseFallbackPost) {
+    languages.ja = `/ja/blog/${slug}`
+  }
 
   return {
     title: postTitle,
     description: postDescription,
     alternates: {
       canonical: canonicalPath,
-      languages: {
-        en: canonicalPath,
-        ja: `/ja/blog/${slug}`,
-        'x-default': canonicalPath,
-      },
+      languages,
     },
     openGraph: {
       type: 'article',
