@@ -494,7 +494,7 @@ AKRIN K.K. is a Tokyo-based managed IT services company specializing in IT infra
 ## Related Articles
 
 - [Office Move IT Support Japan: How to Minimize Downtime](/blog/office-move-it-support-japan)
-- [IT Relocation Tokyo: Complete Checklist for Office Technology Moves](/blog/it-relocation-tokyo)
+- [IT Relocation Tokyo: Complete Checklist for Office Technology Moves](/blog/it-relocation-tokyo-checklist)
 - [Ekahau Wireless Survey Japan: Professional WiFi Assessment](/blog/ekahau-wireless-survey-japan)
 
 ---

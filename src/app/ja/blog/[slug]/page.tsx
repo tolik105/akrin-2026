@@ -14,6 +14,7 @@ import type { Metadata } from 'next'
 import { headers } from 'next/headers'
 import { PortableText } from 'next-sanity'
 import { notFound } from 'next/navigation'
+import { permanentRedirect } from 'next/navigation'
 import { redirect } from 'next/navigation'
 
 async function getRequestSiteUrl() {
@@ -22,6 +23,12 @@ async function getRequestSiteUrl() {
   const protocol = headerStore.get('x-forwarded-proto') || (host?.includes('localhost') ? 'http' : 'https')
 
   return host ? `${protocol}://${host}` : 'https://akrin.jp'
+}
+
+function normalizeMetaText(value: string | undefined, maxLength: number, fallback: string) {
+  const text = (value || fallback).trim()
+  if (text.length <= maxLength) return text
+  return `${text.slice(0, maxLength - 3).trim()}...`
 }
 
 export const dynamic = 'force-dynamic'
@@ -41,11 +48,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post && !fallbackPost) return {}
 
   const siteUrl = await getRequestSiteUrl()
-  const localMeta = (blogPostsJA as Record<string, { title?: string; excerpt?: string }>)[slug]
+  const localMeta = (blogPostsJA as Record<string, { metaTitle?: string; metaDescription?: string; title?: string; excerpt?: string }>)[slug]
   const canonicalPath = `/ja/blog/${slug}`
   const imageUrl = '/og-image.png'
-  const postTitle = localMeta?.title || post?.title || fallbackPost?.title || 'AKRINブログ'
-  const postDescription = localMeta?.excerpt || post?.excerpt || fallbackPost?.excerpt || undefined
+  const postTitle = normalizeMetaText(
+    localMeta?.metaTitle || localMeta?.title || post?.title || fallbackPost?.metaTitle || fallbackPost?.title,
+    52,
+    'AKRINブログ',
+  )
+  const postDescription = normalizeMetaText(
+    localMeta?.metaDescription || localMeta?.excerpt || post?.excerpt || fallbackPost?.metaDescription || fallbackPost?.excerpt,
+    150,
+    'AKRINのIT運用、セキュリティ、クラウドに関する知見を掲載。',
+  )
   const languages: NonNullable<Metadata['alternates']>['languages'] = {
     ja: `${siteUrl}${canonicalPath}`,
     'x-default': englishPost || englishFallbackPost ? `${siteUrl}/blog/${slug}` : `${siteUrl}${canonicalPath}`,
@@ -82,12 +97,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function JapaneseBlogPostPage({ params }: Props) {
   const siteUrl = await getRequestSiteUrl()
   const slug = (await params).slug
-  const { data: post } = await getPost(slug, 'ja')
+  const [{ data: post }, { data: englishPost }] = await Promise.all([
+    getPost(slug, 'ja'),
+    getPost(slug, 'en'),
+  ])
   const fallbackPost = getFallbackPost(slug, 'ja')
+  const englishFallbackPost = getFallbackPost(slug, 'en')
+  if (!post && !fallbackPost && (englishPost || englishFallbackPost)) {
+    permanentRedirect(`/blog/${slug}`)
+  }
   if (!post && !fallbackPost) notFound()
   const resolvedPost = post ?? {
     title: fallbackPost!.title,
+    metaTitle: fallbackPost!.metaTitle,
     excerpt: fallbackPost!.excerpt,
+    metaDescription: fallbackPost!.metaDescription,
     publishedAt: fallbackPost!.publishedAt,
     author: fallbackPost!.author,
     categories: fallbackPost!.categories,
@@ -95,7 +119,7 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
     image: fallbackPost!.image,
     htmlContent: fallbackPost!.htmlContent,
   }
-  const localFallback = (blogPostsJA as Record<string, { image?: string; content?: string; title?: string; excerpt?: string }>)[slug]
+  const localFallback = (blogPostsJA as Record<string, { image?: string; content?: string; title?: string; excerpt?: string; metaTitle?: string; metaDescription?: string } | undefined>)[slug]
 
   // If this post has no proper JA translation (auto-localized 【日本語版】 or English-only),
   // redirect to the English version instead of showing English content on the JA page.
@@ -126,7 +150,14 @@ export default async function JapaneseBlogPostPage({ params }: Props) {
     : new Date().toISOString()
   const postUrl = `${siteUrl}/ja/blog/${slug}`
   const postTitle = localFallback?.title || resolvedPost.title || fallbackPost?.title || 'AKRINブログ'
-  const postDescription = localFallback?.excerpt || resolvedPost.excerpt || fallbackPost?.excerpt || ''
+  const postDescription =
+    localFallback?.metaDescription ||
+    localFallback?.excerpt ||
+    ('metaDescription' in resolvedPost ? resolvedPost.metaDescription : undefined) ||
+    resolvedPost.excerpt ||
+    fallbackPost?.metaDescription ||
+    fallbackPost?.excerpt ||
+    ''
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',

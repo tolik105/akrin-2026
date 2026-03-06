@@ -12,6 +12,7 @@ type LegacyRelatedPost = {
 type LegacyBlogPost = {
   slug?: string
   title?: string
+  metaTitle?: string
   excerpt?: string
   metaDescription?: string
   content?: string
@@ -35,9 +36,11 @@ type FallbackAuthor = {
 
 export type FallbackBlogPost = {
   title: string
+  metaTitle?: string
   slug: string
   publishedAt: string
   excerpt: string
+  metaDescription?: string
   htmlContent: string
   mainImage: null
   image?: string
@@ -681,9 +684,11 @@ function toFallbackPost(raw: LegacyBlogPost, locale: BlogLocale): FallbackBlogPo
 
   return {
     title: raw.title || (locale === 'ja' ? '記事' : 'Post'),
+    metaTitle: raw.metaTitle || undefined,
     slug,
     publishedAt: toISODate(raw.date),
     excerpt: raw.excerpt || '',
+    metaDescription: raw.metaDescription || raw.excerpt || undefined,
     htmlContent: raw.content || '',
     mainImage: null,
     image: raw.image || undefined,

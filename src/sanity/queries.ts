@@ -13,7 +13,7 @@ import { sanityFetch } from './live'
 const TOTAL_POSTS_QUERY = defineQuery(/* groq */ `count(*[
   _type == "post"
   && defined(slug.current)
-  && (locale == $locale || !defined(locale))
+  && select($includeDefaultLocale => (locale == $locale || !defined(locale)), locale == $locale)
   && (isFeatured != true || defined($category))
   && select(defined($category) => $category in categories[]->slug.current, true)
 ])`)
@@ -25,7 +25,7 @@ export async function getPostsCount(
   try {
     const response = await sanityFetch({
       query: TOTAL_POSTS_QUERY,
-      params: { category: category ?? null, locale },
+      params: { category: category ?? null, locale, includeDefaultLocale: locale === 'en' },
     })
 
     if (typeof response.data === 'number' && response.data > 0) {
@@ -48,7 +48,7 @@ export async function getPostsCount(
 const POSTS_QUERY = defineQuery(/* groq */ `*[
   _type == "post"
   && defined(slug.current)
-  && (locale == $locale || !defined(locale))
+  && select($includeDefaultLocale => (locale == $locale || !defined(locale)), locale == $locale)
   && (isFeatured != true || defined($category))
   && select(defined($category) => $category in categories[]->slug.current, true)
 ]|order(publishedAt desc)[$startIndex...$endIndex]{
@@ -77,6 +77,7 @@ export async function getPosts(
         endIndex,
         category: category ?? null,
         locale,
+        includeDefaultLocale: locale === 'en',
       },
     })
 
@@ -101,7 +102,7 @@ const FEATURED_POSTS_QUERY = defineQuery(/* groq */ `*[
   _type == "post"
   && isFeatured == true
   && defined(slug.current)
-  && (locale == $locale || !defined(locale))
+  && select($includeDefaultLocale => (locale == $locale || !defined(locale)), locale == $locale)
 ]|order(publishedAt desc)[0...$quantity]{
   title,
   "slug": slug.current,
@@ -121,7 +122,7 @@ export async function getFeaturedPosts(
   try {
     const response = await sanityFetch({
       query: FEATURED_POSTS_QUERY,
-      params: { quantity, locale },
+      params: { quantity, locale, includeDefaultLocale: locale === 'en' },
     })
 
     if (Array.isArray(response.data) && response.data.length > 0) {
@@ -144,7 +145,7 @@ export async function getFeaturedPosts(
 const FEED_POSTS_QUERY = defineQuery(/* groq */ `*[
   _type == "post"
   && defined(slug.current)
-  && (locale == $locale || !defined(locale))
+  && select($includeDefaultLocale => (locale == $locale || !defined(locale)), locale == $locale)
 ]|order(isFeatured, publishedAt desc){
   title,
   "slug": slug.current,
@@ -160,7 +161,7 @@ export async function getPostsForFeed() {
   try {
     const response = await sanityFetch({
       query: FEED_POSTS_QUERY,
-      params: { locale: 'en' },
+      params: { locale: 'en', includeDefaultLocale: true },
     })
 
     if (Array.isArray(response.data) && response.data.length > 0) {
@@ -183,7 +184,7 @@ export async function getPostsForFeed() {
 const POST_QUERY = defineQuery(/* groq */ `*[
   _type == "post"
   && slug.current == $slug
-  && (locale == $locale || !defined(locale))
+  && select($includeDefaultLocale => (locale == $locale || !defined(locale)), locale == $locale)
 ][0]{
   publishedAt,
   title,
@@ -206,7 +207,7 @@ export async function getPost(slug: string, locale: BlogLocale = 'en') {
   try {
     const response = await sanityFetch({
       query: POST_QUERY,
-      params: { slug, locale },
+      params: { slug, locale, includeDefaultLocale: locale === 'en' },
     })
 
     if (response.data) {
@@ -231,7 +232,7 @@ const CATEGORIES_QUERY = defineQuery(/* groq */ `*[
   && count(*[
     _type == "post"
     && defined(slug.current)
-    && (locale == $locale || !defined(locale))
+    && select($includeDefaultLocale => (locale == $locale || !defined(locale)), locale == $locale)
     && ^._id in categories[]._ref
   ]) > 0
 ]|order(title asc){
@@ -243,7 +244,7 @@ export async function getCategories(locale: BlogLocale = 'en') {
   try {
     const response = await sanityFetch({
       query: CATEGORIES_QUERY,
-      params: { locale },
+      params: { locale, includeDefaultLocale: locale === 'en' },
     })
 
     if (Array.isArray(response.data) && response.data.length > 0) {

@@ -95,6 +95,11 @@ export const wifiSiteSurveyGuideJA = {
   slug: 'wifi-site-survey-guide',
   title:
     'WiFiサイト調査の完全ガイド：ワイヤレスネットワークパフォーマンスの計画、実施、最適化',
+  metaTitle: 'WiFiサイト調査ガイド：計画・実施・最適化 | AKRIN',
+  metaDescription:
+    'WiFiサイト調査の完全ガイド。予測調査、アクティブ調査、パッシブ調査、RFスペクトラム分析、Ekahau活用、構内配線との連携ポイントを解説します。',
+  excerpt:
+    'WiFiサイト調査の基本から実務までを解説。予測設計、アクティブ検証、パッシブ調査、RFスペクトラム分析、Ekahau活用、配線要件まで網羅します。',
   image: '/blog-images/future-of-infrastructure.avif',
   content: `
     <h1>WiFiサイト調査の完全ガイド：ワイヤレスネットワークパフォーマンスの計画、実施、最適化</h1>

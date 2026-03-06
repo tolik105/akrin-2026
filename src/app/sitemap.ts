@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next'
 import { headers } from 'next/headers'
-import { getFallbackPostSlugs } from '@/lib/blog-fallback'
+import { getFallbackPost, getFallbackPostSlugs } from '@/lib/blog-fallback'
 import { routeMap } from '@/lib/route-map'
-import { getPostsForFeed } from '@/sanity/queries'
+import { getPost, getPostsForFeed } from '@/sanity/queries'
 
 async function getRequestSiteUrl() {
   const headerStore = await headers()
@@ -26,7 +26,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const post of posts) {
       if (!post?.slug) continue
       routes.add(`/blog/${post.slug}`)
-      routes.add(`/ja/blog/${post.slug}`)
+      const { data: japanesePost } = await getPost(post.slug, 'ja')
+
+      if (japanesePost || getFallbackPost(post.slug, 'ja')) {
+        routes.add(`/ja/blog/${post.slug}`)
+      }
     }
   } catch {
     // Keep sitemap generation resilient if Sanity is unavailable at build time.

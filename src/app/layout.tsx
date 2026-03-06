@@ -7,7 +7,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import '@/styles/tailwind.css'
 import type { Metadata, Viewport } from 'next'
 
-const siteUrl = 'https://akrin.jp'
+const siteUrl = 'https://www.akrin.ai'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -100,6 +100,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "document.documentElement.lang = (location.pathname === '/ja' || location.pathname.startsWith('/ja/')) ? 'ja' : 'en';",
+          }}
+        />
         <link
           rel="preload"
           href="/fonts/Inter.var.woff2"

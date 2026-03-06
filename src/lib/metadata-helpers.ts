@@ -23,11 +23,10 @@ export function generatePageMetadata({
   openGraph,
   twitter
 }: PageMetadataProps): Metadata {
-  const baseUrl = 'https://akrin.jp'
   const normalizedPath = path.startsWith('/') ? path : `/${path}`
   const isJa = normalizedPath.startsWith('/ja')
-  const enUrl = `${baseUrl}${isJa ? normalizedPath.replace(/^\/ja/, '') || '/' : normalizedPath}`
-  const jaUrl = `${baseUrl}${isJa ? normalizedPath : `/ja${normalizedPath}`}`
+  const enUrl = isJa ? normalizedPath.replace(/^\/ja/, '') || '/' : normalizedPath
+  const jaUrl = isJa ? normalizedPath : `/ja${normalizedPath}`
   const fullUrl = isJa ? jaUrl : enUrl
   
   // Enforce length limits
@@ -61,8 +60,8 @@ export function generatePageMetadata({
   const defaultAlternates: Metadata['alternates'] = {
     canonical: fullUrl,
     languages: {
-      'en-US': enUrl,
-      'ja-JP': jaUrl,
+      en: enUrl,
+      ja: jaUrl,
       'x-default': enUrl
     }
   }

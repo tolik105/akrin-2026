@@ -23,6 +23,12 @@ async function getRequestSiteUrl() {
   return host ? `${protocol}://${host}` : 'https://akrin.jp'
 }
 
+function normalizeMetaText(value: string | undefined, maxLength: number, fallback: string) {
+  const text = (value || fallback).trim()
+  if (text.length <= maxLength) return text
+  return `${text.slice(0, maxLength - 3).trim()}...`
+}
+
 export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({
@@ -42,8 +48,17 @@ export async function generateMetadata({
   const siteUrl = await getRequestSiteUrl()
   const canonicalPath = `/blog/${slug}`
   const imageUrl = '/og-image.png'
-  const postTitle = post?.title || fallbackPost?.title || 'AKRIN Blog'
-  const postDescription = post?.excerpt || fallbackPost?.excerpt || undefined
+  const localMeta = (blogPostsEN as Record<string, { metaTitle?: string; metaDescription?: string; title?: string; excerpt?: string }>)[slug]
+  const postTitle = normalizeMetaText(
+    localMeta?.metaTitle || post?.title || fallbackPost?.metaTitle || fallbackPost?.title,
+    52,
+    'AKRIN Blog',
+  )
+  const postDescription = normalizeMetaText(
+    localMeta?.metaDescription || post?.excerpt || fallbackPost?.metaDescription || fallbackPost?.excerpt,
+    150,
+    'Insights from AKRIN on IT operations, cybersecurity, cloud, and infrastructure in Japan.',
+  )
   const languages: NonNullable<Metadata['alternates']>['languages'] = {
     en: `${siteUrl}${canonicalPath}`,
     'x-default': `${siteUrl}${canonicalPath}`,
@@ -89,7 +104,9 @@ export default async function BlogPost({
   if (!post && !fallbackPost) notFound()
   const resolvedPost = post ?? {
     title: fallbackPost!.title,
+    metaTitle: fallbackPost!.metaTitle,
     excerpt: fallbackPost!.excerpt,
+    metaDescription: fallbackPost!.metaDescription,
     publishedAt: fallbackPost!.publishedAt,
     author: fallbackPost!.author,
     categories: fallbackPost!.categories,
@@ -97,7 +114,7 @@ export default async function BlogPost({
     image: fallbackPost!.image,
     htmlContent: fallbackPost!.htmlContent,
   }
-  const localFallback = (blogPostsEN as Record<string, { image?: string; content?: string }>)[slug]
+  const localFallback = (blogPostsEN as Record<string, { image?: string; content?: string; metaTitle?: string; metaDescription?: string } | undefined>)[slug]
   const localFallbackImage = localFallback?.image || fallbackPost?.image || getFallbackImageBySlug(slug, 'en')
   const portableBody = 'body' in resolvedPost ? resolvedPost.body : undefined
   const sanityHtml =
@@ -120,7 +137,13 @@ export default async function BlogPost({
     : new Date().toISOString()
   const postUrl = `${siteUrl}/blog/${slug}`
   const postTitle = resolvedPost.title || fallbackPost?.title || 'AKRIN Blog'
-  const postDescription = resolvedPost.excerpt || fallbackPost?.excerpt || ''
+  const postDescription =
+    localFallback?.metaDescription ||
+    ('metaDescription' in resolvedPost ? resolvedPost.metaDescription : undefined) ||
+    resolvedPost.excerpt ||
+    fallbackPost?.metaDescription ||
+    fallbackPost?.excerpt ||
+    ''
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
