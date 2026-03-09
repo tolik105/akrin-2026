@@ -736,7 +736,7 @@ export function HomePage({ locale }: { locale: Locale }) {
                             >
                               <div className="grid grid-cols-1 gap-y-10 p-8 sm:p-10 lg:grid-cols-12 lg:gap-x-12 lg:p-12">
                                 {/* Left: Main content */}
-                                <div className={hasHighlights ? 'lg:col-span-5' : 'lg:col-span-12'}>
+                                <div className={`${hasHighlights ? 'lg:col-span-5' : 'lg:col-span-12'} ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
                                   <div className="flex flex-wrap items-center gap-3">
                                     <span className="font-mono text-[11px] tracking-[0.15em] text-[#0A0B19]/45">
                                       {String(idx + 1).padStart(2, '0')}
@@ -789,7 +789,7 @@ export function HomePage({ locale }: { locale: Locale }) {
 
                                 {/* Right: Highlights */}
                                 {hasHighlights ? (
-                                  <div className="lg:col-span-7">
+                                  <div className={`lg:col-span-7 ${idx % 2 !== 0 ? 'lg:order-1' : ''}`}>
                                     <div className="rounded-2xl border border-[#0A0B19]/10 bg-[#FAFAFC] p-6 sm:p-8">
                                       <div className="overflow-hidden rounded-xl border border-[#0A0B19]/10 bg-[#0A0B19]/5">
                                         <div className="relative aspect-[16/9]">

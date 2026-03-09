@@ -341,11 +341,6 @@ export default function JapanEkahauWirelessSurveysJAClient() {
                           className="object-cover"
                         />
                       </div>
-                      <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">
-                        <p className="text-center text-[11px] font-medium uppercase tracking-wider text-[#6B6D7C]/60">
-                          Wi-Fiカバレッジヒートマップ — 信号強度分析
-                        </p>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -431,11 +426,6 @@ export default function JapanEkahauWirelessSurveysJAClient() {
                           fill
                           className="object-contain p-8"
                         />
-                      </div>
-                      <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">
-                        <p className="text-center text-[11px] font-medium uppercase tracking-wider text-[#6B6D7C]/60">
-                          Ekahau Sidekick — デュアルバンドサーベイデバイス
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -535,11 +525,6 @@ export default function JapanEkahauWirelessSurveysJAClient() {
                           fill
                           className="object-cover"
                         />
-                      </div>
-                      <div className="border-t border-[#E2E5EF] bg-[#FAFAFC] px-6 py-3">
-                        <p className="text-center text-[11px] font-medium uppercase tracking-wider text-[#6B6D7C]/60">
-                          FLUKEケーブル認証 — テストレポート
-                        </p>
                       </div>
                     </div>
                   </div>
@@ -735,30 +720,6 @@ export default function JapanEkahauWirelessSurveysJAClient() {
                   サンプルレポートをダウンロード
                 </Link>
               </div>
-            </div>
-          </section>
-
-          {/* ═══ Related Blog ═══ */}
-          <section className="bg-[#F7F7FC] pt-12 pb-4 sm:pt-16 sm:pb-6">
-            <div className="mx-auto max-w-7xl">
-              <SectionLabel label="関連記事" />
-              <Link
-                href="/ja/blog/wifi-site-survey-guide"
-                className="group mt-4 flex items-center justify-between rounded-2xl bg-white px-6 py-5 ring-1 ring-[#E2E5EF] transition-all duration-300 hover:shadow-lg hover:ring-[#0066CC]/20 sm:px-8"
-              >
-                <div>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[#0066CC]">
-                    ブログガイド
-                  </span>
-                  <span className="mt-1 block font-serif text-lg font-light tracking-[-0.02em] text-[#0A0B19] group-hover:text-[#0066CC] sm:text-xl">
-                    Wi-Fiサイトサーベイガイド：種類、ツール、ベストプラクティス
-                  </span>
-                  <span className="mt-1.5 block text-sm leading-relaxed text-[#6B6D7C]">
-                    予測、パッシブ、アクティブサーベイ手法について。Ekahauツール、スペクトラム分析、プロフェッショナルなWi-Fiサイトサーベイの計画方法を解説。
-                  </span>
-                </div>
-                <svg className="ml-6 h-5 w-5 shrink-0 text-[#6B6D7C] transition-transform group-hover:translate-x-0.5 group-hover:text-[#0066CC]" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
-              </Link>
             </div>
           </section>
 
