@@ -518,12 +518,12 @@ export default function JapanEkahauWirelessSurveysJAClient() {
                   {/* Image — 5 columns */}
                   <div className="mt-10 lg:col-span-5 lg:mt-0">
                     <div className="overflow-hidden rounded-2xl ring-1 ring-[#E2E5EF]">
-                      <div className="relative aspect-[4/3]">
+                      <div className="relative aspect-[741/960]">
                         <Image
                           src={flukeReportImage}
                           alt="FLUKEケーブル認証テストレポート — 合否判定結果"
                           fill
-                          className="object-cover"
+                          className="object-contain"
                         />
                       </div>
                     </div>
